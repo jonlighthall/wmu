@@ -1,0 +1,134 @@
+%% Formatting packages-----------%-------------------------------
+\providecommand{\authname}{Jon Lighthall}
+\providecommand{\thesistitle}{J. C. Lighthall CV}
+\hypersetup{
+  pdfauthor=\authname,           %Adds author name to PDF properties
+  pdftitle=\thesistitle,         %Adds thesis title to PDF properties
+  pdfstartpage=1,                %Opening page number (absolute)
+  pdfstartview={XYZ null null 1},%view page at 100%
+}
+
+%% Bibliography packages---------%-------------------------------
+\usepackage{multibib}
+%% Multibib generates multiple bibliographic sections.  Each bibliography requires a separate
+%% .bbl file which is generated from an .aux file by BibTex.  This can be done manually or with
+%% a script.  For example, create a batch file in the current directory with the following
+%% contents:
+%% for %%f in (*.aux) do "C:\Program Files\MiKTeX 2.9\miktex\bin\bibtex.exe" %%~nf
+%% Then, define a new output profile (in TeXnicCenter) which points to the new batch file.
+%\IfFileExists{multibib.bat}{}{\errmessage{Batch file for multibib not found}}
+\newcites{talk}{Presentations}
+\newcites{proc}{Proceedings}
+\newcites{invi}{Invited Talks}
+
+%% Application/CV settings-------%-------------------------------
+\usepackage{sectsty}
+\sectionfont{\normalsize} %use 
+
+\setlength{\parindent}{0in}
+
+\newcommand{\heliosonly}[1]{#1}
+\newcommand{\jclonly}[1]{#1}
+
+\renewenvironment{changemargin}[1]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+		\addtolength{\textwidth}{-#1}
+    %\setlength{\rightmargin}{#1}%
+     }\item[]}{\end{list}}
+
+\newcommand{\homeaddress}{%
+%816 S. Adams St. Apt. C305, Westmont, IL 60559-3606\\%
+%\href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu}\\%
+%(248) 797-3674\\%
+13--6395 Hawthorn Lane\\ Vancouver, BC\hspace{6pt}V6T~1Z4\\
+%Canada\\
+\href{mailto:lighthall@triumf.ca}{lighthall@triumf.ca}\\%
+(778) 999-6006\\
+}
+\newcommand{\workaddress}{
+\begin{tabular}{r|p{135pt}}
+	Western Michigan University&Argonne National Laboratory\\
+	Physics Department&Physics Division\\
+	1903 W. Michigan Ave.&9700 S. Cass Ave.\\
+	Kalamazoo, MI 49008-5252&Argonne, IL 60439\\
+	\href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu}&(630) 252-4803\\
+\end{tabular}
+}
+
+\newcommand{\nameaddress}[1]{
+%\begin{center}
+\begin{changemargin}{3in}
+\textbf{Jonathan C. Lighthall}\\
+#1%
+%\homeaddress
+%\workaddress
+\end{changemargin}
+%\end{center}
+}
+
+\newcommand{\cvwrapper}[3]{%
+\clearpage
+\pagestyle{#1}
+\rhead{\textbf{#2}}
+\nameaddress{\homeaddress}
+\vspace*{1.0\baselineskip}%double space
+\displaydate{letterdate}
+
+\vspace*{2.0\baselineskip}%triple space
+\recip{} \comp{}\\
+\recipaddress{}
+\vspace*{2.0\baselineskip}%triple space
+
+%To Whom It May Concern at \recip,\\
+Dear \recip,\\
+
+#3\\
+
+Sincerely,
+
+\vspace*{-0.9\baselineskip}
+\begin{figure}[h!]
+		%\includegraphics[height=1cm,keepaspectratio]{../../_DS12247.eps}
+		%\includegraphics[height=2.22cm,keepaspectratio]{../../_DS14681.eps}
+		\includegraphics[height=1cm,keepaspectratio]{_DS14681}
+\end{figure}
+\vspace*{-1.0\baselineskip}
+Jonathan C. Lighthall}
+
+\newcommand{\desc}[1]{
+\renewenvironment{quote}{%
+\list{}{%
+    \setlength{\leftmargin}{22pt}
+    %\rightmargin0pt%\leftmargin
+		\setlength{\itemsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+	\setlength{\topsep}{0pt}
+	\setlength{\partopsep}{0pt}
+  }
+  \item\relax
+}
+{\endlist}
+\begin{quote}
+%\vspace*{-0.35\baselineskip}%
+%\textit
+\footnotesize
+{#1}% \the\leftmargin, \the\rightmargin
+%\vspace*{-0.35\baselineskip}%
+\end{quote}
+}
+
+\renewenvironment{itemize}%
+{ \begin{list}%
+   {\textbullet}%
+   {%
+	%\setlength{\topsep}{0pt}
+	%\setlength{\partopsep}{0pt}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+		}
+		}%
+{ \end{list} }
