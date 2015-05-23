@@ -1437,17 +1437,17 @@ FUNCTION {article}
   if$
   format.journal.pages
   note empty$
-{} 
-{ volume empty$ %added handling for no volume field
-    {", "  *}
-    {}
+    {} 
+    { volume empty$ %added handling for no volume field
+	{", "  *}
+	{}
+      if$
+      format.note output
+      volume empty$ %added handling for no volume field
+	{"l"}
+	{}
+      if$}
   if$
-  format.note output
- volume empty$ %added handling for no volume field
-    {"l"}
-    {}
-  if$}
-if$
   fin.entry
 % write.url
 }
@@ -1478,7 +1478,7 @@ FUNCTION {book}
   if$
   format.note output
   fin.entry
-  write.url
+  % write.url
 }
 
 FUNCTION {booklet}
