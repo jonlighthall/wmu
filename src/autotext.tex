@@ -1,10 +1,11 @@
 %% The following command is intended to produce dummy body text for testing fonts,
 %  layouts, and formatting.
+\usepackage{lipsum}
 \usepackage{ifthen}
-\newcounter{i}
-\newcounter{j}
-\newcounter{k}
-\newcounter{l}
+\newcounter{i} %jack and pangram iteration counter
+\newcounter{j} %pangram iterations per paragraph counter
+\newcounter{k} %autotext iteration counter
+\newcounter{l} %autotext level counter
 \newcounter{m}
 \newcounter{n}
 
@@ -15,7 +16,8 @@
 	All work and no play makes Jack a dull boy.%
 	\addtocounter{i}{1}
 	%(\the\value{i})  %
-	}}
+	}
+}
 
 %% Pangram output.  A new paragraph is started after every tenth iteration.
 \newcommand{\pangram}[1]{%9 words
@@ -40,13 +42,13 @@
 	\setcounter{k}{0}%iteration counter
 	\setcounter{l}{\value{n}}%level counter
 	\setcounter{m}{1}%chapter counter
-	\whiledo{\value{k} < #1}{%
+	\whiledo{\value{k} < #1} {%
 		\addtocounter{k}{1}%
 	\addtocounter{l}{1}%
 %		k=\the\value{k}, l=\the\value{l}, m=\the\value{m}
 		\ifthenelse{\value{l} = 0}{\part{Level \the\value{l} Auto Text \the\value{m}} Text after a part and before a chapter. }{}%
 		\ifthenelse{\value{l} = 1}{\Chapter{Level \the\value{l} Auto Text \the\value{m}} Chapter text\footnote{This is a footnote}%
-		.  This is a citation Ref.~\cite{Lighthall_2010}. }{}		
+		.  This is a citation Ref.~\cite{Lighthall_2010}. }{}
 		\ifthenelse{\value{l} = 2}{\section{Level \the\value{l} Auto Text \the\value{m}} Section text. }{}%
 		\ifthenelse{\value{l} = 3}{\subsection{Level \the\value{l} Auto Text \the\value{m}} Subsection text. }{}%
 		\ifthenelse{\value{l} = 4}{\subsubsection{Level \the\value{l} Auto Text \the\value{m}} Sub-subsection text. }{}%
