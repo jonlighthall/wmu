@@ -1,5 +1,6 @@
 %%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%
-%% This file loads a number of standard packages.  Also included at the end of the file are a number of macros.
+%% This file loads a number of standard packages.  Also included at the end of the file are a 
+%  number of macros.
 %% Math packages-----------------%-------------------------------
 \usepackage{amsmath}
 %\usepackage{amssymb,mathrsfs}%provides symbols, script text in math mode (conflicts with mathdesign)
@@ -127,6 +128,7 @@
 %\renewcommand{\AMeV}{MeV/A}
 \renewcommand{\AMeV}{MeV/$u$}
 
+\InputIfFileExists{autotext}{}{}
 \InputIfFileExists{More_Files/autotext}{}{}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
