@@ -26,8 +26,10 @@
 %% * Option to highlight (in bold face) a select authors name.
 %% --------Version 5----------------------------
 %% * Prints journal information for proceedings
+%% --------Version 6----------------------------
+%% * Better handling of URLs in @webpage and @misc, March 2014
 %% 
-%% Copyright 2007, 2008, 2009 Elsevier Ltd
+%% Copyright 2007, 2008, 2009 Elseviecr Ltd
 %% 
 %% This file is part of the 'Elsarticle Bundle'.
 %% ---------------------------------------------
@@ -526,7 +528,18 @@ MACRO {tcs} {"Theoretical Comput. Sci."}
 FUNCTION {write.url}
 { url empty$
     { skip$ }
-    { "\newline\urlprefix\url{" url * "}" * write$ newline$ }
+    {title empty$
+       {author empty$
+          % If the URL is given without any other information (here no-title and
+          % no-author is specified), do not start a new line.
+          {"\urlprefix\url{" url * "}" * write$} 
+          {"\newline\urlprefix\url{" url * "}" * write$}
+	if$
+       }   
+       {"\newline\urlprefix\url{" url * "}" * write$}
+     if$
+     newline$ 
+    }
   if$
 }
 
@@ -537,50 +550,50 @@ FUNCTION {format.names}
   #1 'nameptr :=
   s num.names$ 'numnames :=
   numnames 'namesleft :=
-    { namesleft #0 > }
-    { s nameptr
-      "{f.~}{vv~}{ll}{, jj}" format.name$
-      duplicate$ "J.~C. Lighthall" =
-        { bolden } %puts given author name in bold face
-        { }
-      if$
+  { namesleft #0 > }
+  { s nameptr
+    "{f.~}{vv~}{ll}{, jj}" format.name$
+    duplicate$ "J.~C. Lighthall" =
+      { bolden } % Sets given author name in bold face.
+      { }
+    if$
     't :=
-      nameptr #1 >
-        {
-% added for APS, sets number of authors to be listed on the lines indicated
-	  nameptr #0
-          #10 + %here
-          #1 + =
-          numnames #0
-          #100 + %and here
-          > and
-            { "others" 't :=
-              #1 'namesleft := }
-            'skip$
-          if$
-% ----------
-          namesleft #1 >
-            { ", " * t * }
-            {
-              "," *
-              s nameptr "{ll}" format.name$ duplicate$ "others" =
-                { 't := }
-                { pop$ }
-              if$
-              t "others" =
-                {
-                  " " * bbl.etal *
-                }
-                { " " * t * }
-              if$
-            }
-          if$
-        }
-        't
-      if$
-      nameptr #1 + 'nameptr :=
-      namesleft #1 - 'namesleft :=
-    }
+    nameptr #1 >
+      {
+	% Added for APS, sets number of authors to be listed on the lines indicated.
+	nameptr #0
+        #10 + %here
+        #1 + =
+        numnames #0
+        #100 + %and here
+        > and
+          { "others" 't :=
+            #1 'namesleft := }
+          'skip$
+        if$
+	% ----------
+        namesleft #1 >
+          { ", " * t * }
+          {
+            "," *
+            s nameptr "{ll}" format.name$ duplicate$ "others" =
+              { 't := }
+              { pop$ }
+            if$
+            t "others" =
+              {
+                " " * bbl.etal *
+              }
+              { " " * t * }
+            if$
+          }
+        if$
+      }
+      't
+    if$
+    nameptr #1 + 'nameptr :=
+    namesleft #1 - 'namesleft :=
+  }
   while$
 }
 FUNCTION {format.names.ed}
@@ -1335,8 +1348,8 @@ FUNCTION {format.eprint}
 FUNCTION {format.doi}
 { doi empty$
     { "" }
-    { "" }
-%    { doiprefix doi * doiurl doi * make.href }
+    { "" } % DOI URL printing is redundant if URL is given
+    %{ doiprefix doi * doiurl doi * make.href }
   if$
 }
 
@@ -1401,11 +1414,11 @@ FUNCTION {webpage}
       if$
     }
   if$
-  new.block
+  %new.block % adds a period instead of a comma, removed
   title empty$ 'skip$ 'setup.inlinelink if$
   format.title "title" output.check
-  inbrackets "online" output
-  new.block
+  inbrackets "online" output %adds "[online]"
+  %new.block
   year empty$
     'skip$
     { format.date "year" output.check }
@@ -1414,9 +1427,22 @@ FUNCTION {webpage}
   % because fin.entry does that for us, using output.web.refs.  The only
   % reason we would want to put them here is if we were to decide that
   % they should go in front of the rather miscellaneous information in 'note'.
-  new.block
+  %new.block
   note output
-  fin.entry
+  %fin.entry
+  %write.url
+  title empty$ %These lines add URL instead of "[link]"
+    { "empty title in " cite$ * warning$ 
+      bracket.state close.brackets = % urlbst
+        { "]" * }
+        'skip$
+      if$
+      fin.entry.original %adds "[online]", if present
+      write.url  
+    }
+    {fin.entry
+    }
+  if$
 }
 
 FUNCTION {article}
@@ -1650,8 +1676,13 @@ FUNCTION {misc}
   howpublished output
   format.note output
   format.date output
-  fin.entry
-  %write.url
+  %  fin.entry
+  %  write.url
+  title empty$ %These lines add URL instead of "[link]"
+    {fin.entry.original
+     write.url}
+    {fin.entry}
+  if$
   empty.misc.check
 }
 
