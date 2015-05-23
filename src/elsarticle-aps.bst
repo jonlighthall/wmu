@@ -24,6 +24,8 @@
 %% --------Version 4_all------------------------
 %% * Prints all author names.
 %% * Option to highlight (in bold face) a select authors name.
+%% --------Version 5----------------------------
+%% * Prints journal information for proceedings
 %% 
 %% Copyright 2007, 2008, 2009 Elsevier Ltd
 %% 
@@ -158,7 +160,7 @@ FUNCTION {setup.inlinelink}
     { hrefform #1 = % hypertex
         { "\special {html:<a href=" quote$ * url * quote$ * "> }{" * 'openinlinelink :=
           "\special {html:</a>}" 'closeinlinelink :=
-          }
+        }
         { hrefform #2 = % hyperref
             { "\href{" url * "}{" * 'openinlinelink :=
               "}" 'closeinlinelink :=
@@ -539,7 +541,7 @@ FUNCTION {format.names}
     { s nameptr
       "{f.~}{vv~}{ll}{, jj}" format.name$
       duplicate$ "J.~C. Lighthall" =
-        {}%{ bolden } %puts given author name in bold face
+        { bolden } %puts given author name in bold face
         { }
       if$
     't :=
@@ -1434,15 +1436,18 @@ FUNCTION {article}
     }
   if$
   format.journal.pages
-  volume empty$ %added handling for no volume field
-    {",~"  *}
+  note empty$
+{} 
+{ volume empty$ %added handling for no volume field
+    {", "  *}
     {}
   if$
   format.note output
  volume empty$ %added handling for no volume field
     {"l"}
     {}
-  if$
+  if$}
+if$
   fin.entry
 % write.url
 }
@@ -1552,23 +1557,39 @@ FUNCTION {inproceedings}
   format.title "title" output.check
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
-      format.edition output
-      format.bvolume output
-      format.number.series output
-      publisher empty$
-        { format.organization.address output }
-        { organization output
-          format.publisher.address output
-        }
+      journal empty$
+	{%
+	  format.edition output
+	  format.bvolume output
+	  format.number.series output
+	  publisher empty$
+            { format.organization.address output }
+            { organization output
+              format.publisher.address output
+            }
+	  if$
+	}
+	{journal "journal" output.check
+	 % add.blank
+	 before.all 'output.state :=
+	 format.vol.num.pages output
+	}
       if$
     }
     { format.incoll.inproc.crossref output.nonnull
     }
   if$
-  format.pages "pages" output.check
+  journal empty$
+    {format.pages "pages" output.check}
+    {format.journal.pages}
+  if$
   format.note output
   fin.entry
-% write.url
+ % title empty$ %These lines add URL instead of "[link]"
+ %   {fin.entry.original
+ %    write.url}
+ %   'fin.entry
+ % if$
 }
 
 FUNCTION {conference} { inproceedings }
@@ -1589,7 +1610,7 @@ FUNCTION {manual}
   format.btitle "title" output.check
   author empty$
     { organization empty$
-    {
+	{
           address output
         }
         'skip$
@@ -1630,7 +1651,7 @@ FUNCTION {misc}
   format.note output
   format.date output
   fin.entry
-  write.url
+  %write.url
   empty.misc.check
 }
 
@@ -1645,7 +1666,7 @@ FUNCTION {phdthesis}
   format.note output
   format.date "year" output.check
   fin.entry
-  write.url
+  %write.url
 }
 
 FUNCTION {proceedings}
@@ -1692,7 +1713,7 @@ FUNCTION {techreport}
   format.note output
   format.date "year" output.check
   fin.entry
-  write.url
+  %write.url
 }
 
 FUNCTION {unpublished}
@@ -1703,7 +1724,7 @@ FUNCTION {unpublished}
   format.note "note" output.check
   format.date output
   fin.entry
-  write.url
+  %write.url
 }
 
 FUNCTION {default.type} { misc }
@@ -1740,7 +1761,8 @@ FUNCTION {begin.bib}
     'skip$
     { preamble$ write$ newline$ }
   if$
-  "\begin{thebibliography}{"  longest.label  * "}" *
+%  "\begin{thebibliography}{"  longest.label  * "}" *
+  "\begin{thebibliography}{99}" 
   write$ newline$
   "\expandafter\ifx\csname url\endcsname\relax"
   write$ newline$
