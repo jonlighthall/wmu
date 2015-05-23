@@ -27,28 +27,58 @@
 \usepackage[adobe-utopia]{mathdesign}			%Transitional serif typefaces (professional)
 %\usepackage[bitstream-charter]{mathdesign}	%Glyphic serif typeface optimized for low-resolution printing
 
-%% Formatting packages-----------%-------------------------------
-\usepackage{fancyvrb}%allows verbatim in footnotes
-\usepackage{indentfirst}%indents first paragraph of each section
+%% Figure packages---------------%-------------------------------
+%% The following lines of code assume that the graphics files are .eps files located in a
+%  directory named Figures.  Black and white versions of color graphics files end in _bw.  For
+%  example, the two files
+%			/Figures/foo.eps
+%			/Figures/foo_bw.eps
+%  may be included with a single command, e.g., \includegraphics{fig2}.  The black and white
+%  figures are then selected by uncommenting the declare graphics extension rule below.
 
-\usepackage{lineno}
-\biboptions{numbers,sort&compress}%load natbib options
 \usepackage{ifpdf}
 \ifpdf
-	\usepackage{graphicx}
-	\usepackage{epstopdf}
-	%Must include -enable-write18 in command line arguments (Alt+F7)
+	\usepackage[pdftex]{graphicx}
+	\usepackage[update]{epstopdf}
+	%May need to include -enable-write18 in command line arguments to make PDF figures (deprecated)
 	\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+	\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
 	\epstopdfsetup{suffix=}%
 \else
 	\usepackage{graphicx}	
 	\usepackage[all,light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.	
 \fi
-\graphicspath{{../Figures/BW_Figures/}{../Figures/}} %Uniquely-named B&W figures
+%\DeclareGraphicsExtensions{_bw.eps,.eps}	%Turn on/off BW figures, assumes BW figures end in _bw.eps
+\graphicspath{{Figures/}{../Figures/BW_Figures/}{../Figures/}} %Uniquely-named B&W figures
 \def\figwid{4.9in}
-%\usepackage[light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.
+
+%% Table packages----------------%-------------------------------
+\usepackage{dcolumn}% Align table columns on decimal point
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{,}{D{,}{,}{-1}}
+\newcolumntype{)}{D{)}{)}{-1}}
+
+\renewcommand{\arraystretch}{1.3} % enlarge line spacing
+
+\usepackage{multirow}
+%\usepackage{longtable}
+\usepackage{supertabular}
+%\usepackage{multicol}
+%\usepackage{stabular}
+\usepackage{rotating}
+\usepackage{pdflscape}
+
+%% Formatting packages-----------%-------------------------------
+\usepackage{fancyvrb}%allows verbatim in footnotes
+\usepackage{indentfirst}%indents first paragraph of each section
+
+\providecommand{\authname}{Jon Lighthall}
+\providecommand{\thesistitle}{LaTeX document}
+
 \usepackage{hyperref}
-\hypersetup{
+\hypersetup{pdfauthor=\authname,       %Adds author name to PDF properties
+        pdftitle=\thesistitle,         %Adds thesis title to PDF properties
 	pdfstartpage=1,                %Opening page number (absolute)
 	pdfstartview=FitV,             %Fits the horiz. width in the window (FitV for vertical)
 	%pdfstartview={XYZ null null 1},%view page at 100%
@@ -71,10 +101,34 @@
 %\usepackage{tocloft}
 %\setlength{\cftfignumwidth}{3em}%increases spacing after figure numbers in Table of Figures
 
+%\usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
 \usepackage{color}
+
+%% Macro definitions-------------%-------------------------------
+\def\newzero{{0\mkern-9mu\texttt{/}}}%This line defines a slash-zero (similar to \emptyset)
+\def\newsym{${\sim\mkern-17mu\textit{{\footnotesize/}}}$}%This line defines a slash-tilde (similar to \psi)
+\def\monogram{{\fontfamily{mdugm}\selectfont J\kern-.349em {\color{black}L} \kern -.747em {\scriptsize C }}}%
+
+%% The following lines provide definitions for printing notes in a different font
+\definecolor{note_gray}{gray}{0.4}
+\newcommand{\note}[1]{{\color{note_gray}\textit{#1}}} %Emphasizes notes
+%\renewcommand{\note}[1]{#1} %Enters "notes" into text
+%\renewcommand{\note}[1]{} %Deletes "notes"
+%  The following command creates margin notes in the "notes" font (with an arrow)
+\newcommand{\marnote}[1]{\marginpar[\singlespacing\note{#1 $\rightarrow$}]% 
+                                   {\singlespacing\note{$\leftarrow$ #1}}}
+
+%% Set the specific formatting of the "Mev per nucleon" units symbol
+\newcommand{\AMeV}{A\,MeV}
+%\renewcommand{\AMeV}{MeV/u}
+%\renewcommand{\AMeV}{MeV/A}
+\renewcommand{\AMeV}{MeV/$u$}
 
 \InputIfFileExists{More_Files/autotext}{}{}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
+\newdateformat{photodate}{\shortmonthname[\THEMONTH].~\THEYEAR}
+
+\providecommand{\texorpdfstring}[2]{#1} %provided in case hyperref is not used
 
 \providecommand{\Chapter}[1]{\chapter[\texorpdfstring{\MakeUppercase{#1}}{#1}]{#1}}
