@@ -308,7 +308,19 @@ FUNCTION {field.or.null}
 }
 
 FUNCTION {emphasize}
-{ skip$ }
+%{ skip$ }
+{ duplicate$ empty$ %added for APS
+    { pop$ "" }
+    { "\emph{" swap$ * "}" * }
+  if$
+}
+
+FUNCTION {bolden} %added for APS
+{ duplicate$ empty$
+    { pop$ "" }
+    { "\textbf{" swap$ * "}" * }
+  if$
+}
 
 FUNCTION {capitalize}
 { "u" change.case$ "t" change.case$ }
@@ -323,7 +335,7 @@ FUNCTION {bbl.and}
 { "and"}
 
 FUNCTION {bbl.etal}
-{ "et~al." }
+{ "et~al." emphasize}
 
 FUNCTION {bbl.editors}
 { "Eds." }
@@ -503,6 +515,18 @@ FUNCTION {format.names}
     't :=
       nameptr #1 >
         {
+% added for APS
+	  nameptr #0
+          #10 +
+          #1 + =
+          numnames #0
+          #10 +
+          > and
+            { "others" 't :=
+              #1 'namesleft := }
+            'skip$
+          if$
+% ----------
           namesleft #1 >
             { ", " * t * }
             {
@@ -587,6 +611,7 @@ FUNCTION {format.title}
   if$
 }
 
+%---------added below
 INTEGERS { len }
 
 FUNCTION {chop.word}
@@ -600,20 +625,26 @@ FUNCTION {chop.word}
 
 FUNCTION {format.lab.names}
 { 's :=
-  s #1 "{vv~}{ll}" format.name$
-  s num.names$ duplicate$
-  #2 >
-    { pop$ " et~al." * }
-    { #2 <
-        'skip$
-        { s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
-            { " et~al." * }
-            { " and " * s #2 "{vv~}{ll}" format.name$ * }
-          if$
-        }
-      if$
-    }
-  if$
+ "" 't :=
+ s #1 "{vv~}{ll}" format.name$
+ s num.names$ duplicate$
+ #2 >
+   { pop$
+     " " * bbl.etal *
+   }
+   { #2 <
+       'skip$
+       { s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
+           {
+             " " * bbl.etal *
+           }
+           { bbl.and space.word * s #2 "{vv~}{ll}" format.name$
+             * }
+         if$
+       }
+     if$
+   }
+ if$
 }
 
 FUNCTION {author.key.label}
@@ -642,66 +673,42 @@ FUNCTION {author.editor.key.label}
   if$
 }
 
-FUNCTION {author.key.organization.label}
-{ author empty$
-    { key empty$
-        { organization empty$
-            { cite$ #1 #3 substring$ }
-            { "The " #4 organization chop.word #3 text.prefix$ }
-          if$
-        }
-        'key
-      if$
-    }
-    { author format.lab.names }
-  if$
-}
-
-FUNCTION {editor.key.organization.label}
+FUNCTION {editor.key.label}
 { editor empty$
-    { key empty$
-        { organization empty$
-            { cite$ #1 #3 substring$ }
-            { "The " #4 organization chop.word #3 text.prefix$ }
-          if$
-        }
-        'key
-      if$
-    }
-    { editor format.lab.names }
-  if$
+   { key empty$
+       { cite$ #1 #3 substring$ }
+       'key
+     if$
+   }
+   { editor format.lab.names }
+ if$
 }
 
 FUNCTION {calc.short.authors}
 { type$ "book" =
-  type$ "inbook" =
-  or
-    'author.editor.key.label
-    { type$ "proceedings" =
-        'editor.key.organization.label
-        { type$ "manual" =
-            'author.key.organization.label
-            'author.key.label
-          if$
-        }
-      if$
-    }
-  if$
-  'short.list :=
+ type$ "inbook" =
+ or
+   'author.editor.key.label
+   { type$ "proceedings" =
+       'editor.key.label
+       'author.key.label
+     if$
+   }
+ if$
+ 'short.list :=
 }
 
 FUNCTION {calc.label}
 { calc.short.authors
-  short.list
-  "("
-  *
-  year duplicate$ empty$
-  short.list key field.or.null = or
-     { pop$ "" }
-     'skip$
-  if$
-  *
-  'label :=
+ short.list
+ "("
+ *
+ year duplicate$ empty$
+    { pop$ "????" }
+    { purify$ #-1 #4 substring$ }
+ if$
+ *
+ 'label :=
 }
 
 FUNCTION {format.full.names}
@@ -774,6 +781,8 @@ FUNCTION {make.full.names}
   if$
 }
 
+
+%-----added (above)
 FUNCTION {output.bibitem.original}
 { calc.label
   calc.short.authors
@@ -820,7 +829,7 @@ FUNCTION {n.dashify}
 
 FUNCTION {word.in}
 { bbl.in
-  ":" *
+%  ":" * %removed for APS
   " " * }
 
 FUNCTION {format.date}
@@ -1010,8 +1019,9 @@ FUNCTION {format.journal.pages}
         { pop$ format.pages }
         {
           " " *
-          format.year * " " *
-          pages n.dashify *
+	  pages n.dashify * " " * %these lines rearranged for APS
+	  format.year * 
+         
         }
       if$
     }
@@ -1024,18 +1034,20 @@ FUNCTION {format.vol.num.pages}
   " "
   volume empty$
     { pop$ "" }
-    { volume * }
+    { volume * }%"," *}
+ % if$ %commented out to remove "number"
+ % number empty$
+ %   'skip$
+ %   {
+ %  %   "~(" number * ")" * *
+ %     volume empty$
+ %       { "there's a number but no volume in " cite$ * warning$ }
+ %       'skip$
+ %     if$
+ %   }
   if$
-  number empty$
-    'skip$
-    {
-      % "~(" number * ")" * * %commented out
-      volume empty$
-        { "there's a number but no volume in " cite$ * warning$ }
-        'skip$
-      if$
-    }
-  if$
+bolden %added for APS
+"," *
 }
 
 FUNCTION {format.chapter.pages}
@@ -1050,13 +1062,19 @@ FUNCTION {format.chapter.pages}
   if$
 }
 
+FUNCTION {format.booktitle} %added for APS
+{
+  booktitle 
+  emphasize
+}
+
 FUNCTION {format.in.ed.booktitle}
 { booktitle empty$
     { "" }
     { editor empty$
-        { word.in booktitle * }
+        { word.in format.booktitle * } %added for APS
         { word.in format.in.editors * ", " *
-          booktitle * }
+          format.booktitle * }
       if$
     }
   if$
@@ -1183,6 +1201,7 @@ FUNCTION {format.incoll.inproc.crossref}
 FUNCTION {format.org.or.pub}
 { 't :=
   ""
+  add.blank "(" * %added for APS
   year empty$
     { "empty year in " cite$ * warning$ }
     'skip$
@@ -1215,6 +1234,7 @@ FUNCTION {format.org.or.pub}
       if$
     }
   if$
+   ")" * %added for APS
 }
 
 FUNCTION {format.publisher.address}
@@ -1282,7 +1302,8 @@ FUNCTION {format.eprint}
 FUNCTION {format.doi}
 { doi empty$
     { "" }
-    { doiprefix doi * doiurl doi * make.href }
+    { "" }
+%    { doiprefix doi * doiurl doi * make.href }
   if$
 }
 
@@ -1373,19 +1394,17 @@ FUNCTION {article}
   crossref missing$
     { journal
       "journal" output.check
-      % add.blank
-  before.all 'output.state :=
-      format.vol.num.pages output
+     before.all 'output.state :=
+     format.vol.num.pages output
     }
     { format.article.crossref output.nonnull
       format.pages output
     }
   if$
   format.journal.pages
-  %format.note output
-  %fin.entry
-  fin.entry.original %fin entry replaced by fin.entry.original
-  %write.url %redunant if URL appears in title
+  format.note output
+  fin.entry
+% write.url
 }
 
 FUNCTION {book}
@@ -1509,7 +1528,7 @@ FUNCTION {inproceedings}
   format.pages "pages" output.check
   format.note output
   fin.entry
-  write.url
+% write.url
 }
 
 FUNCTION {conference} { inproceedings }
