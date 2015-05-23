@@ -21,6 +21,9 @@
 %% --------Version 4----------------------------
 %% * Handling for articles missing any of pages, volume, or year for use
 %%   with "in press" articles, February 2011.
+%% --------Version 4_all------------------------
+%% * Prints all author names.
+%% * Option to highlight (in bold face) a select authors name.
 %% 
 %% Copyright 2007, 2008, 2009 Elsevier Ltd
 %% 
@@ -535,6 +538,10 @@ FUNCTION {format.names}
     { namesleft #0 > }
     { s nameptr
       "{f.~}{vv~}{ll}{, jj}" format.name$
+      duplicate$ "J.~C. Lighthall" =
+        {}%{ bolden } %puts given author name in bold face
+        { }
+      if$
     't :=
       nameptr #1 >
         {
@@ -543,7 +550,7 @@ FUNCTION {format.names}
           #10 + %here
           #1 + =
           numnames #0
-          #10 + %and here
+          #100 + %and here
           > and
             { "others" 't :=
               #1 'namesleft := }
