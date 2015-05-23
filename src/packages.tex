@@ -11,6 +11,7 @@
 %\usepackage[normalem]{ulem}%for strikethroughs
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}%modern font encoding
+\usepackage{combelow}%support for Romanian letters
 
 %% The default font is Latin Modern (replaces Computer Modern).  Following are a number of fonts 
 %  with extensive math and symbol support.  To use a particular font, uncomment the associated
@@ -70,6 +71,7 @@
 %\usepackage{stabular}
 \usepackage{rotating}
 \usepackage{pdflscape}
+\usepackage{tabulary}
 
 %% Formatting packages-----------%-------------------------------
 \usepackage{setspace} %required for double spacing and used to control vertical spacing 
@@ -77,6 +79,7 @@
 \usepackage{fancyvrb}%allows verbatim in footnotes
 \usepackage{indentfirst}%indents first paragraph of each section
 \usepackage{fmtcount,datetime} %provides commands for displaying times and dates
+\usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
 
 \providecommand{\authname}{Jon Lighthall}
 \providecommand{\thesistitle}{LaTeX document}
@@ -114,8 +117,12 @@
 %\renewcommand{\note}[1]{#1} %Enters "notes" into text
 %\renewcommand{\note}[1]{} %Deletes "notes"
 %  The following command creates margin notes in the "notes" font (with an arrow)
-\newcommand{\marnote}[1]{\marginpar[\singlespacing\note{#1 $\rightarrow$}]% 
-                                   {\singlespacing\note{$\leftarrow$ #1}}}
+\newcommand{\marnote}[1]{\marginpar{#1}}
+\renewcommand{\marnote}[1]{\marginpar[\singlespacing\note{#1 $\rightarrow$}]% 
+                                     {\singlespacing\note{$\leftarrow$ #1}}}
+\renewcommand{\marnote}[1]{\marginpar[\singlespacing%
+                                      \raggedright \note{#1 $\rightarrow$}]% 
+                                     {\singlespacing\note{\raggedleft $\leftarrow$ #1}}}
 
 %% Set the specific formatting of the "Mev per nucleon" units symbol
 \newcommand{\AMeV}{A\,MeV}
@@ -129,6 +136,8 @@
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
 \newdateformat{photodate}{\shortmonthname[\THEMONTH].~\THEYEAR}
+\newdateformat{longusdate}{%
+\dayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR}, \monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
 
 %% The following two lines may be required for proper formating of the Table of Figures
 %\usepackage{tocloft}
@@ -136,7 +145,6 @@
 
 %\usepackage{makeidx}
 %\makeindex
-\usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
 
 %The following command makes the TOC entries for chapters all caps
 \providecommand{\Chapter}[1]{\chapter[\texorpdfstring{\MakeUppercase{#1}}{#1}]{#1}}
