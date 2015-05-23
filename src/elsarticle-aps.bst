@@ -63,7 +63,7 @@ ENTRY
     lastchecked % urlbst
   }
   {}
-  { label }
+  { label short.list } % short.list added
 
 INTEGERS { output.state before.all mid.sentence after.sentence after.block }
 
@@ -587,9 +587,204 @@ FUNCTION {format.title}
   if$
 }
 
+INTEGERS { len }
+
+FUNCTION {chop.word}
+{ 's :=
+  'len :=
+  s #1 len substring$ =
+    { s len #1 + global.max$ substring$ }
+    's
+  if$
+}
+
+FUNCTION {format.lab.names}
+{ 's :=
+  s #1 "{vv~}{ll}" format.name$
+  s num.names$ duplicate$
+  #2 >
+    { pop$ " et~al." * }
+    { #2 <
+        'skip$
+        { s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
+            { " et~al." * }
+            { " and " * s #2 "{vv~}{ll}" format.name$ * }
+          if$
+        }
+      if$
+    }
+  if$
+}
+
+FUNCTION {author.key.label}
+{ author empty$
+    { key empty$
+        { cite$ #1 #3 substring$ }
+        'key
+      if$
+    }
+    { author format.lab.names }
+  if$
+}
+
+FUNCTION {author.editor.key.label}
+{ author empty$
+    { editor empty$
+        { key empty$
+            { cite$ #1 #3 substring$ }
+            'key
+          if$
+        }
+        { editor format.lab.names }
+      if$
+    }
+    { author format.lab.names }
+  if$
+}
+
+FUNCTION {author.key.organization.label}
+{ author empty$
+    { key empty$
+        { organization empty$
+            { cite$ #1 #3 substring$ }
+            { "The " #4 organization chop.word #3 text.prefix$ }
+          if$
+        }
+        'key
+      if$
+    }
+    { author format.lab.names }
+  if$
+}
+
+FUNCTION {editor.key.organization.label}
+{ editor empty$
+    { key empty$
+        { organization empty$
+            { cite$ #1 #3 substring$ }
+            { "The " #4 organization chop.word #3 text.prefix$ }
+          if$
+        }
+        'key
+      if$
+    }
+    { editor format.lab.names }
+  if$
+}
+
+FUNCTION {calc.short.authors}
+{ type$ "book" =
+  type$ "inbook" =
+  or
+    'author.editor.key.label
+    { type$ "proceedings" =
+        'editor.key.organization.label
+        { type$ "manual" =
+            'author.key.organization.label
+            'author.key.label
+          if$
+        }
+      if$
+    }
+  if$
+  'short.list :=
+}
+
+FUNCTION {calc.label}
+{ calc.short.authors
+  short.list
+  "("
+  *
+  year duplicate$ empty$
+  short.list key field.or.null = or
+     { pop$ "" }
+     'skip$
+  if$
+  *
+  'label :=
+}
+
+FUNCTION {format.full.names}
+{'s :=
+  #1 'nameptr :=
+  s num.names$ 'numnames :=
+  numnames 'namesleft :=
+    { namesleft #0 > }
+    { s nameptr
+      "{vv~}{ll}" format.name$ 't :=
+      nameptr #1 >
+        {
+          namesleft #1 >
+            { ", " * t * }
+            {
+              numnames #2 >
+                { "," * }
+                'skip$
+              if$
+              t "others" =
+                { " et~al." * }
+                { " and " * t * }
+              if$
+            }
+          if$
+        }
+        't
+      if$
+      nameptr #1 + 'nameptr :=
+      namesleft #1 - 'namesleft :=
+    }
+  while$
+}
+
+FUNCTION {author.editor.full}
+{ author empty$
+    { editor empty$
+        { "" }
+        { editor format.full.names }
+      if$
+    }
+    { author format.full.names }
+  if$
+}
+
+FUNCTION {author.full}
+{ author empty$
+    { "" }
+    { author format.full.names }
+  if$
+}
+
+FUNCTION {editor.full}
+{ editor empty$
+    { "" }
+    { editor format.full.names }
+  if$
+}
+
+FUNCTION {make.full.names}
+{ type$ "book" =
+  type$ "inbook" =
+  or
+    'author.editor.full
+    { type$ "proceedings" =
+        'editor.full
+        'author.full
+      if$
+    }
+  if$
+}
+
 FUNCTION {output.bibitem.original}
-{ newline$
-  "\bibitem{" write$
+{ calc.label
+  calc.short.authors
+  newline$
+  "\bibitem[" write$
+  label write$
+  ")" make.full.names duplicate$ short.list =
+     { pop$ }
+     { * }
+   if$
+  "]{" * write$
   cite$ write$
   "}" write$
   newline$
@@ -834,7 +1029,7 @@ FUNCTION {format.vol.num.pages}
   number empty$
     'skip$
     {
-      "~(" number * ")" * *
+      % "~(" number * ")" * * %commented out
       volume empty$
         { "there's a number but no volume in " cite$ * warning$ }
         'skip$
@@ -1187,9 +1382,10 @@ FUNCTION {article}
     }
   if$
   format.journal.pages
-  format.note output
-  fin.entry
-  write.url
+  %format.note output
+  %fin.entry
+  fin.entry.original %fin entry replaced by fin.entry.original
+  %write.url %redunant if URL appears in title
 }
 
 FUNCTION {book}
