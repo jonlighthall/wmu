@@ -117,8 +117,7 @@
 %\renewcommand{\note}[1]{#1} %Enters "notes" into text
 %\renewcommand{\note}[1]{} %Deletes "notes"
 %  The following command creates margin notes in the "notes" font (with an arrow)
-\newcommand{\marnote}[1]{\marginpar{#1}}
-\renewcommand{\marnote}[1]{\marginpar[\singlespacing\note{#1 $\rightarrow$}]% 
+\newcommand{\marnote}[1]{\marginpar[\singlespacing\note{#1 $\rightarrow$}]% 
                                      {\singlespacing\note{$\leftarrow$ #1}}}
 \renewcommand{\marnote}[1]{\marginpar[\singlespacing%
                                       \raggedright \note{#1 $\rightarrow$}]% 
