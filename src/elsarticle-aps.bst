@@ -1,3 +1,26 @@
+%% This file is `elsarticle-num.bst' modified to mimic APS-style citations
+%% by Jon Lighthall
+%% Modifications include:
+%% --------Version 1----------------------------
+%% * APS-style citations, October 2010
+%%    - Author list truncated at 10 authors
+%%    - ":" removed from in proceedings citations
+%%    - "pages" come before "year"
+%%    - "number" field is not shown
+%%    - Volume number is bold
+%%    - booktitle in italics
+%%    - doi link removed
+%% * "et al." appears in italics
+%% * (article title, with URL link, listed first)
+%% * redundant URL link removed
+%% --------Version 2----------------------------
+%% * Incorporates fixes by W. Trevor King (October 2009), 
+%%    - Compatibility with \citet{} command
+%% --------Version 3----------------------------
+%% * Author names listed first (to be consistent with book citations)
+%% --------Version 4----------------------------
+%% * Handling for articles missing any of pages, volume, or year for use
+%%   with "in press" articles, February 2011.
 %% 
 %% Copyright 2007, 2008, 2009 Elsevier Ltd
 %% 
@@ -63,7 +86,7 @@ ENTRY
     lastchecked % urlbst
   }
   {}
-  { label short.list } % short.list added
+  { label short.list } % short.list added for \citet{}
 
 INTEGERS { output.state before.all mid.sentence after.sentence after.block }
 
@@ -335,7 +358,7 @@ FUNCTION {bbl.and}
 { "and"}
 
 FUNCTION {bbl.etal}
-{ "et~al." emphasize}
+{ "et~al." emphasize} %makes appearances of "et al." italic
 
 FUNCTION {bbl.editors}
 { "Eds." }
@@ -515,12 +538,12 @@ FUNCTION {format.names}
     't :=
       nameptr #1 >
         {
-% added for APS
+% added for APS, sets number of authors to be listed on the lines indicated
 	  nameptr #0
-          #10 +
+          #10 + %here
           #1 + =
           numnames #0
-          #10 +
+          #10 + %and here
           > and
             { "others" 't :=
               #1 'namesleft := }
@@ -611,7 +634,7 @@ FUNCTION {format.title}
   if$
 }
 
-%---------added below
+%---------added below for \citet{}
 INTEGERS { len }
 
 FUNCTION {chop.word}
@@ -780,9 +803,8 @@ FUNCTION {make.full.names}
     }
   if$
 }
-
-
 %-----added (above)
+
 FUNCTION {output.bibitem.original}
 { calc.label
   calc.short.authors
@@ -1014,14 +1036,18 @@ FUNCTION {format.pages}
 
 FUNCTION {format.journal.pages}
 { pages empty$
-    'skip$
+    { year empty$
+	'skip$
+	{" " * format.year *  } %added for APS
+      if$
+    }
+    %  'skip$
     { duplicate$ empty$
         { pop$ format.pages }
         {
           " " *
 	  pages n.dashify * " " * %these lines rearranged for APS
-	  format.year * 
-         
+	  format.year *
         }
       if$
     }
@@ -1034,20 +1060,18 @@ FUNCTION {format.vol.num.pages}
   " "
   volume empty$
     { pop$ "" }
-    { volume * }%"," *}
- % if$ %commented out to remove "number"
- % number empty$
- %   'skip$
- %   {
+    { volume * bolden}
+  if$ 
+  number empty$
+    'skip$
+ %   {%commented out to remove "number"
  %  %   "~(" number * ")" * *
  %     volume empty$
  %       { "there's a number but no volume in " cite$ * warning$ }
- %       'skip$
+         'skip$
  %     if$
  %   }
   if$
-bolden %added for APS
-"," *
 }
 
 FUNCTION {format.chapter.pages}
@@ -1389,20 +1413,29 @@ FUNCTION {webpage}
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
-  title empty$ 'skip$ 'setup.inlinelink if$ % urlbst
-  format.title "title" output.check
+  title empty$ 'skip$ 'setup.inlinelink if$ % urlbst 
+  format.title "title" output.check 
   crossref missing$
     { journal
       "journal" output.check
-     before.all 'output.state :=
-     format.vol.num.pages output
+      % add.blank
+  before.all 'output.state :=
+      format.vol.num.pages output
     }
     { format.article.crossref output.nonnull
       format.pages output
     }
   if$
   format.journal.pages
+  volume empty$ %added handling for no volume field
+    {",~"  *}
+    {}
+  if$
   format.note output
+ volume empty$ %added handling for no volume field
+    {"l"}
+    {}
+  if$
   fin.entry
 % write.url
 }
