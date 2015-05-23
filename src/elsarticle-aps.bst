@@ -166,7 +166,7 @@ FUNCTION {setup.inlinelink}
         { hrefform #2 = % hyperref
             { "\href{" url * "}{" * 'openinlinelink :=
               "}" 'closeinlinelink :=
-              }
+            }
             'skip$
           if$ % hrefform #2 =
         }
@@ -174,14 +174,14 @@ FUNCTION {setup.inlinelink}
       #0 'makeinlinelink :=
     }
     'skip$
- if$ % makeinlinelink
+  if$ % makeinlinelink
 }
 FUNCTION {add.inlinelink}
 { openinlinelink empty$
     'skip$
     { openinlinelink swap$ * closeinlinelink *
       "" 'openinlinelink :=
-      }
+    }
   if$
 }
 FUNCTION {output.nonnull}
@@ -358,9 +358,9 @@ FUNCTION {capitalize}
 FUNCTION {space.word}
 { " " swap$ * " " * }
 
- % Here are the language-specific definitions for explicit words.
- % Each function has a name bbl.xxx where xxx is the English word.
- % The language selected here is ENGLISH
+% Here are the language-specific definitions for explicit words.
+% Each function has a name bbl.xxx where xxx is the English word.
+% The language selected here is ENGLISH
 FUNCTION {bbl.and}
 { "and"}
 
@@ -466,22 +466,22 @@ MACRO {dec} {"Dec."}
 FUNCTION {eng.ord}
 { duplicate$ "1" swap$ *
   #-2 #1 substring$ "1" =
-     { bbl.th * }
-     { duplicate$ #-1 #1 substring$
-       duplicate$ "1" =
-         { pop$ bbl.st * }
-         { duplicate$ "2" =
-             { pop$ bbl.nd * }
-             { "3" =
-                 { bbl.rd * }
-                 { bbl.th * }
-               if$
-             }
-           if$
-          }
-       if$
-     }
-   if$
+    { bbl.th * }
+    { duplicate$ #-1 #1 substring$
+      duplicate$ "1" =
+        { pop$ bbl.st * }
+        { duplicate$ "2" =
+            { pop$ bbl.nd * }
+            { "3" =
+                { bbl.rd * }
+                { bbl.th * }
+              if$
+            }
+          if$
+        }
+      if$
+    }
+  if$
 }
 
 MACRO {acmcs} {"ACM Comput. Surv."}
@@ -499,7 +499,7 @@ MACRO {ieeese} {"IEEE Trans. Softw. Eng."}
 MACRO {ieeetc} {"IEEE Trans. Comput."}
 
 MACRO {ieeetcad}
- {"IEEE Trans. Comput.-Aided Design Integrated Circuits"}
+{"IEEE Trans. Comput.-Aided Design Integrated Circuits"}
 
 MACRO {ipl} {"Inf. Process. Lett."}
 
@@ -631,16 +631,16 @@ FUNCTION {format.in.editors}
 
 FUNCTION {format.note}
 {
- note empty$
+  note empty$
     { "" }
     { note #1 #1 substring$
       duplicate$ "{" =
         'skip$
         { output.state mid.sentence =
-          { "l" }
-          { "u" }
-        if$
-        change.case$
+            { "l" }
+            { "u" }
+          if$
+          change.case$
         }
       if$
       note #2 global.max$ substring$ *
@@ -670,26 +670,26 @@ FUNCTION {chop.word}
 
 FUNCTION {format.lab.names}
 { 's :=
- "" 't :=
- s #1 "{vv~}{ll}" format.name$
- s num.names$ duplicate$
- #2 >
-   { pop$
-     " " * bbl.etal *
-   }
-   { #2 <
-       'skip$
-       { s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
-           {
-             " " * bbl.etal *
-           }
-           { bbl.and space.word * s #2 "{vv~}{ll}" format.name$
-             * }
-         if$
-       }
-     if$
-   }
- if$
+  "" 't :=
+  s #1 "{vv~}{ll}" format.name$
+  s num.names$ duplicate$
+  #2 >
+    { pop$
+      " " * bbl.etal *
+    }
+    { #2 <
+	'skip$
+	{ s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
+            {
+              " " * bbl.etal *
+            }
+            { bbl.and space.word * s #2 "{vv~}{ll}" format.name$
+              * }
+          if$
+	}
+      if$
+    }
+  if$
 }
 
 FUNCTION {author.key.label}
@@ -720,72 +720,72 @@ FUNCTION {author.editor.key.label}
 
 FUNCTION {editor.key.label}
 { editor empty$
-   { key empty$
-       { cite$ #1 #3 substring$ }
-       'key
-     if$
-   }
-   { editor format.lab.names }
- if$
+    { key empty$
+	{ cite$ #1 #3 substring$ }
+	'key
+      if$
+    }
+    { editor format.lab.names }
+  if$
 }
 
 FUNCTION {calc.short.authors}
 { type$ "book" =
- type$ "inbook" =
- or
-   'author.editor.key.label
-   { type$ "proceedings" =
-       'editor.key.label
-       'author.key.label
-     if$
-   }
- if$
- 'short.list :=
+  type$ "inbook" =
+  or
+    'author.editor.key.label
+    { type$ "proceedings" =
+	'editor.key.label
+	'author.key.label
+      if$
+    }
+  if$
+  'short.list :=
 }
 
 FUNCTION {calc.label}
 { calc.short.authors
- short.list
- "("
- *
- year duplicate$ empty$
+  short.list
+  "("
+  *
+  year duplicate$ empty$
     { pop$ "????" }
     { purify$ #-1 #4 substring$ }
- if$
- *
- 'label :=
+  if$
+  *
+  'label :=
 }
 
 FUNCTION {format.full.names}
 {'s :=
-  #1 'nameptr :=
-  s num.names$ 'numnames :=
-  numnames 'namesleft :=
-    { namesleft #0 > }
-    { s nameptr
-      "{vv~}{ll}" format.name$ 't :=
-      nameptr #1 >
-        {
-          namesleft #1 >
-            { ", " * t * }
-            {
-              numnames #2 >
-                { "," * }
-                'skip$
-              if$
-              t "others" =
-                { " et~al." * }
-                { " and " * t * }
-              if$
-            }
-          if$
-        }
-        't
-      if$
-      nameptr #1 + 'nameptr :=
-      namesleft #1 - 'namesleft :=
-    }
-  while$
+ #1 'nameptr :=
+ s num.names$ 'numnames :=
+ numnames 'namesleft :=
+ { namesleft #0 > }
+ { s nameptr
+   "{vv~}{ll}" format.name$ 't :=
+   nameptr #1 >
+     {
+       namesleft #1 >
+         { ", " * t * }
+         {
+           numnames #2 >
+             { "," * }
+             'skip$
+           if$
+           t "others" =
+             { " et~al." * }
+             { " and " * t * }
+           if$
+         }
+       if$
+     }
+     't
+   if$
+   nameptr #1 + 'nameptr :=
+   namesleft #1 - 'namesleft :=
+ }
+ while$
 }
 
 FUNCTION {author.editor.full}
@@ -834,9 +834,9 @@ FUNCTION {output.bibitem.original}
   "\bibitem[" write$
   label write$
   ")" make.full.names duplicate$ short.list =
-     { pop$ }
-     { * }
-   if$
+    { pop$ }
+    { * }
+  if$
   "]{" * write$
   cite$ write$
   "}" write$
@@ -849,31 +849,31 @@ FUNCTION {n.dashify}
 {
   't :=
   ""
-    { t empty$ not }
-    { t #1 #1 substring$ "-" =
-        { t #1 #2 substring$ "--" = not
-            { "--" *
-              t #2 global.max$ substring$ 't :=
-            }
-            {   { t #1 #1 substring$ "-" = }
-                { "-" *
-                  t #2 global.max$ substring$ 't :=
-                }
+  { t empty$ not }
+  { t #1 #1 substring$ "-" =
+      { t #1 #2 substring$ "--" = not
+          { "--" *
+            t #2 global.max$ substring$ 't :=
+          }
+          {   { t #1 #1 substring$ "-" = }
+              { "-" *
+                t #2 global.max$ substring$ 't :=
+              }
               while$
-            }
-          if$
-        }
-        { t #1 #1 substring$ *
-          t #2 global.max$ substring$ 't :=
-        }
-      if$
-    }
+          }
+        if$
+      }
+      { t #1 #1 substring$ *
+        t #2 global.max$ substring$ 't :=
+      }
+    if$
+  }
   while$
 }
 
 FUNCTION {word.in}
 { bbl.in
-%  ":" * %removed for APS
+  %  ":" * %removed for APS
   " " * }
 
 FUNCTION {format.date}
@@ -895,7 +895,7 @@ FUNCTION {format.date}
     'skip$
     {
       before.all 'output.state :=
-    " (" swap$ * ")" *
+      " (" swap$ * ")" *
     }
   if$
 }
@@ -1028,19 +1028,19 @@ INTEGERS { multiresult }
 FUNCTION {multi.page.check}
 { 't :=
   #0 'multiresult :=
-    { multiresult not
-      t empty$ not
-      and
-    }
-    { t #1 #1 substring$
-      duplicate$ "-" =
-      swap$ duplicate$ "," =
-      swap$ "+" =
-      or or
-        { #1 'multiresult := }
-        { t #2 global.max$ substring$ 't := }
-      if$
-    }
+  { multiresult not
+    t empty$ not
+    and
+  }
+  { t #1 #1 substring$
+    duplicate$ "-" =
+    swap$ duplicate$ "," =
+    swap$ "+" =
+    or or
+      { #1 'multiresult := }
+      { t #2 global.max$ substring$ 't := }
+    if$
+  }
   while$
   multiresult
 }
@@ -1086,13 +1086,13 @@ FUNCTION {format.vol.num.pages}
   if$ 
   number empty$
     'skip$
- %   {%commented out to remove "number"
- %  %   "~(" number * ")" * *
- %     volume empty$
- %       { "there's a number but no volume in " cite$ * warning$ }
-         'skip$
- %     if$
- %   }
+    %   {%commented out to remove "number"
+    %  %   "~(" number * ")" * *
+    %     volume empty$
+    %       { "there's a number but no volume in " cite$ * warning$ }
+    'skip$
+    %     if$
+    %   }
   if$
 }
 
@@ -1258,8 +1258,8 @@ FUNCTION {format.org.or.pub}
     {
       t empty$
         { address empty$
-          'skip$
-          { address * }
+            'skip$
+            { address * }
           if$
         }
         { t *
@@ -1280,7 +1280,7 @@ FUNCTION {format.org.or.pub}
       if$
     }
   if$
-   ")" * %added for APS
+  ")" * %added for APS
 }
 
 FUNCTION {format.publisher.address}
@@ -1328,13 +1328,13 @@ FUNCTION {make.href}
 
 FUNCTION {format.url}
 { inlinelinks #1 = url empty$ or
-   { "" }
-   { hrefform #1 =
-       { % special case -- add HyperTeX specials
-         urlintro "\url{" url * "}" * url make.href.hypertex * }
-       { urlintro "\url{" * url * "}" * }
-     if$
-   }
+    { "" }
+    { hrefform #1 =
+	{ % special case -- add HyperTeX specials
+          urlintro "\url{" url * "}" * url make.href.hypertex * }
+	{ urlintro "\url{" * url * "}" * }
+      if$
+    }
   if$
 }
 
@@ -1454,7 +1454,7 @@ FUNCTION {article}
     { journal
       "journal" output.check
       % add.blank
-  before.all 'output.state :=
+      before.all 'output.state :=
       format.vol.num.pages output
     }
     { format.article.crossref output.nonnull
@@ -1475,7 +1475,7 @@ FUNCTION {article}
       if$}
   if$
   fin.entry
-% write.url
+  % write.url
 }
 
 FUNCTION {book}
@@ -1611,11 +1611,11 @@ FUNCTION {inproceedings}
   if$
   format.note output
   fin.entry
- % title empty$ %These lines add URL instead of "[link]"
- %   {fin.entry.original
- %    write.url}
- %   'fin.entry
- % if$
+  % title empty$ %These lines add URL instead of "[link]"
+  %   {fin.entry.original
+  %    write.url}
+  %   'fin.entry
+  % if$
 }
 
 FUNCTION {conference} { inproceedings }
@@ -1726,7 +1726,7 @@ FUNCTION {proceedings}
           format.publisher.address output
         }
       if$
-     }
+    }
   if$
   format.note output
   fin.entry
@@ -1792,7 +1792,7 @@ FUNCTION {begin.bib}
     'skip$
     { preamble$ write$ newline$ }
   if$
-%  "\begin{thebibliography}{"  longest.label  * "}" *
+  %  "\begin{thebibliography}{"  longest.label  * "}" *
   "\begin{thebibliography}{99}" 
   write$ newline$
   "\expandafter\ifx\csname url\endcsname\relax"
