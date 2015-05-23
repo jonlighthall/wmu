@@ -1,0 +1,26 @@
+\usepackage{amssymb,amsmath}
+\usepackage{mathrsfs}%provides script text in math mode
+\usepackage{lineno}
+\biboptions{numbers,sort&compress}%load natbib options
+\usepackage{ifpdf}
+\ifpdf
+	\usepackage{graphicx}
+	\usepackage{epstopdf}
+	%Must include -enable-write18 in command line arguments (Alt+F7)
+	\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+	\epstopdfsetup{suffix=}%
+\else
+	\usepackage{graphicx}	
+	\usepackage[all,light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.	
+\fi
+\graphicspath{{../Figures/BW_Figures/}{../Figures/}} %Uniquely-named B&W figures
+\def\figwid{4.9in}
+%\usepackage[light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.
+\usepackage{hyperref}
+\hypersetup{pdfauthor=Jon Lighthall,%
+	pdfstartview=FitH,     %Fits the horizontal width of the document in the window
+	bookmarksopen=true,    %Displays Bookmarks in the Navigation Panel
+	bookmarksnumbered=true,%Numbers bookmarks with section numbers
+	final=true,            %keeps hyperref features on when document option is set to draft
+	colorlinks=true,       %colors the links instead of using boxes
+	}
