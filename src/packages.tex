@@ -1,230 +1,256 @@
 %%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%
-%% This file loads a number of standard packages.  Also included at the end of the file are a 
+%  This file loads a number of standard packages.  Also included at the end of the file are a 
 %  number of macros.
 %% Math packages-----------------%-------------------------------
 \usepackage{amsmath}
-\usepackage{amssymb,mathrsfs}%provides symbols, script text in math mode (conflicts with mathdesign)
-\usepackage{bm}% bold math
-
-%% Text packages-----------------%-------------------------------
-\usepackage{textcomp,lmodern}%for special symbols 
-%\usepackage{ulsy}
-%\usepackage{latexsym}
-%\usepackage[normalem]{ulem}%for strikethroughs
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}%modern font encoding
-\usepackage{combelow}%support for Romanian letters
-\usepackage{wasysym}% astonomy symbols
-
-%% The default font is Latin Modern (replaces Computer Modern).  Following are a number of fonts 
-%  with extensive math and symbol support.  To use a particular font, uncomment the associated
-%  line.  If mathdesign fonts are used, the amssymb and mathrsfs packages should not be loaded
-%  independently.
-
-%% PostScript Fonts--------------%-------------------------------
-%\usepackage{times}
-%\usepackage[osf]{mathpazo}		%URW Palladio (A Palatino/Book Antiqua clone), an old style serif typeface
-%\usepackage{mathptmx}				%URW Nimbus Roman (A Times clone), a transitional serif typefaces
-%\usepackage[scaled]{helvet}	%URW Nimbus Sans (A Helvetica clone), a sans-serif typeface 
-%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
-
-%% Math Design Fonts-------------%-------------------------------
-%\usepackage[urw-garamond]{mathdesign}			%Old style serif typeface
-\usepackage[adobe-utopia]{mathdesign}			%Transitional serif typefaces (professional)
-%\usepackage[adobe-utopia]{mathdesign}[2006/01/29]	%For thesis
-%\usepackage[bitstream-charter]{mathdesign}	%Glyphic serif typeface optimized for low-resolution printing
-
-%% Figure packages---------------%-------------------------------
-%% The following lines of code assume that the graphics files are .eps files located in a
-%  directory named Figures.  Black and white versions of color graphics files end in _bw.  For
-%  example, the two files
-%			/Figures/foo.eps
-%			/Figures/foo_bw.eps
-%  may be included with a single command, e.g., \includegraphics{fig2}.  The black and white
-%  figures are then selected by uncommenting the declare graphics extension rule below.
-
-\usepackage{ifpdf}
-\ifpdf
-	\usepackage[pdftex]{graphicx}
-	\usepackage[update]{epstopdf}
-	%May need to include -enable-write18 in command line arguments to make PDF figures (deprecated)
-	%\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
-	%\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
-        %\epstopdfsetup{suffix=-\SourceExt-converted-to}%This line explicitly defines the default behavior
-        \epstopdfsetup{suffix=}%
-\else
-	\usepackage{graphicx}	
-	\usepackage[all,light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.	
-\fi
-%\DeclareGraphicsExtensions{_bw.eps,.eps}	%Turn on/off BW figures, assumes BW figures end in _bw.eps
-%\graphicspath{{Figures/}}%set graphics path(s) here
-\graphicspath{{Figures/}{../Figures/BW_Figures/}{../Figures/}} %Uniquely-named B&W figures
-\def\figwid{4.9in}
-\usepackage{wrapfig}
-
-%% Table packages----------------%-------------------------------
-\usepackage{dcolumn}% Align table columns on decimal point
-\newcolumntype{d}[1]{D{.}{.}{#1}}
-\newcolumntype{.}{D{.}{.}{-1}}
-\newcolumntype{,}{D{,}{,}{-1}}
-\newcolumntype{)}{D{)}{)}{-1}}
-
-\renewcommand{\arraystretch}{1.3} % set tabular line spacing
-
-\usepackage{multirow}
-%\usepackage{longtable}
-\usepackage{supertabular}
-%\usepackage{multicol}
-%\usepackage{stabular}
-\usepackage{rotating}
-\usepackage{pdflscape}
-\usepackage{tabulary}
-%\usepackage{colortbl}
-
-%% Formatting packages-----------%-------------------------------
-\usepackage{setspace} %required for double spacing and used to control vertical spacing 
-\usepackage{fancyhdr} %required for non-standard (fancy) headers
-\usepackage{fancyvrb}%allows verbatim in footnotes
-\usepackage{indentfirst}%indents first paragraph of each section
-\usepackage{fmtcount,datetime} %provides commands for displaying times and dates
-\usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
-\usepackage{listings}
-
-\providecommand{\authname}{Jon Lighthall}
-\providecommand{\thesistitle}{LaTeX document}
-
-\usepackage{hyperref}
-\hypersetup{
-  pdfauthor=\authname,           %Adds author name to PDF properties
-  pdftitle=\thesistitle,         %Adds thesis title to PDF properties
-  pdfstartpage=1,                %Opening page number (absolute)
-  %pdfstartview=FitV,            %Fits the horiz. width in the window (FitV for vertical)
-  pdfstartview={XYZ null null 1},%view page at 100%
-  pdfpagemode=UseNone,            %Nav. Panel: UseNone, UseThumbs, UseOutline, FullScreen, etc.
-  bookmarksopen=false,           %Displays Bookmarks in the Navigation Panel
-  bookmarksopenlevel=0,          %\maxdimen all levels, 0 chapters, 1 sections%	
-  bookmarksnumbered=true,        %Numbers bookmarks with section numbers
-  final=true,                    %keeps hyperref features in draft mode
-  colorlinks=true,               %colors the links instead of using boxes
-  urlcolor=blue,                  %makes URL hyperlinks blue (instead of pink)
-  linkcolor=black,               %makes internal links black (instead of red)             
-  citecolor=black,               %makes citation links black (instead of green)
-}
-
-%The following commands are provided in case hyperref is not used
-\providecommand{\texorpdfstring}[2]{#1} 
-\providecommand{\href}[2]{#2}
-
-\usepackage{listings}
-
-%% Bibliography packages---------%-------------------------------
-\usepackage[numbers,sort&compress]{natbib}
-
-%% Macro definitions-------------%-------------------------------
-\def\newzero{{0\mkern-9mu\texttt{/}}}%This line defines a slash-zero (similar to \emptyset)
-\def\newsym{${\sim\mkern-17mu\textit{{\footnotesize/}}}$}%This line defines a slash-tilde (similar to \psi)
-\def\monogram{{\fontfamily{mdugm}\selectfont J\kern-.349em {\color{black}L} \kern -.747em {\scriptsize C }}}%
-
-%% The following lines provide definitions for printing notes in a different font
-\usepackage{color}
-\definecolor{note_gray}{gray}{0.4}
-\newcommand{\note}[1]{{\color{note_gray}\textit{#1}}} %Emphasizes notes
-%\renewcommand{\note}[1]{#1} %Enters "notes" into text
-%\renewcommand{\note}[1]{} %Deletes "notes"
-%  The following command creates margin notes in the "notes" font (with an arrow)
-\newcommand{\marnote}[1]{\marginpar[\singlespacing\note{#1 $\rightarrow$}]% 
-                                     {\singlespacing\note{$\leftarrow$ #1}}}
-\renewcommand{\marnote}[1]{\marginpar[\singlespacing%
-                                      \raggedright \note{#1 $\rightarrow$}]% 
-                                     {\singlespacing\note{\raggedleft $\leftarrow$ #1}}}
-
-%% Set the specific formatting of the "Mev per nucleon" units symbol
-\newcommand{\AMeV}{A\,MeV}
-%\renewcommand{\AMeV}{MeV/u}
-%\renewcommand{\AMeV}{MeV/A}
-\renewcommand{\AMeV}{MeV/$u$}
-
-\hyphenation{Mesy-tec}
-\hyphenation{feed-through feed-throughs ejec-tile ejec-tiles cor-re-spond-ing sol-en-oid-al}
-
-\InputIfFileExists{autotext}{}{}
-\InputIfFileExists{./autotext}{}{}
-\InputIfFileExists{./src/autotext}{}{}
-\InputIfFileExists{../../autotext}{}{}
-\InputIfFileExists{More_Files/autotext}{}{}
-
-\renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
-
-%% Date settings-----------------%-------------------------------
-\usepackage{fmtcount,datetime} %provides commands for displaying times and dates
-\newdateformat{photodate}{\shortmonthname[\THEMONTH].~\THEYEAR}
-\newdateformat{longusdate}{%
-\dayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR}, \monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
-\makeatletter
-  \@namedef{timezone-0400}{EDT}
-  \@namedef{timezone-0500}{EST}
-  \@namedef{timezone-0600}{CST}
-  \@namedef{timezone-0500}{CDT}
-  \@namedef{timezone-0700}{PDT}
-  \@namedef{timezone-0800}{PST}
-
-  \def\grabtimezone #1#2#3#4#5#6#7#8#9{\grabtimezoneB}
-  \def\grabtimezoneB #1#2#3#4#5#6#7{\grabtimezoneC}
-  \def\grabtimezoneC #1#2'#3'{%
-  \@ifundefined{timezone#1#2#3}
-    {No timezone for `#1#2#3'}
-    {\@nameuse{timezone#1#2#3}}%
-  }
-  \def\timezone{\expandafter\grabtimezone\pdfcreationdate}
-\makeatother
-
-%% The following two lines may be required for proper formating of the Table of Figures
-%\usepackage{tocloft}
-%\setlength{\cftfignumwidth}{3em}%increases spacing after figure numbers in Table of Figures
-
-%\usepackage{makeidx}
-%\makeindex
-
-%The following command makes the TOC entries for chapters all caps
-\providecommand{\Chapter}[1]{\chapter[\texorpdfstring{\MakeUppercase{#1}}{#1}]{#1}}
-
-%\usepackage{fourier}  %Utopia is obsolete?
-%\makeatletter
-%\DeclareMathSizes{\@xpt}{\@xpt}{7}{5}
-%\makeatother
-
-%% Layout Options----------------%-------------------------------
-%  For narrow margins (word processor style), set margins below.
-\addtolength{\textwidth}{1.5in}		%increase text width to 6in
-\addtolength{\textheight}{1.75in}	%increase text width to 9in
-\addtolength{\hoffset}{-0.4375in} %decrease left margin to 1.5in
-\addtolength{\voffset}{-0.875in}  %decrease top margin to 1.0in
-\reversemarginpar %Moves margin notes to the wider margin
-
-%% Double-sided------------------%-------------------------------
-%  For double-sided documents, include the document class option [twoside].
-
-%  For double-sided documents with narrow margins, set margins below.  These margin settings 
-%  leave the odd-page margins unchanged while increasing the even-page left-hand margins by 
-%  0.5 inches so that the margins are the same on both sides of the page.
-\makeatletter
-\if@twoside
- \setlength{\oddsidemargin}{62pt}     %keep 1.5in left margin on odd pages
- \addtolength{\evensidemargin}{-1in}  %decrease left margin to 1.5in on even pages
- \addtolength{\marginparwidth}{-56pt} %keep 69pt margin paragraph width
- \raggedbottom
-\fi
-\makeatother
-
-\newenvironment{changemargin}[1]{%
-  \begin{list}{}{%
-    \setlength{\topsep}{0pt}%
-    \setlength{\leftmargin}{#1}%
-    \setlength{\rightmargin}{#1}%
-    \setlength{\listparindent}{\parindent}%
-    \setlength{\itemindent}{\parindent}%
-    \setlength{\parsep}{\parskip}%
-  }%\centering%
-	\item[]}{\end{list}}
-	
-	\usepackage{adjustbox}
+\usepackage{amssymb,mathrsfs}%provides symbols, script text in math mode (conflicts with mathdesign)
+\usepackage{bm}% bold math
+
+%% Text packages-----------------%-------------------------------
+\usepackage{textcomp,lmodern}%for special symbols 
+%\usepackage{ulsy}
+%\usepackage{latexsym}
+%\usepackage[normalem]{ulem}%for strikethroughs
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}%modern font encoding
+\usepackage{combelow}%support for Romanian letters
+\usepackage{wasysym}% astonomy symbols
+
+%% The default font is Latin Modern (replaces Computer Modern).  Following are a number of fonts 
+%  with extensive math and symbol support.  To use a particular font, uncomment the associated
+%  line.  If mathdesign fonts are used, the amssymb and mathrsfs packages should not be loaded
+%  independently.
+
+%% PostScript Fonts--------------%-------------------------------
+%\usepackage{times}
+%\usepackage[osf]{mathpazo}		%URW Palladio (A Palatino/Book Antiqua clone), an old style serif typeface
+%\usepackage{mathptmx}				%URW Nimbus Roman (A Times clone), a transitional serif typefaces
+%\usepackage[scaled]{helvet}	%URW Nimbus Sans (A Helvetica clone), a sans-serif typeface 
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+%% Math Design Fonts-------------%-------------------------------
+%\usepackage[urw-garamond]{mathdesign}			%Old style serif typeface
+\usepackage[adobe-utopia]{mathdesign}			%Transitional serif typefaces (professional)
+%\usepackage[adobe-utopia]{mathdesign}[2006/01/29]	%For thesis
+%\usepackage[bitstream-charter]{mathdesign}	%Glyphic serif typeface optimized for low-resolution printing
+
+%% Figure packages---------------%-------------------------------
+%  The following lines of code assume that the graphics files are .eps files located in a
+%  directory named Figures.  Black and white versions of color graphics files end in _bw.  For
+%  example, the two files
+%			/Figures/foo.eps
+%			/Figures/foo_bw.eps
+%  may be included with a single command, e.g., \includegraphics{fig2}.  The black and white
+%  figures are then selected by uncommenting the declare graphics extension rule below.
+
+\usepackage{ifpdf}
+\ifpdf
+	\usepackage{graphicx}
+	\usepackage[update]{epstopdf}
+	%\pdfimageresolution=10
+	%May need to include -enable-write18 in command line arguments to make PDF figures (deprecated)
+	%\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+	%\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+        %\epstopdfsetup{suffix=-\SourceExt-converted-to}%This line explicitly defines the default behavior
+        \epstopdfsetup{suffix=}%
+\else
+	\usepackage{graphicx}	
+	\usepackage[all,light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.	
+\fi
+%\DeclareGraphicsExtensions{_bw.eps,.eps}	%Turn on/off BW figures, assumes BW figures end in _bw.eps
+%\graphicspath{{Figures/}}%set graphics path(s) here
+\graphicspath{{Figures/}{../Figures/BW_Figures/}{../Figures/}} %Uniquely-named B&W figures
+\graphicspath{{Figures/}{../../Safety_Report/Figures/}{../../Photos/}{images/}{../../Schematics/}}%set graphics path(s) here
+\def\figwid{4.9in}
+\usepackage{wrapfig}
+
+%% Table packages----------------%-------------------------------
+\usepackage{dcolumn}% Align table columns on decimal point
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{,}{D{,}{,}{-1}}
+\newcolumntype{)}{D{)}{)}{-1}}
+\newcolumntype{-}{D{-}{-}{-1}}
+
+\renewcommand{\arraystretch}{1.3} % set tabular line spacing
+
+\usepackage{multirow}
+%\usepackage{longtable}
+\usepackage{supertabular}
+%\usepackage{multicol}
+%\usepackage{stabular}
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{tabulary}
+%\usepackage{colortbl}
+
+%% Formatting packages-----------%-------------------------------
+\usepackage{setspace} %required for double spacing and used to control vertical spacing 
+\usepackage{fancyhdr} %required for non-standard (fancy) headers
+\usepackage{fancyvrb}%allows verbatim in footnotes
+\usepackage{indentfirst}%indents first paragraph of each section
+\usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
+\usepackage{listings}
+\lstset{language=C++,
+  %basicstyle=\small,
+  basicstyle=\ttfamily \color{black},
+  commentstyle=\color{red},
+  keywordstyle=\color{green},
+  stringstyle=\color{magenta},
+  directivestyle={\color{cyan}},
+  identifierstyle={\color{blue}},
+  showstringspaces=false,
+  %emptylines=1,
+  numbers=left,
+	%numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\small\color{note_gray}, % the style that is used for the line-numbers
+	rulecolor=\color{note_gray},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  breaklines=true,
+	frame=single,                    % adds a frame around the code
+	title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+	captionpos=b
+}
+
+\lstset{emph={%  
+    TH1F, TH2F, Float_t, Int_t, TString, TCutG, TF1%
+  },emphstyle={\color{green}}%
+}%
+
+\providecommand{\authname}{Jon Lighthall}
+\providecommand{\thesistitle}{LaTeX document}
+
+\usepackage{hyperref}
+\hypersetup{
+  pdfauthor=\authname,           %Adds author name to PDF properties
+  pdftitle=\thesistitle,         %Adds thesis title to PDF properties
+  pdfstartpage=1,                %Opening page number (absolute)
+  %pdfstartview=FitV,            %Fits the horiz. width in the window (FitV for vertical)
+  pdfstartview={XYZ null null 1},%view page at 100%
+  pdfpagemode=UseNone,            %Nav. Panel: UseNone, UseThumbs, UseOutline, FullScreen, etc.
+  bookmarksopen=false,           %Displays Bookmarks in the Navigation Panel
+  bookmarksopenlevel=0,          %\maxdimen all levels, 0 chapters, 1 sections%	
+  bookmarksnumbered=true,        %Numbers bookmarks with section numbers
+  final=true,                    %keeps hyperref features in draft mode
+  colorlinks=true,               %colors the links instead of using boxes
+  urlcolor=blue,                  %makes URL hyperlinks blue (instead of pink)
+  linkcolor=black,               %makes internal links black (instead of red)             
+  citecolor=black,               %makes citation links black (instead of green)
+}
+
+%The following commands are provided in case hyperref is not used
+\providecommand{\texorpdfstring}[2]{#1} 
+\providecommand{\href}[2]{#2}
+
+\usepackage{listings}
+
+%% Bibliography packages---------%-------------------------------
+\usepackage[numbers,sort&compress]{natbib}
+
+%% Macro definitions-------------%-------------------------------
+\def\newzero{{0\mkern-9mu\texttt{/}}}%This line defines a slash-zero (similar to \emptyset)
+\def\newsym{${\sim\mkern-17mu\textit{{\footnotesize/}}}$}%This line defines a slash-tilde (similar to \psi)
+\def\monogram{{\fontfamily{mdugm}\selectfont J\kern-.349em {\color{black}L} \kern -.747em {\scriptsize C }}}%
+
+%% The following lines provide definitions for printing notes in a different font
+\usepackage{color}
+\definecolor{note_gray}{gray}{0.4}
+\newcommand{\note}[1]{{\color{note_gray}\textit{#1}}} %Emphasizes notes
+%\renewcommand{\note}[1]{#1} %Enters "notes" into text
+%\renewcommand{\note}[1]{} %Deletes "notes"
+%  The following command creates margin notes in the "notes" font (with an arrow)
+\newcommand{\marnote}[1]{\marginpar[\singlespacing\note{#1 $\rightarrow$}]% 
+                                     {\singlespacing\note{$\leftarrow$ #1}}}
+\renewcommand{\marnote}[1]{\marginpar[\singlespacing%
+                                      \raggedright \note{#1 $\rightarrow$}]% 
+                                     {\singlespacing\note{\raggedleft $\leftarrow$ #1}}}
+
+%% Set the specific formatting of the "Mev per nucleon" units symbol
+\newcommand{\AMeV}{A\,MeV}
+%\renewcommand{\AMeV}{MeV/u}
+%\renewcommand{\AMeV}{MeV/A}
+\renewcommand{\AMeV}{MeV/$u$}
+
+\hyphenation{Mesy-tec}
+\hyphenation{feed-through feed-throughs ejec-tile ejec-tiles cor-re-spond-ing sol-en-oid-al}
+
+\InputIfFileExists{autotext}{}{}
+\InputIfFileExists{./autotext}{}{}
+\InputIfFileExists{./src/autotext}{}{}
+\InputIfFileExists{../../autotext}{}{}
+\InputIfFileExists{More_Files/autotext}{}{}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
+
+%% Date settings-----------------%-------------------------------
+\usepackage{fmtcount,datetime} %provides commands for displaying times and dates
+\newdateformat{photodate}{\shortmonthname[\THEMONTH].~\THEYEAR}
+\newdateformat{longusdate}{%
+\dayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR}, \monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
+\makeatletter
+  \@namedef{timezone-0400}{EDT}
+  \@namedef{timezone-0500}{EST}
+  \@namedef{timezone-0600}{CST}
+  \@namedef{timezone-0500}{CDT}
+  \@namedef{timezone-0700}{PDT}
+  \@namedef{timezone-0800}{PST}
+
+  \def\grabtimezone #1#2#3#4#5#6#7#8#9{\grabtimezoneB}
+  \def\grabtimezoneB #1#2#3#4#5#6#7{\grabtimezoneC}
+  \def\grabtimezoneC #1#2'#3'{%
+  \@ifundefined{timezone#1#2#3}
+    {No timezone for `#1#2#3'}
+    {\@nameuse{timezone#1#2#3}}%
+  }
+  \def\timezone{\expandafter\grabtimezone\pdfcreationdate}
+\makeatother
+
+%% The following two lines may be required for proper formating of the Table of Figures
+%\usepackage{tocloft}
+%\setlength{\cftfignumwidth}{3em}%increases spacing after figure numbers in Table of Figures
+
+%\usepackage{makeidx}
+%\makeindex
+
+%The following command makes the TOC entries for chapters all caps
+\providecommand{\Chapter}[1]{\chapter[\texorpdfstring{\MakeUppercase{#1}}{#1}]{#1}}
+
+%\usepackage{fourier}  %Utopia is obsolete?
+%\makeatletter
+%\DeclareMathSizes{\@xpt}{\@xpt}{7}{5}
+%\makeatother
+
+%% Layout Options----------------%-------------------------------
+%  For narrow margins (word processor style), set margins below.
+\addtolength{\textwidth}{1.5in}		%increase text width to 6in
+\addtolength{\textheight}{1.75in}	%increase text width to 9in
+\addtolength{\hoffset}{-0.4375in} %decrease left margin to 1.5in
+\addtolength{\voffset}{-0.875in}  %decrease top margin to 1.0in
+\reversemarginpar %Moves margin notes to the wider margin
+
+%% Double-sided------------------%-------------------------------
+%  For double-sided documents, include the document class option [twoside].
+
+%  For double-sided documents with narrow margins, set margins below.  These margin settings 
+%  leave the odd-page margins unchanged while increasing the even-page left-hand margins by 
+%  0.5 inches so that the margins are the same on both sides of the page.
+\makeatletter
+\if@twoside
+ \setlength{\oddsidemargin}{62pt}     %keep 1.5in left margin on odd pages
+ \addtolength{\evensidemargin}{-1in}  %decrease left margin to 1.5in on even pages
+ \addtolength{\marginparwidth}{-56pt} %keep 69pt margin paragraph width
+ \raggedbottom
+\fi
+\makeatother
+
+\newenvironment{changemargin}[1]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#1}%
+    \setlength{\listparindent}{\parindent}%
+    \setlength{\itemindent}{\parindent}%
+    \setlength{\parsep}{\parskip}%
+  }%\centering%
+	\item[]}{\end{list}}
+	
+	\usepackage{adjustbox}
