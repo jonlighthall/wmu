@@ -1,14 +1,14 @@
-%%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%
-%  This file loads a number of standard packages.  Also included at the end of the file are a 
-%  number of macros.
-%% Math packages-----------------%-------------------------------
-\usepackage{amsmath}
+%%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%
+%  This file loads a number of standard packages.  Also included at the end of the file are a 
+%  number of macros.
+%% Math packages-----------------%-------------------------------
+\usepackage{amsmath}
 \usepackage{amssymb,mathrsfs}%provides symbols, script text in math mode (conflicts with mathdesign)
 \usepackage{bm}% bold math
 
 %% Text packages-----------------%-------------------------------
 \usepackage{textcomp,lmodern}%for special symbols 
-%\usepackage{ulsy}
+%\usepackage{ulsy}%for special symbols
 %\usepackage{latexsym}
 %\usepackage[normalem]{ulem}%for strikethroughs
 \usepackage[utf8]{inputenc}
@@ -117,12 +117,12 @@
 }%
 
 \providecommand{\authname}{Jon Lighthall}
-\providecommand{\thesistitle}{LaTeX document}
+\providecommand{\doctitle}{LaTeX document}
 
 \usepackage{hyperref}
 \hypersetup{
   pdfauthor=\authname,           %Adds author name to PDF properties
-  pdftitle=\thesistitle,         %Adds thesis title to PDF properties
+  pdftitle=\doctitle,         %Adds thesis title to PDF properties
   pdfstartpage=1,                %Opening page number (absolute)
   %pdfstartview=FitV,            %Fits the horiz. width in the window (FitV for vertical)
   pdfstartview={XYZ null null 1},%view page at 100%
@@ -140,8 +140,6 @@
 %The following commands are provided in case hyperref is not used
 \providecommand{\texorpdfstring}[2]{#1} 
 \providecommand{\href}[2]{#2}
-
-\usepackage{listings}
 
 %% Bibliography packages---------%-------------------------------
 \usepackage[numbers,sort&compress]{natbib}
