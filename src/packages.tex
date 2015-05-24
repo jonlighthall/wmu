@@ -133,6 +133,9 @@
 %\renewcommand{\AMeV}{MeV/A}
 \renewcommand{\AMeV}{MeV/$u$}
 
+\hyphenation{Mesy-tec}
+\hyphenation{feed-through feed-throughs ejec-tile ejec-tiles cor-re-spond-ing sol-en-oid-al}
+
 \InputIfFileExists{autotext}{}{}
 \InputIfFileExists{./autotext}{}{}
 \InputIfFileExists{./src/autotext}{}{}
@@ -140,9 +143,28 @@
 \InputIfFileExists{More_Files/autotext}{}{}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
+
+%% Date settings
 \newdateformat{photodate}{\shortmonthname[\THEMONTH].~\THEYEAR}
 \newdateformat{longusdate}{%
 \dayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR}, \monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
+\makeatletter
+  \@namedef{timezone-0400}{EDT}
+  \@namedef{timezone-0500}{EST}
+  \@namedef{timezone-0600}{CST}
+  \@namedef{timezone-0500}{CDT}
+  \@namedef{timezone-0700}{PDT}
+  \@namedef{timezone-0800}{PST}
+
+  \def\grabtimezone #1#2#3#4#5#6#7#8#9{\grabtimezoneB}
+  \def\grabtimezoneB #1#2#3#4#5#6#7{\grabtimezoneC}
+  \def\grabtimezoneC #1#2'#3'{%
+  \@ifundefined{timezone#1#2#3}
+    {No timezone for `#1#2#3'}
+    {\@nameuse{timezone#1#2#3}}%
+  }
+  \def\timezone{\expandafter\grabtimezone\pdfcreationdate}
+\makeatother
 
 %% The following two lines may be required for proper formating of the Table of Figures
 %\usepackage{tocloft}
