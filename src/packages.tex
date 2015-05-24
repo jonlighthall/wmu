@@ -3,8 +3,8 @@
 %  number of macros.
 %% Math packages-----------------%-------------------------------
 \usepackage{amsmath}
-\usepackage{amssymb,mathrsfs}%provides symbols, script text in math mode (conflicts with mathdesign)
-\usepackage{bm}% bold math
+%\usepackage{amssymb,mathrsfs}%provides symbols, script text in math mode (conflicts with mathdesign)
+%\usepackage{bm}% bold math
 
 %% Text packages-----------------%-------------------------------
 \usepackage{textcomp,lmodern}%for special symbols 
@@ -126,7 +126,7 @@
   pdfstartpage=1,                %Opening page number (absolute)
   %pdfstartview=FitV,            %Fits the horiz. width in the window (FitV for vertical)
   pdfstartview={XYZ null null 1},%view page at 100%
-  pdfpagemode=UseOutline,            %Nav. Panel: UseNone, UseThumbs, UseOutline, FullScreen, etc.
+  pdfpagemode=UseOutlines,            %Nav. Panel: UseNone, UseThumbs, UseOutline, FullScreen, etc.
   bookmarksopen=true,           %Displays Bookmarks in the Navigation Panel
   bookmarksopenlevel=\maxdimen,          %\maxdimen all levels, 0 chapters, 1 sections%	
   bookmarksnumbered=true,        %Numbers bookmarks with section numbers
@@ -171,11 +171,7 @@
 \hyphenation{Mesy-tec}
 \hyphenation{feed-through feed-throughs ejec-tile ejec-tiles cor-re-spond-ing sol-en-oid-al}
 
-\InputIfFileExists{autotext}{}{}
-\InputIfFileExists{./autotext}{}{}
-\InputIfFileExists{./src/autotext}{}{}
-\InputIfFileExists{../../autotext}{}{}
-\InputIfFileExists{More_Files/autotext}{}{}
+\InputIfFileExists{src/autotext}{}{}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
 
