@@ -45,8 +45,8 @@
 	\usepackage[pdftex]{graphicx}
 	\usepackage[update]{epstopdf}
 	%May need to include -enable-write18 in command line arguments to make PDF figures (deprecated)
-	\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
-	\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+	%\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+	%\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
 	\epstopdfsetup{suffix=}%
 \else
 	\usepackage{graphicx}	
@@ -134,6 +134,8 @@
 \renewcommand{\AMeV}{MeV/$u$}
 
 \InputIfFileExists{autotext}{}{}
+\InputIfFileExists{./autotext}{}{}
+\InputIfFileExists{./src/autotext}{}{}
 \InputIfFileExists{../../autotext}{}{}
 \InputIfFileExists{More_Files/autotext}{}{}
 
