@@ -12,6 +12,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}%modern font encoding
 \usepackage{combelow}%support for Romanian letters
+\usepackage{wasysym}% astonomy symbols
 
 %% The default font is Latin Modern (replaces Computer Modern).  Following are a number of fonts 
 %  with extensive math and symbol support.  To use a particular font, uncomment the associated
@@ -27,6 +28,7 @@
 %% Math Design Fonts-------------%-------------------------------
 %\usepackage[urw-garamond]{mathdesign}			%Old style serif typeface
 \usepackage[adobe-utopia]{mathdesign}			%Transitional serif typefaces (professional)
+%\usepackage[adobe-utopia]{mathdesign}[2006/01/29]	%For thesis
 %\usepackage[bitstream-charter]{mathdesign}	%Glyphic serif typeface optimized for low-resolution printing
 
 %% Figure packages---------------%-------------------------------
@@ -72,6 +74,7 @@
 \usepackage{rotating}
 \usepackage{pdflscape}
 \usepackage{tabulary}
+%\usepackage{colortbl}
 
 %% Formatting packages-----------%-------------------------------
 \usepackage{setspace} %required for double spacing and used to control vertical spacing 
@@ -80,6 +83,7 @@
 \usepackage{indentfirst}%indents first paragraph of each section
 \usepackage{fmtcount,datetime} %provides commands for displaying times and dates
 \usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
+\usepackage{listings}
 
 \providecommand{\authname}{Jon Lighthall}
 \providecommand{\thesistitle}{LaTeX document}
@@ -147,6 +151,11 @@
 
 %The following command makes the TOC entries for chapters all caps
 \providecommand{\Chapter}[1]{\chapter[\texorpdfstring{\MakeUppercase{#1}}{#1}]{#1}}
+
+%\usepackage{fourier}  %Utopia is obsolete?
+%\makeatletter
+%\DeclareMathSizes{\@xpt}{\@xpt}{7}{5}
+%\makeatother
 
 %The following commands are provided in case hyperref is not used
 \providecommand{\texorpdfstring}[2]{#1} 
