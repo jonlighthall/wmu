@@ -1,0 +1,16 @@
+%%---------------------------"page width" for comments (97 columns)----------------------------%%
+%%3456789112345678921234567893123456789412345678|5123456789612345678971234567898123456789912345%%
+\documentclass[oneside]{article}
+\input{src/packages}
+\input{cv/packages_cv}
+\begin{document}
+%% Commands from other bibtest versions--------------------------
+%Here is the first citation \citet[some equation]{Lighthall_2010}.	%from bibtest_cv.tex
+%\nocite{*}                                                         %from bibtest_nocite.tex
+%\nocite{Tur_2006,Tur_2008,Lee_2008,Lee_2010}                       %from goodman_bib.tex
+\input{cv_body}
+\renewcommand{\heliosonly}[1]{}
+%\renewcommand{\jclonly}[1]{}
+\input{pubs}
+\input{talk}
+\end{document}

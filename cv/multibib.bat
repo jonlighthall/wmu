@@ -1,0 +1,1 @@
+for %%f in (*.aux) do bibtex.exe %%~nf
