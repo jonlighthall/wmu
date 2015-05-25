@@ -5,6 +5,12 @@
        %% The need for including one of the following two lines may be system dependent.
 %\pagebreak % use if float(s) on last page 
 %\nopagebreak[4] % use if text on last page (if needed)
+\makeatletter
+  \if@twocolumn
+    \tiny
+  \fi
+\makeatother
+
   \begin{singlespace}
     \begin{center}
       \rule[0 pt]{\linewidth}{0.5pt}\\	
