@@ -2,10 +2,12 @@
 \providecommand{\printname}{Jonathan C. Lighthall}
 \newcommand{\shortname}{J.\ C.\ Lighthall}
 
+%% Load and modify settings from the letter template
+%% Set indentation here
 \def\indent{3in}
 %\setlength{\parindent}{0in}
 \input{../ltr/letter_layout}
-\graphicspath{{../ltr/}}
+\graphicspath{{../ltr/}} %path to signatures
 
 \renewcommand{\nameaddress}[1]{
 \textbf{\printname}\\
@@ -46,7 +48,7 @@
 \newcommand{\heliosonly}[1]{#1}
 \newcommand{\jclonly}[1]{#1}
 
-\newcommand{\desc}[1]{
+\newcommand{\desc}[1]{%this environment provides an added description of the current item
 \renewenvironment{quote}{%
 \list{}{%
     \setlength{\leftmargin}{22pt}
@@ -81,3 +83,7 @@
 		}
 		}%
 { \end{list} }
+
+\newcommand{\extra}[1]{{\color{note_gray}#1}} %print extra items in gray
+%\renewcommand{\extra}[1]{#1} %Enters "notes" into text
+%\renewcommand{\extra}[1]{} %Deletes "notes"
