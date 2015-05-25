@@ -7,14 +7,17 @@
 %\usepackage{bm}% bold math
 
 %% Text packages-----------------%-------------------------------
-\usepackage{textcomp,lmodern}%for special symbols 
+\usepackage{lmodern} %enhanced versions of the Computer Modern fonts
+\usepackage[utf8]{inputenc} %input encoding for most languagses 
+\usepackage[T1]{fontenc} %modern font encoding
+
+%% Symbol font packages----------%-------------------------------
+\usepackage{textcomp} %text symbols
 %\usepackage{ulsy}%for special symbols
 %\usepackage{latexsym}
-%\usepackage[normalem]{ulem}%for strikethroughs
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}%modern font encoding
-\usepackage{combelow}%support for Romanian letters
-\usepackage{wasysym}% astonomy symbols
+%\usepackage{pifont} %symbol fonts
+%\usepackage{wasysym}% astonomy symbols
+%\usepackage{combelow}%support for Romanian letters
 
 %% The default font is Latin Modern (replaces Computer Modern).  Following are a number of fonts 
 %  with extensive math and symbol support.  To use a particular font, uncomment the associated
@@ -22,7 +25,7 @@
 %  independently.
 
 %% PostScript Fonts--------------%-------------------------------
-%\usepackage{times}
+%\usepackage{times} %obsolte font, use mathptmx
 %\usepackage[osf]{mathpazo}		%URW Palladio (A Palatino/Book Antiqua clone), an old style serif typeface
 %\usepackage{mathptmx}				%URW Nimbus Roman (A Times clone), a transitional serif typefaces
 %\usepackage[scaled]{helvet}	%URW Nimbus Sans (A Helvetica clone), a sans-serif typeface 
@@ -33,6 +36,8 @@
 \usepackage[adobe-utopia]{mathdesign}			%Transitional serif typefaces (professional)
 %\usepackage[adobe-utopia]{mathdesign}[2006/01/29]	%For thesis
 %\usepackage[bitstream-charter]{mathdesign}	%Glyphic serif typeface optimized for low-resolution printing
+
+%\usepackage[normalem]{ulem}%for strikethroughs
 
 %% Figure packages---------------%-------------------------------
 %  The following lines of code assume that the graphics files are .eps files located in a
@@ -74,14 +79,14 @@
 
 \renewcommand{\arraystretch}{1.3} % set tabular line spacing
 
-\usepackage{multirow}
+%\usepackage{multirow}
 %\usepackage{longtable}
-\usepackage{supertabular}
+%\usepackage{supertabular}
 %\usepackage{multicol}
 %\usepackage{stabular}
-\usepackage{rotating}
-\usepackage{pdflscape}
-\usepackage{tabulary}
+%\usepackage{rotating}
+%\usepackage{pdflscape}
+%\usepackage{tabulary}
 %\usepackage{colortbl}
 
 %% Formatting packages-----------%-------------------------------
@@ -142,7 +147,7 @@
 \providecommand{\href}[2]{#2}
 
 %% Bibliography packages---------%-------------------------------
-\usepackage[numbers,sort&compress]{natbib}
+\usepackage[numbers,sort&compress]{natbib} %standard for APS-style citations
 
 %% Macro definitions-------------%-------------------------------
 \def\newzero{{0\mkern-9mu\texttt{/}}}%This line defines a slash-zero (similar to \emptyset)
@@ -168,18 +173,16 @@
 %\renewcommand{\AMeV}{MeV/A}
 \renewcommand{\AMeV}{MeV/$u$}
 
-\hyphenation{Mesy-tec}
-\hyphenation{feed-through feed-throughs ejec-tile ejec-tiles cor-re-spond-ing sol-en-oid-al}
-
-\InputIfFileExists{src/autotext}{}{}
+\InputIfFileExists{src/autotext}{}{} %loads automatic text-generating macros
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
 
 %% Date settings-----------------%-------------------------------
 \usepackage{fmtcount,datetime} %provides commands for displaying times and dates
 \newdateformat{photodate}{\shortmonthname[\THEMONTH].~\THEYEAR}
-\newdateformat{longusdate}{%
+\newdateformat{longusdate}{%standard long date format
 \dayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR}, \monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
+%Time zone definitions
 \makeatletter
   \@namedef{timezone-0400}{EDT}
   \@namedef{timezone-0500}{EST}
@@ -198,6 +201,8 @@
   \def\timezone{\expandafter\grabtimezone\pdfcreationdate}
 \makeatother
 
+%% Thesis Options----------------%-------------------------------
+
 %% The following two lines may be required for proper formating of the Table of Figures
 %\usepackage{tocloft}
 %\setlength{\cftfignumwidth}{3em}%increases spacing after figure numbers in Table of Figures
@@ -215,14 +220,17 @@
 %\DeclareMathSizes{\@xpt}{\@xpt}{7}{5}
 %\makeatother
 
-%% Set non-LaTeX-standard layout formatting here.
+%% Layout Options----------------%-------------------------------
+%  Set non-LaTeX-standard layout formatting here.
 
 %% The default document line spacing is single space.  For editing, set double spacing below.
 %\setstretch{2} %typewriter doublesace
 %\doublespacing %standard word processor doublespace
 %% Note: using word processor-style double spacing with wide margins produces documents of nearly the same length as single-spaced documents with narrow (default) margins.
 
-%% Layout Options----------------%-------------------------------
+\hyphenation{Mesy-tec}
+\hyphenation{feed-through feed-throughs ejec-tile ejec-tiles cor-re-spond-ing sol-en-oid-al}
+
 %  For narrow margins (word processor style), set margins below.
 \addtolength{\textwidth}{1.5in}		%increase text width to 6in
 \addtolength{\textheight}{1.75in}	%increase text width to 9in
