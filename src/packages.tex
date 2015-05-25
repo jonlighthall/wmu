@@ -4,8 +4,9 @@
 %  number of macros.
 %% Math packages-----------------%-------------------------------
 \usepackage{amsmath}
-%\usepackage{amssymb,mathrsfs}%provides symbols, script text in math mode (conflicts with mathdesign)
-%\usepackage{bm}% bold math
+%  The following provides symbols, script text in math mode (conflicts with mathdesign)
+%\usepackage{amssymb,mathrsfs}
+%\usepackage{bm} % bold math
 
 %% Text packages-----------------%-------------------------------
 \usepackage{lmodern} %enhanced versions of the Computer Modern fonts
@@ -14,11 +15,11 @@
 
 %% Symbol font packages----------%-------------------------------
 \usepackage{textcomp} %text symbols
-%\usepackage{ulsy}%for special symbols
+%\usepackage{ulsy} %for special symbols
 %\usepackage{latexsym}
 %\usepackage{pifont} %symbol fonts
-%\usepackage{wasysym}% astonomy symbols
-\usepackage{combelow}%support for Romanian letters
+%\usepackage{wasysym} % astonomy symbols
+\usepackage{combelow} %support for Romanian letters
 
 %% The default font is Latin Modern (replaces Computer Modern).  Following are a number of fonts 
 %  with extensive math and symbol support.  To use a particular font, uncomment the associated
@@ -27,16 +28,16 @@
 
 %% PostScript Fonts--------------%-------------------------------
 %\usepackage{times} %obsolte font, use mathptmx
-%\usepackage[osf]{mathpazo}		%URW Palladio (A Palatino/Book Antiqua clone), an old style serif typeface
-%\usepackage{mathptmx}				%URW Nimbus Roman (A Times clone), a transitional serif typefaces
+%\usepackage[osf]{mathpazo} %URW Palladio (A Palatino/Book Antiqua clone), old style serif 
+%\usepackage{mathptmx}	%URW Nimbus Roman (A Times clone), a transitional serif typefaces
 %\usepackage[scaled]{helvet}	%URW Nimbus Sans (A Helvetica clone), a sans-serif typeface 
 %\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
 
 %% Math Design Fonts-------------%-------------------------------
-%\usepackage[urw-garamond]{mathdesign}			%Old style serif typeface
-\usepackage[adobe-utopia]{mathdesign}			%Transitional serif typefaces (professional)
-%\usepackage[adobe-utopia]{mathdesign}[2006/01/29]	%For thesis
-%\usepackage[bitstream-charter]{mathdesign}	%Glyphic serif typeface optimized for low-resolution printing
+%\usepackage[urw-garamond]{mathdesign} %Old style serif typeface
+\usepackage[adobe-utopia]{mathdesign} %Transitional serif typefaces (professional)
+%\usepackage[adobe-utopia]{mathdesign}[2006/01/29] %For thesis
+%\usepackage[bitstream-charter]{mathdesign} %Glyphic serif typeface optimized for low-resolution printing
 
 %\usepackage[normalem]{ulem}%for strikethroughs
 
@@ -46,22 +47,25 @@
 %  example, the two files
 %			/Figures/foo.eps
 %			/Figures/foo_bw.eps
-%  may be included with a single command, e.g., \includegraphics{fig2}.  The black and white
-%  figures are then selected by uncommenting the declare graphics extension rule below.
+%  may be included with a single command, e.g., \includegraphics{foo}.  The black and white
+%  figures are then selected by uncommenting the declare graphics extension rule below. In 
+%  previous versions of epstopdf, it was required to specify the .eps conversion rules. Now those
+%  commands destroy both the original .eps file and the .pdf output. It used to be that in order
+%  for these commands to work, the tag -enable-write18 had to be included in command line 
+%  arguments to make PDF figures (deprecated)
 
 \usepackage{ifpdf}
 \ifpdf
-	\usepackage{graphicx}
-	\usepackage[update]{epstopdf}
-	%\pdfimageresolution=10
-	%May need to include -enable-write18 in command line arguments to make PDF figures (deprecated)
-	%\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
-	%\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
-        %\epstopdfsetup{suffix=-\SourceExt-converted-to}%This line explicitly defines the default behavior
-        \epstopdfsetup{suffix=}%
+\usepackage{graphicx}
+\usepackage[update]{epstopdf}
+%\pdfimageresolution=10
+%\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+%\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+%\epstopdfsetup{suffix=-\SourceExt-converted-to}%This line explicitly defines the default behavior
+\epstopdfsetup{suffix=}%
 \else
-	\usepackage{graphicx}	
-	\usepackage[all,light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.	
+\usepackage{graphicx}	
+\usepackage[all,light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.	
 \fi
 %\DeclareGraphicsExtensions{_bw.eps,.eps}	%Turn on/off BW figures, assumes BW figures end in _bw.eps
 %\graphicspath{{Figures/}}%set graphics path(s) here
@@ -96,54 +100,54 @@
 \usepackage{indentfirst}%indents first paragraph of each section
 \usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
 
-%% listings settings for C++ code blocks
+%% Listings settings for C++ code blocks------------------------
 \usepackage{listings}
 \lstset{language=C++,
-  %basicstyle=\small,
-  basicstyle=\ttfamily \color{black},
-  commentstyle=\color{red},
-  keywordstyle=\color{green},
-  stringstyle=\color{magenta},
-  directivestyle={\color{cyan}},
-  identifierstyle={\color{blue}},
-  showstringspaces=false,
-  %emptylines=1,
-  numbers=left,
-	%numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\small\color{note_gray}, % the style that is used for the line-numbers
-	rulecolor=\color{note_gray},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  breaklines=true,
-	frame=single,                    % adds a frame around the code
-	title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-	captionpos=b
+%basicstyle=\small,
+basicstyle=\ttfamily \color{black},
+commentstyle=\color{red},
+keywordstyle=\color{green},
+stringstyle=\color{magenta},
+directivestyle={\color{cyan}},
+identifierstyle={\color{blue}},
+showstringspaces=false,
+%emptylines=1,
+numbers=left,
+%numbersep=5pt,                   % how far the line-numbers are from the code
+numberstyle=\small\color{note_gray}, % the style that is used for the line-numbers
+rulecolor=\color{note_gray},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+breaklines=true,
+frame=single,                    % adds a frame around the code
+title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+captionpos=b
 }
 
 \lstset{emph={%  
-    TH1F, TH2F, Float_t, Int_t, TString, TCutG, TF1%
-  },emphstyle={\color{green}}%
+TH1F, TH2F, Float_t, Int_t, TString, TCutG, TF1%
+},emphstyle={\color{green}}%
 }%
 \renewcommand{\lstlistingname}{Code Block}
 
-%% hyperref settings for PDFs and URLs
+%% Hyperref settings for PDFs and URLs---------------------------
 \providecommand{\authname}{Jon Lighthall}
 \providecommand{\doctitle}{LaTeX document}
 
 \usepackage{hyperref}
 \hypersetup{
-  pdfauthor=\authname,           %Adds author name to PDF properties
-  pdftitle=\doctitle,         %Adds thesis title to PDF properties
-  pdfstartpage=1,                %Opening page number (absolute)
-  %pdfstartview=FitV,            %Fits the horiz. width in the window (FitV for vertical)
-  pdfstartview={XYZ null null 1},%view page at 100%
-  pdfpagemode=UseOutlines,            %Nav. Panel: UseNone, UseThumbs, UseOutlines, FullScreen, etc.
-  bookmarksopen=true,           %Displays Bookmarks in the Navigation Panel
-  bookmarksopenlevel=\maxdimen,          %\maxdimen all levels, 0 chapters, 1 sections%
-  bookmarksnumbered=true,        %Numbers bookmarks with section numbers
-  final=true,                    %keeps hyperref features in draft mode
-  colorlinks=true,               %colors the links instead of using boxes
-  urlcolor=blue,                  %makes URL hyperlinks blue (instead of pink)
-  linkcolor=black,               %makes internal links black (instead of red)             
-  citecolor=black,               %makes citation links black (instead of green)
+pdfauthor=\authname,           %Adds author name to PDF properties
+pdftitle=\doctitle,            %Adds thesis title to PDF properties
+pdfstartpage=1,                %Opening page number (absolute)
+%pdfstartview=FitV,            %Fits the horiz. width in the window (FitV for vertical)
+pdfstartview={XYZ null null 1},%view page at 100%
+pdfpagemode=UseOutlines,       %Nav. Panel: UseNone, UseThumbs, UseOutlines, FullScreen, etc.
+bookmarksopen=true,            %Displays Bookmarks in the Navigation Panel
+bookmarksopenlevel=\maxdimen,  %\maxdimen all levels, 0 chapters, 1 sections%
+bookmarksnumbered=true,        %Numbers bookmarks with section numbers
+final=true,                    %keeps hyperref features in draft mode
+colorlinks=true,               %colors the links instead of using boxes
+urlcolor=blue,                 %makes URL hyperlinks blue (instead of pink)
+linkcolor=black,               %makes internal links black (instead of red)             
+citecolor=black,               %makes citation links black (instead of green)
 }
 
 % The following commands are provided in case hyperref is not used
@@ -166,10 +170,10 @@
 %\renewcommand{\note}[1]{} %Deletes "notes"
 %  The following command creates margin notes in the "notes" font (with an arrow)
 \newcommand{\marnote}[1]{\marginpar[\singlespacing\note{#1 $\rightarrow$}]% 
-                                     {\singlespacing\note{$\leftarrow$ #1}}}
+{\singlespacing\note{$\leftarrow$ #1}}}
 \renewcommand{\marnote}[1]{\marginpar[\singlespacing%
-                                      \raggedright \note{#1 $\rightarrow$}]% 
-                                     {\singlespacing\note{\raggedleft $\leftarrow$ #1}}}
+\raggedright \note{#1 $\rightarrow$}]% 
+{\singlespacing\note{\raggedleft $\leftarrow$ #1}}}
 
 %% Set the specific formatting of the "Mev per nucleon" units symbol
 \newcommand{\AMeV}{A\,MeV}
@@ -177,7 +181,7 @@
 %\renewcommand{\AMeV}{MeV/A}
 \renewcommand{\AMeV}{MeV/$u$}
 
-%Load autotext, an collection of automatic text-generating macros
+%  Load autotext, an collection of automatic text-generating macros
 \InputIfFileExists{src/autotext}{}{} 
 \InputIfFileExists{../src/autotext}{}{} 
 
@@ -188,23 +192,23 @@
 \newdateformat{photodate}{\shortmonthname[\THEMONTH].~\THEYEAR}
 \newdateformat{longusdate}{%standard long date format
 \dayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR}, \monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
-%Time zone definitions, for the command \timezone.
+%  Time zone definitions, for the command \timezone.
 \makeatletter
-  \@namedef{timezone-0400}{EDT}
-  \@namedef{timezone-0500}{EST}
-  \@namedef{timezone-0600}{CST}
-  \@namedef{timezone-0500}{CDT}
-  \@namedef{timezone-0700}{PDT}
-  \@namedef{timezone-0800}{PST}
+\@namedef{timezone-0400}{EDT}
+\@namedef{timezone-0500}{EST}
+\@namedef{timezone-0600}{CST}
+\@namedef{timezone-0500}{CDT}
+\@namedef{timezone-0700}{PDT}
+\@namedef{timezone-0800}{PST}
 
-  \def\grabtimezone #1#2#3#4#5#6#7#8#9{\grabtimezoneB}
-  \def\grabtimezoneB #1#2#3#4#5#6#7{\grabtimezoneC}
-  \def\grabtimezoneC #1#2'#3'{%
-  \@ifundefined{timezone#1#2#3}
-    {No timezone for `#1#2#3'}
-    {\@nameuse{timezone#1#2#3}}%
-  }
-  \def\timezone{\expandafter\grabtimezone\pdfcreationdate}% called with \timezone.
+\def\grabtimezone #1#2#3#4#5#6#7#8#9{\grabtimezoneB}
+\def\grabtimezoneB #1#2#3#4#5#6#7{\grabtimezoneC}
+\def\grabtimezoneC #1#2'#3'{%
+\@ifundefined{timezone#1#2#3}
+{No timezone for `#1#2#3'}
+{\@nameuse{timezone#1#2#3}}%
+}
+\def\timezone{\expandafter\grabtimezone\pdfcreationdate}% called with \timezone.
 \makeatother
 
 %% Thesis Options----------------%-------------------------------
@@ -241,8 +245,8 @@
 %\doublespacing %standard word processor doublespace
 %% Note: using word processor-style double spacing with wide margins produces documents of nearly the same length as single-spaced documents with narrow (default) margins.
 
-%% Margin settings
-%% Single-sided------------------%-------------------------------
+%% Margin settings---------------%-------------------------------
+%  Single-sided
 %  For narrow margins (word processor style), set margins below.
 \addtolength{\textwidth}{1.5in}		%increase text width to 6in
 \addtolength{\textheight}{1.75in}	%increase text width to 9in
@@ -257,21 +261,21 @@
 %  0.5 inches so that the margins are the same on both sides of the page.
 \makeatletter
 \if@twoside
- \setlength{\oddsidemargin}{62pt}     %keep 1.5in left margin on odd pages
- \addtolength{\evensidemargin}{-1in}  %decrease left margin to 1.5in on even pages
- \addtolength{\marginparwidth}{-56pt} %keep 69pt margin paragraph width
- \raggedbottom
+\setlength{\oddsidemargin}{62pt}     %keep 1.5in left margin on odd pages
+\addtolength{\evensidemargin}{-1in}  %decrease left margin to 1.5in on even pages
+\addtolength{\marginparwidth}{-56pt} %keep 69pt margin paragraph width
+\raggedbottom
 \fi
 \makeatother
 
 %% The following command allows the margins to be reduced by the following amount. Used for indenting regions.
 \newenvironment{changemargin}[1]{%
-  \begin{list}{}{%
-    \setlength{\topsep}{0pt}%
-    \setlength{\leftmargin}{#1}%
-    \setlength{\rightmargin}{#1}%
-    \setlength{\listparindent}{\parindent}%
-    \setlength{\itemindent}{\parindent}%
-    \setlength{\parsep}{\parskip}%
-  }%\centering%
-	\item[]}{\end{list}}
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#1}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%\centering%
+\item[]}{\end{list}}
