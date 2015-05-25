@@ -18,7 +18,7 @@
 %\usepackage{ulsy} %for special symbols
 %\usepackage{latexsym}
 %\usepackage{pifont} %symbol fonts
-%\usepackage{wasysym} % astonomy symbols
+\usepackage{wasysym} % astonomy symbols
 \usepackage{combelow} %support for Romanian letters
 
 %% The default font is Latin Modern (replaces Computer Modern).  Following are a number of fonts 
@@ -36,10 +36,9 @@
 %% Math Design Fonts-------------%-------------------------------
 %\usepackage[urw-garamond]{mathdesign} %Old style serif typeface
 \usepackage[adobe-utopia]{mathdesign} %Transitional serif typefaces (professional)
-%\usepackage[adobe-utopia]{mathdesign}[2006/01/29] %For thesis
 %\usepackage[bitstream-charter]{mathdesign} %Glyphic serif typeface optimized for low-resolution printing
 
-%\usepackage[normalem]{ulem}%for strikethroughs
+\usepackage[normalem]{ulem}%for strikethroughs
 
 %% Figure packages---------------%-------------------------------
 %  The following lines of code assume that the graphics files are .eps files located in a
@@ -84,13 +83,13 @@
 
 \renewcommand{\arraystretch}{1.3} % set tabular line spacing
 
-%\usepackage{multirow}
+\usepackage{multirow}
 %\usepackage{longtable}
-%\usepackage{supertabular}
+\usepackage{supertabular}
 %\usepackage{multicol}
 %\usepackage{stabular}
-%\usepackage{rotating}
-%\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{pdflscape}
 \usepackage{tabulary}
 %\usepackage{colortbl}
 
@@ -210,25 +209,6 @@ citecolor=black,               %makes citation links black (instead of green)
 }
 \def\timezone{\expandafter\grabtimezone\pdfcreationdate}% called with \timezone.
 \makeatother
-
-%% Thesis Options----------------%-------------------------------
-
-%% The following two lines may be required for proper formatting of the Table of Figures
-%\usepackage{tocloft}
-%\setlength{\cftfignumwidth}{3em}%increases spacing after figure numbers in Table of Figures
-
-%\usepackage{makeidx}
-%\makeindex
-
-%The following command makes the TOC entries for chapters all caps
-\providecommand{\Chapter}[1]{\chapter[\texorpdfstring{\MakeUppercase{#1}}{#1}]{#1}}
-
-%\newlength{\titleskip}\setlength{\titleskip}{51pt}
-
-%\usepackage{fourier}  %Utopia is obsolete?
-%\makeatletter
-%\DeclareMathSizes{\@xpt}{\@xpt}{7}{5}
-%\makeatother
 
 %% --------------------------------------------------------------
 %% Layout Options----------------%-------------------------------
