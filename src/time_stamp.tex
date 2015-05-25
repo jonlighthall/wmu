@@ -1,20 +1,20 @@
 % This file prints the time of compiling.  Requires package datetime. Requires the following commands to be dfined longusedate, timezone, changemargin
 
 %\nopagebreak[4]
-\AtEndDocument{
+%\AtEndDocument{
        %% The need for including one of the following two lines may be system dependent.
 %\pagebreak % use if float(s) on last page 
 %\nopagebreak[4] % use if text on last page (if needed)
-\makeatletter
+ \makeatletter 
   \if@twocolumn
     \tiny
-  \fi
+      \fi
 \makeatother
 
-  \begin{singlespace}
-    \begin{center}
-      \rule[0 pt]{\linewidth}{0.5pt}\\	
-      \textit{(end of document)}\\
+   \begin{singlespace}
+         \begin{center}
+           \rule[0 pt]{\linewidth}{0.5pt}\\	
+             \textit{(end of document)}\\
       \vspace*{\fill}
 %\vspace*{\stretch{1}}
 %\begin{figure*}[h]%
@@ -25,7 +25,8 @@
 %\vspace*{\stretch{1}}
 %\input{src/time_stamp}
       \begin{changemargin}{-\marginparwidth}
-        {%\footnotesize
+        {%
+       %        \footnotesize
        \begin{center}
         At the time of compiling, today is \longusdate\today{} and the current time is \currenttime{} 
         \ifthenelse{\THEHOUR<12}{{}(\amstring) }{%
@@ -38,4 +39,4 @@
     \end{center}
 \end{singlespace}
 %\marginpar{\color{white}\texttt{J/\textbackslash C\textbar\textless @L}}
-}
+%}
