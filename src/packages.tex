@@ -173,7 +173,9 @@
 %\renewcommand{\AMeV}{MeV/A}
 \renewcommand{\AMeV}{MeV/$u$}
 
-\InputIfFileExists{src/autotext}{}{} %loads automatic text-generating macros
+%Load autotext, an collection of automatic text-generating macros
+\InputIfFileExists{src/autotext}{}{} 
+\InputIfFileExists{../src/autotext}{}{} 
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
 
