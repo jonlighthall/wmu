@@ -4,9 +4,9 @@
 %  number of macros.
 %% Math packages-----------------%-------------------------------
 \usepackage{amsmath}
+\usepackage{bm} % bold math
 %  The following provides symbols, script text in math mode (conflicts with mathdesign)
 %\usepackage{amssymb,mathrsfs}
-%\usepackage{bm} % bold math
 
 %% Text packages-----------------%-------------------------------
 \usepackage{lmodern} %enhanced versions of the Computer Modern fonts
@@ -96,6 +96,15 @@
 %% Formatting packages-----------%-------------------------------
 \usepackage{fancyhdr} %required for non-standard (fancy) headers
 \usepackage{fancyvrb}%allows verbatim in footnotes
+% Linux-like command prompt "$" 
+\newcommand{\vsetlinux}{\renewcommand{\FancyVerbFormatLine}[1]{{{\color{green} \$ }}#1}}
+% DOS-like command prompt
+\newcommand{\vsetdos}{\renewcommand{\FancyVerbFormatLine}{{\color{blue}\texttt{C:\char`\\ >} }}}
+% ROOT-like command prompt
+\newcommand{\vsetroot}{\renewcommand{\FancyVerbFormatLine}[1]{{\color{blue}root [\arabic{FancyVerbLine}] }#1}}
+%reset
+\newcommand{\vsetnone}{\renewcommand{\FancyVerbFormatLine}[1]{#1}}
+
 \usepackage{indentfirst}%indents first paragraph of each section
 \usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
 
