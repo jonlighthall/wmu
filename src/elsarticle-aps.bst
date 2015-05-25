@@ -1651,7 +1651,7 @@ FUNCTION {manual}
   format.note output
   format.date output
   fin.entry
-  write.url
+  %write.url
 }
 
 FUNCTION {mastersthesis}
