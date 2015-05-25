@@ -1,0 +1,88 @@
+\hypersetup{pdfauthor=\printname,						
+            urlcolor=black,
+}
+
+\newcommand{\addressprefix}{Account 049349335\\
+\\}
+
+\newcommand{\homeaddress}{%
+%816 S. Adams St. Apt. C305, Westmont, IL 60559-3606\\%
+%\href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu}\\%
+%(248) 797-3674\\%
+13--6395 Hawthorn Lane\\ Vancouver, BC\hspace{6pt}V6T~1Z4
+%\\Canada
+}
+
+\newcommand{\addresssuffix}{\\
+\href{mailto:lighthall@triumf.ca}{lighthall@triumf.ca}\\%
+(778) 999-6006}
+
+\newcommand{\workaddress}{
+\begin{tabular}{r|p{135pt}}
+	Western Michigan University&Argonne National Laboratory\\
+	Physics Department&Physics Division\\
+	1903 W. Michigan Ave.&9700 S. Cass Ave.\\
+	Kalamazoo, MI 49008-5252&Argonne, IL 60439\\
+	\href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu}&(630) 252-4803\\
+\end{tabular}
+}
+
+%% Set margin for sender address
+\renewenvironment{changemargin}[1]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+		\addtolength{\textwidth}{-#1}
+    %\setlength{\rightmargin}{#1}%
+     }\item[]}{\end{list}}
+
+\newcommand{\nameaddress}[1]{
+\textrm{\printname}\\
+\addressprefix
+#1%
+%\homeaddress
+%\workaddress
+\addresssuffix
+}
+
+\newcommand{\recip}{Recipient}
+\newcommand{\recipaddress}{Address\\City\\Country}
+\newcommand{\comp}{Competition}
+
+\newcommand{\cvwrapper}[3] {%three arguments: pagestyle, right header, text
+\clearpage
+\pagestyle{#1}
+\rhead{\textbf{#2}}
+\begin{changemargin}{\indent}
+\nameaddress{\homeaddress}\\
+\\
+\displaydate{letterdate}
+\end{changemargin}
+
+\vspace*{2.0\baselineskip}%triple space
+\noindent \recip{} \comp{}\\
+\recipaddress{}
+\vspace*{1.0\baselineskip}%triple space
+
+\noindent
+To Whom It May Concern at \recip,\\
+%Dear \recip,\\
+
+#3\\
+\begin{changemargin}{\indent}
+Sincerely,
+
+\vspace*{-0.9\baselineskip}
+\begin{figure}[h!]
+\begin{changemargin}{\indent}
+		%\includegraphics[height=1cm,keepaspectratio]{../../_DS12247.eps}
+		%\includegraphics[height=2.22cm,keepaspectratio]{_DS14681}%full size
+		\includegraphics[height=1cm,keepaspectratio]{_DS14681}%fits in space
+		%\includegraphics[height=1cm,keepaspectratio]{Holly_signature}
+		\end{changemargin}
+\end{figure}
+\vspace*{-1.0\baselineskip}
+\printname
+\end{changemargin}
+}
+

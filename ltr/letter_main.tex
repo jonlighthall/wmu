@@ -1,0 +1,21 @@
+%%---------------------------"page width" for comments (97 columns)----------------------------%%
+%%3456789112345678921234567893123456789412345678|5123456789612345678971234567898123456789912345%%
+\documentclass[oneside]{article}
+\input{../src/packages}
+%\input{packages_cv}
+\begin{document}
+\newdate{letterdate}{14}{05}{2015}
+\newcommand{\printname}{Jonathan Charles Lighthall}
+
+\def\indent{3in}
+%\setlength{\parindent}{0in}
+\input{letter_layout}
+
+\renewcommand{\recip}{Health Insurance BC}
+\renewcommand{\recipaddress}{PO Box 9035 \\
+	Station Provincial Government\\
+	Victoria, BC\hspace{6pt}V8W 9E3}
+\renewcommand{\comp}{}
+\cvwrapper{fancy}{Cover Letter}{%three arguments: pagestyle, right header, text
+\input{"letter_body"}}
+\end{document}
