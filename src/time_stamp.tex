@@ -1,5 +1,19 @@
 % This file prints the time of compiling.  Requires package datetime. Requires the following commands to be dfined longusedate, timezone, changemargin
 
+%\nopagebreak[4]
+\AtEndDocument{
+\begin{singlespace}
+\centering
+\rule[0 pt]{\linewidth}{0.5pt}\\	
+\textit{(end of document)}\\
+\vspace*{\stretch{1}}
+%\begin{figure*}[h]%
+%\centering
+%\includegraphics[keepaspectratio,height=0.25\textheight,width=0.25\columnwidth]{monogram}%
+%\end{figure*}
+%\vspace*{\stretch{1}}
+%\input{colophon}
+%\input{src/time_stamp}
 \begin{changemargin}{-\marginparwidth}
 {%\footnotesize
 At the time of compiling, today is \longusdate\today{} and the current time is \currenttime{} 
@@ -9,3 +23,9 @@ At the time of compiling, today is \longusdate\today{} and the current time is \
 \\\enlargethispage{\baselineskip}{\color{white}Document designed by Jonathan C. Lighthall}
 }
 \end{changemargin}
+\end{singlespace}
+%\marginpar{\color{white}\texttt{J/\textbackslash C\textbar\textless @L}}
+}
+
+
+
