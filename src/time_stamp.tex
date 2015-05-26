@@ -24,19 +24,18 @@
 %\input{colophon}
 %\vspace*{\stretch{1}}
 %\input{src/time_stamp}
-      \begin{changemargin}{-\marginparwidth}
-        {%
-       %        \footnotesize
-       \begin{center}
-        At the time of compiling, today is \longusdate\today{} and the current time is \currenttime{} 
-        \ifthenelse{\THEHOUR<12}{{}(\amstring) }{%
-        \ifthenelse{\THEHOUR=12}{{}(\pmstring) }{}}% 
-         \timezone.
-%\\\enlargethispage{\baselineskip}{\color{white}Document designed by Jonathan C. Lighthall}
-        }
-      \end{center}
-      \end{changemargin}
-    \end{center}
+\begin{changemargin}{-\marginparwidth}%
+{%\footnotesize
+\begin{center}
+At the time of compiling, today is \longusdate\today{} and the current time is \currenttime{} 
+\ifthenelse{\THEHOUR<12}{{}(\amstring) }{%
+\ifthenelse{\THEHOUR=12}{{}(\pmstring) }{}}% 
+\timezone.%
+%%\\\enlargethispage{\baselineskip}{\color{white}Document designed by Jonathan C. Lighthall}
+\end{center}
+}
+\end{changemargin}
+\end{center}
 \end{singlespace}
 %\marginpar{\color{white}\texttt{J/\textbackslash C\textbar\textless @L}}
 %}
