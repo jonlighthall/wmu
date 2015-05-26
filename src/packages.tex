@@ -97,13 +97,13 @@
 \usepackage{fancyhdr} %required for non-standard (fancy) headers
 \usepackage{fancyvrb}%allows verbatim in footnotes
 % Linux-like command prompt "$" 
-\newcommand{\vsetlinux}{\renewcommand{\FancyVerbFormatLine}[1]{{{\color{green} \$ }}#1}}
+\def \vsetlinux [#1]{\renewcommand{\FancyVerbFormatLine}[1]{{{\color{green} \$ }}#1}}
 % DOS-like command prompt
-\newcommand{\vsetdos}{\renewcommand{\FancyVerbFormatLine}{{\color{blue}\texttt{C:\char`\\ >} }}}
+\def \vsetdos [#1]{\renewcommand{\FancyVerbFormatLine}{{\color{blue}\texttt{C:\char`\\ >} }}}
 % ROOT-like command prompt
-\newcommand{\vsetroot}{\renewcommand{\FancyVerbFormatLine}[1]{{\color{blue}root [\arabic{FancyVerbLine}] }#1}}
+\def \vsetroot [#1]{\renewcommand{\FancyVerbFormatLine}[1]{{\color{blue}root [\arabic{FancyVerbLine}] }#1}}
 %reset
-\newcommand{\vsetnone}{\renewcommand{\FancyVerbFormatLine}[1]{#1}}
+\def \vsetnone [#1]{\renewcommand{\FancyVerbFormatLine}[1]{#1}}
 
 \usepackage{indentfirst}%indents first paragraph of each section
 \usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
@@ -223,7 +223,7 @@ citecolor=black,               %makes citation links black (instead of green)
 %% Layout Options----------------%-------------------------------
 %% --------------------------------------------------------------
 %  Set non-LaTeX-standard layout formatting here. This code was previously contained in a separate file named layout.tex
-%\usepackage{adjustbox}
+\usepackage{adjustbox}
 \hyphenation{Mesy-tec}
 \hyphenation{feed-through feed-throughs ejec-tile ejec-tiles cor-re-spond-ing sol-en-oid-al}
 
