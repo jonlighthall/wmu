@@ -55,13 +55,14 @@
 
 \usepackage{ifpdf}
 \ifpdf
-\usepackage{graphicx}
-\usepackage[update]{epstopdf}
-%\pdfimageresolution=10
-%\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
-%\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
-%\epstopdfsetup{suffix=-\SourceExt-converted-to}%This line explicitly defines the default behavior
-\epstopdfsetup{suffix=}%
+	\usepackage{graphicx}
+	\usepackage[update]{epstopdf}
+	%\pdfimageresolution=10
+	%\pdfcompresslevel=9 
+	%\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+	%\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+        %\epstopdfsetup{suffix=-\SourceExt-converted-to}%This line explicitly defines the default behavior
+        \epstopdfsetup{suffix=}%
 \else
 \usepackage{graphicx}	
 \usepackage[all,light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.	
@@ -178,10 +179,10 @@ citecolor=black,               %makes citation links black (instead of green)
 %\renewcommand{\note}[1]{} %Deletes "notes"
 %  The following command creates margin notes in the "notes" font (with an arrow)
 \newcommand{\marnote}[1]{\marginpar[\singlespacing\note{#1 $\rightarrow$}]% 
-{\singlespacing\note{$\leftarrow$ #1}}}
+                                     {\singlespacing\note{$\leftarrow$ #1}}}
 \renewcommand{\marnote}[1]{\marginpar[\singlespacing%
-\raggedright \note{#1 $\rightarrow$}]% 
-{\singlespacing\note{\raggedleft $\leftarrow$ #1}}}
+                                      \raggedright \note{#1 $\rightarrow$}]% 
+                                     {\singlespacing\note{\raggedleft $\leftarrow$ #1}}}
 
 %% Set the specific formatting of the "Mev per nucleon" units symbol
 \newcommand{\AMeV}{A\,MeV}
@@ -250,10 +251,10 @@ citecolor=black,               %makes citation links black (instead of green)
 %  0.5 inches so that the margins are the same on both sides of the page.
 \makeatletter
 \if@twoside
-\setlength{\oddsidemargin}{62pt}     %keep 1.5in left margin on odd pages
-\addtolength{\evensidemargin}{-1in}  %decrease left margin to 1.5in on even pages
-\addtolength{\marginparwidth}{-56pt} %keep 69pt margin paragraph width
-\raggedbottom
+ \setlength{\oddsidemargin}{62pt}     %keep 1.5in left margin on odd pages
+ \addtolength{\evensidemargin}{-1in}  %decrease left margin to 1.5in on even pages
+ \addtolength{\marginparwidth}{-56pt} %keep 69pt margin paragraph width
+ \raggedbottom
 \fi
 \makeatother
 
