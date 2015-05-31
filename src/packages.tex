@@ -55,6 +55,7 @@
 
 \usepackage{ifpdf}
 \ifpdf
+	\pdfminorversion=7 %PDF version compatability
 	\usepackage{graphicx}
 	\usepackage[update]{epstopdf}
 	%\pdfimageresolution=10
@@ -186,9 +187,11 @@ citecolor=black,               %makes citation links black (instead of green)
 
 %% Set the specific formatting of the "Mev per nucleon" units symbol
 \newcommand{\AMeV}{A\,MeV}
+\renewcommand{\AMeV}{AMeV}
 %\renewcommand{\AMeV}{MeV/u}
 %\renewcommand{\AMeV}{MeV/A}
 \renewcommand{\AMeV}{MeV/$u$}
+\renewcommand{\AMeV}{MeV/nucleon} %new standard
 
 %  Load autotext, an collection of automatic text-generating macros
 \InputIfFileExists{src/autotext}{}{} 
