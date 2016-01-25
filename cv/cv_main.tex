@@ -5,15 +5,16 @@
 \input{cv_packages}
 
 \begin{document}
-%\addcontentsline{toc}{chapter}{Credentials}
 %% Commands from other bibtest versions--------------------------
 %Here is the first citation \citet[some equation]{Lighthall_2010}.	%from bibtest_cv.tex
 %\nocite{*}                                                         %from bibtest_nocite.tex
 %\nocite{Tur_2006,Tur_2008,Lee_2008,Lee_2010}                       %from goodman_bib.tex
 
-\cfoot{\thepage{} of \pageref{LastPage}}
-
+%%-----------------------------------------------------------------------------------------------
+%% Builing commands
+%%-----------------------------------------------------------------------------------------------
 \newcommand{\cvonly}{%Generate a stand-alone CV
+\addcontentsline{toc}{chapter}{Contact Informatoin}
 \input{cv_body}
 }
 
@@ -47,6 +48,11 @@
 \rhead{\desctext{\docsubtitle}}
 \includepubs
 }
+
+%%-----------------------------------------------------------------------------------------------
+%% Document construction
+%%-----------------------------------------------------------------------------------------------
+\cfoot{\thepage{} of \pageref{LastPage}}
 
 %% Select document type here
 %\cvonly
