@@ -3,16 +3,31 @@
 \documentclass[oneside]{article}
 \input{../src/packages}
 \input{cv_packages}
-%\input{../ltr/letter_layout}
-
+\usepackage{lastpage}
 \begin{document}
+%\addcontentsline{toc}{chapter}{Credentials}
 %% Commands from other bibtest versions--------------------------
 %Here is the first citation \citet[some equation]{Lighthall_2010}.	%from bibtest_cv.tex
 %\nocite{*}                                                         %from bibtest_nocite.tex
 %\nocite{Tur_2006,Tur_2008,Lee_2008,Lee_2010}                       %from goodman_bib.tex
+\setcounter{page}{1}
+\cfoot{\thepage{}  of 2}
+\cfoot{\thepage{} of \pageref{LastPage}}
 \input{cv_body}
-\renewcommand{\heliosonly}[1]{}
-%\renewcommand{\jclonly}[1]{}
-\input{cv_pubs}
-\input{cv_talks}
+\rfoot{\smalltimestamp}
+
+%\renewcommand{\heliosonly}[1]{}
+%%\renewcommand{\jclonly}[1]{}
+%%\newpage 
+%\renewcommand{\doctitle}{\shortname~Pulication List}
+%\hypersetup{pdftitle=\doctitle}
+%\pagestyle{fancy}
+%\lhead{\boldtext{\shortname}}
+%\rfoot{}
+%\setcounter{page}{1}
+%\rhead{\textit{Publication List}}
+%\cfoot{\thepage{} of \pageref{LastPage}}
+%\input{cv_pubs}
+%\input{cv_talks}
+\rfoot{\smalltimestamp}
 \end{document}
