@@ -1,85 +1,117 @@
 \clearpage
+%\setcounter{page}{1}
 \pagestyle{fancy}
-\lhead{\textbf{\shortname}}
-\rhead{\textbf{Curriculum Vit\ae}}
+%\cfoot{\thepage{}  of 2}
+\lhead{\boldtext{\shortname}}
+\rhead{\desctext{Curriculum Vit\ae}}
 %\rhead{}
-\jack{0}
 %\input{../layout_table}
 %\thispagestyle{myheadings}
-
 \begin{changemargin}{\indent}
-\nameaddress{\homeaddress}\\
+\nameaddress{\workaddress}\\
 \end{changemargin}
 %\renewcommand{\desc}[1]{}
+%\renewcommand{\extra}[1]{}
 %\section*{Personal Information}
-%\begin{tabular}{r@{ }l@{, }l@{, }l}
-%Ph.D. &Experimental Nuclear Physics&Western Michigan University& June 2011\\
-%B.A.& Physics, Applied Mathematics& Albion College& May 2004\\
-%&&Seaholm High School & June 2000 
-%\end{tabular}
 %\begin{quote}
   %\setlength{\itemsep}{0pt}
   %\setlength{\parskip}{0pt}
   %\setlength{\parsep}{0pt}
 	%Born October 7$^{\textrm{th}}$, 1981 in Ann Arbor, Michigan.  U.S. citizen.  Married to Holly Lighthall.
 %\end{quote}
+%%--------------------------------------------------------
+\extra{Not for publication. Superfluous items printed in gray.}
+\phantomsection
+\addcontentsline{toc}{chapter}{Curriculum Vit\ae}
 \section*{Education}
+\addcontentsline{toc}{section}{Education}
 %\begin{tabular}{r@{ }l@{, }l@{, }l}
 %Ph.D. &Experimental Nuclear Physics&Western Michigan University& June 2011\\
 %B.A.& Physics, Applied Mathematics& Albion College& May 2004\\
 %&&Seaholm High School & June 2000 
 %\end{tabular}
 \begin{itemize}
-		\item Ph.D. in Experimental Nuclear Physics, Western Michigan University, June 2011%\\August 2004 (7)
+  \item Ph.D. in Experimental Nuclear Physics, Western Michigan University, June 2011 \extra{June 25}%\\August 2004 (7)
 	  \desc{Dissertation: \href{http://gradworks.umi.com/34/71/3471048.html}{Commissioning of the Helical Orbit Spectrometer%: A new device for measuring nuclear reactions in inverse kinematics
 	}}
-	\item B.A. in Physics and Applied Mathematics, Albion College, May 2004 %August 2000 (4+7=11)
+	\item B.A. in Physics and Applied Mathematics, Albion College, May 2004 \extra{May 8}%August 2000 (4+7=11)
 	\item High School Diploma, Seaholm High School, June 2000 %1996--2000 (4+4+7=15)
 	\extra{\item Derby Middle School 1993--1996} %(3+4+4+7=18)
 	\extra{\item Harlan Elementary School 1987--1993} %(6+3+4+4+7=24)
 	\extra{\item Pembroke Elementary School 1986-1987} %(1+6+3+4+4+7=25)
 	\extra{\item St. James Preschool 1984-1986} %(2+1+6+3+4+4+7)
 \end{itemize}
-\section*{Research Experience}			
+%%--------------------------------------------------------
+\section*{Research Experience}
+\addcontentsline{toc}{section}{Research Experience}
 \begin{itemize}
-	\item Postdoctoral Research Fellow, Science Division, TRIUMF (B.~Davids), October 2012--Present
-		\desc{Commissioning of the EMMA spectrometer: designed detector readout electronics, %January 2013
-		radiation shielding installation,% September 2013--January 2014,
-		developed Geant4 simulations, 
-		electrostatic component polishing,
-		data analysis for $^{13}$C experiment.
-		operation and online data analysis for IRIS experiments.
+	\item Postdoctoral Research Fellow, Science Division, TRIUMF (B.~Davids), October 2012--Present \extra{started October 27}
+		\desc{Commissioning of the EMMA spectrometer:
+		wrote experimental proposals for RIB commissioning;
+		wrote and developed code for the acquisition, calibration, simulation, and analysis of data from the EMMA PGAC detector (MIDAS, ROOT);
+		wrote the safety report for the EMMA gas-handling system;
+		developed simulations (Geant4, ANSYS);
+		polished  and assembled electrostatic components;
+		%data analysis for $^{13}$C experiment.
+		installed radiation shielding; % September 2013--January 2014,
+		designed the detector readout electronics. %January 2013
+		Supervised student projects.
+		Operated and provided online data analysis for several IRIS experiments and one TUDA experiment.
 		}
-	\item Postdoctoral Research Associate, Physics Department, WMU (A.~Wuosmaa), July 2011--October 2012
-	  \desc{Characterizing new detectors for HELIOS.  Developing new hardware for HELIOS upgrades.  Helping set up and run all HELIOS experiments.  Helping run experiments in SPS III and Gammasphere.}
-	\item Laboratory Graduate, Physics Division, Argonne National Laboratory (B.~Back), July 2007--June 2011
-		\desc{Commissioned the HELIOS spectrometer: built beam line components, measured the field map, designed and built the electronics setup, wrote slow-control programs in LabVIEW, wrote and developed the code for data acquisition, calibration, and analysis (ROOT).  Principle Investigator on the first two HELIOS experiments.  Ran experiments.%in HELIOS and SPS III.
+	\item Postdoctoral Research Associate, Physics Department, WMU (A.~Wuosmaa), July 2011--October 2012 \extra{$38,502 july 6 start}
+	  \desc{Characterized silicon detectors for updated HELIOS array.  Developed hardware for HELIOS detector upgrades. 
+		Actively participated in experimental collaborations to study nuclear structure and nuclear astrophysics using HELIOS, the Enge split-pole spectrograph, and Gammasphere.}
+	\item Laboratory Graduate, Physics Division, Argonne National Laboratory (B.~Back), July 2007--June 2011 \extra{$24,000}
+			\desc{Commissioned the HELIOS spectrometer:
+		Principle Investigator on the first two HELIOS experiments;
+		wrote and developed the code for the acquisition, calibration, and analysis of HELIOS data (ROOT);
+		designed and built the HELIOS detector readout system (NIM, CAMAC);
+		wrote the HELIOS slow-control programs (LabVIEW);
+		designed and developed kinematics computation programs;
+		assembled and installed beam line components;
+		performed detailed measurement and analysis of the solenoid field.
+		Actively participated in experimental collaborations using HELIOS, the Enge split-pole spectrograph, and Gammasphere.
 		 }
-	\item Research Assistant, Physics Department, WMU (A.~Wuosmaa), August 2004--June 2011
-		\desc{Characterized silicon detectors---in addition to work at Argonne---including in-beam testing %, data acquisition 
-		and tandem Van de Graaff operation.  Designed and machined detector mounts.  Helped run experiments at WMU%and ANL
-		, including NIM electronics setup, data acquisition and analysis (SpecTcl).}
+	\item Research Assistant, Physics Department, WMU (A.~Wuosmaa), August 2004--June 2011 \extra{$10,573 for 2006}
+		\extra{$13798.40?}
+		\desc{In addition to work at Argonne---collaborated on  experiments using the tandem Van de Graaff accelerator
+		%with the goal of improving the pair production branching ratio of the Holye State in $^{12}$C. 
+		 including NIM electronics setup, data acquisition and analysis (SpecTcl), and accelerator operation.
+		Characterized APEX silicon detectors, including in-beam testing. %, data acquisition 
+		%and tandem Van de Graaff operation. 
+		Designed and machined detector mounts. 
+		% at WMU%and ANL
+				Received two research awards (see below).}
 	\item Foundation for Undergraduate Research, Scholarship, and Creative Activity (FURSCA)\\ Albion College (C.~Moreau), May 2003--August 2003
-	  \desc{Characterized vacuum system (mentioned below) and wrote LabVIEW monitoring software.}
+	  \desc{Assembled and characterized the high-vacuum system for the Albion metallic thin film deposition chamber and wrote the vacuum-monitoring software (LabVIEW).}
 	\item Center for Fundamental Materials Research (CFMR) Academic Affiliates Program\\Michigan State University (N.~Birge), May 2002--August 2002
-			\desc{Refurbished a %2\,kA 
-		thermal evaporation system, including plumbing and electrical systems.}
+			\desc{Refurbished a 2\,kA 
+		thermal evaporation system, including high-pressure water cooling, high-vacuum, and electrical systems.}
 	\item Physics Department, Albion College (C.~Moreau), January 2002--May 2004
-		\desc{Built and characterized a thin-film deposition chamber, including high-vacuum system.}
-\end{itemize}
-\section*{Teaching Experience}
-\begin{itemize}
-	\item Course Instructor (Physics 1070), WMU, January 2006--May 2006
-	%\desc{}
-	\item Laboratory Instructor (Physics 1000, 1080), % Physics Department,
-	 WMU, August 2004--December 2005
-	%\desc{}
-	\item Departmental Tutor (Physics, Mathematics), Albion College, January 2003--May 2004
-	\item Teaching Assistant (Physics 167, 168), Albion College, January 2001--May 2004
-	%\desc{Lab assistant and paper-grader for Physics 167, 168 (calulus-based physics).}
+		\desc{Assembeled and characterized a thin-film deposition chamber, including high-vacuum system.}
 \end{itemize}
 
+%%--------------------------------------------------------
+\pagebreak
+\section*{Teaching Experience}
+\addcontentsline{toc}{section}{Teaching Experience}
+\begin{itemize}
+\item Postdoctoral Research Fellow, TRIUMF, October 2012--Present
+\desc{Supervision and mentoring of high school students, undergraduate engineering Co-op students, and physics graduate students on various projects related to EMMA commissioning.}
+	\item Course Instructor (Physics 107), WMU, January 2006--May 2006 \extra{1070}
+	\desc{Sole instructor of survey class for non-majors, class of 46 students. Received exceptional instructor evaluations and two teaching awards (see below).}
+	\item Laboratory Instructor (Physics 100, 108), \extra{1000, 1080}% Physics Department,
+	 WMU, August 2004--December 2005
+	\desc{Ran 2--3 laboratory sections each semester and worked in the Physics Help Room. Received exceptional instructor evaluations and one teaching award (see below).}
+	\item Departmental Tutor (Physics, Mathematics), Albion College, January 2003--May 2004
+	\desc{Worked in the Quantitative Skills Center on a weekly schedule.}
+	\item Teaching Assistant (Physics 167, 168), Albion College, January 2001--May 2004
+	\desc{Laboratory assistant and paper-grader for Physics 167, 168 (calculus-based mechanics and E\&M).}
+\end{itemize}
+
+%%--------------------------------------------------------
 \section*{Awards and Honors}
+\addcontentsline{toc}{section}{Awards and Honors}
 \begin{itemize}
 	\item 2010--2011 Leo R.\ Parpart Physics Endowed Scholarship, WMU
 	\desc{Awarded annually by the Physics Department faculty for outstanding research in physics.
@@ -88,44 +120,49 @@
 	}
 	
 	\item 2008 All-University Research and Creative Activities Award, WMU 
-	\desc {The Office of the Vice President for Research and the Graduate Student Advisory Committee award outstanding poster presentations at the annual WMU Research and Creative Activities Poster Day.  Of over 200 participants, 13 awards were given.
+	\desc {Awarded by the Office of the Vice President for Research and the Graduate Student Advisory Committee for outstanding poster presentations at the annual WMU Research and Creative Activities Poster Day.  \extra{Of over 200 participants, 13 awards were given.}
 	%Awarded April 11, 2008; \$200 prize
 	%\url{http://www.wmich.edu/wmu/news/2008/05/023.html}
 	}
 	
 	\item 2006 Graduate Teaching Effectiveness Award in Physics, WMU
-	\desc{The Graduate Studies Council established the Graduate Teaching Effectiveness Award to recognize effective teaching that directly promotes and facilitates student learning.  Nominations are sought on an annual basis by the Graduate College. Each department may nominate one student.
+	\desc{Awarded annually by the Graduate College. One nomination per department.\extra{
+	The Graduate Studies Council established the Graduate Teaching Effectiveness Award to recognize effective teaching that directly promotes and facilitates student learning.  Nominations are sought on an annual basis by the Graduate College. Each department may nominate one student.
 	%\url{https://www.wmich.edu/grad/funding/gsc_awards.html}
+	}
 	}
 	
 	\item 2005--2006 Haym Kruglak Graduate Student Teaching Excellence Award, WMU
-	\desc{This award is given to a physics graduate student who has demonstrated outstanding effort and accomplishments in teaching.   Awards are given annually to graduate students based on the cumulative record of the student's teaching evaluations and faculty recommendations.
-	%Awarded April 19, 2006; \$1,000 prize.
-	%\url{http://tesla.physics.wmich.edu/Degree_Programs/Graduate/Awards_Scholarships_and_Fellowships/}
+	\desc{Awarded annually by the Graduate Committee to physics graduate students based on the cumulative record of the student's teaching evaluations and faculty recommendations. \extra{This award is given to a physics graduate student who has demonstrated outstanding effort and accomplishments in teaching.  
+	Awarded April 19, 2006; \$1,000 prize.
+	\url{http://tesla.physics.wmich.edu/Degree_Programs/Graduate/Awards_Scholarships_and_Fellowships/}
+	}
 	}
 		
 	\item 2004--2005 Jacob Dewitt Physics Teaching Award, WMU
-	\desc{ Annual award based on evaluations by students and faculty.  After the Spring semester of each academic year, the faculty members of the Graduate Committee shall meet and determine if awards for outstanding teaching have been merited. Each award recognizes exemplary performance in teaching during the Fall and/or Spring semesters of that year. All graduate students who serve as teaching assistants in physics courses at WMU during either or both of those semesters are eligible to receive the award. The decisions will be based upon student evaluation forms. Each recipient of an award will receive a congratulatory letter and a monetary award. A student may receive this award more than once.
-	%Awarded April 14, 2005; \$250 prize.
-	%\url{http://tesla.physics.wmich.edu/Degree_Programs/Graduate/Awards_Scholarships_and_Fellowships/}
+	\desc{Awarded annually by the Graduate Committee based on evaluations by students and faculty, recognizing exemplary performance in teaching. \extra{ After the Spring semester of each academic year, the faculty members of the Graduate Committee shall meet and determine if awards for outstanding teaching have been merited. Each award recognizes exemplary performance in teaching during the Fall and/or Spring semesters of that year. All graduate students who serve as teaching assistants in physics courses at WMU during either or both of those semesters are eligible to receive the award. The decisions will be based upon student evaluation forms. Each recipient of an award will receive a congratulatory letter and a monetary award. A student may receive this award more than once.
+	Awarded April 14, 2005; \$250 prize.
+	\url{http://tesla.physics.wmich.edu/Degree_Programs/Graduate/Awards_Scholarships_and_Fellowships/}
 	}
-	
+	}
 	\item 2004 Outstanding Senior Physics Major Award, Albion College
-	\desc{annual award---The E.T.S. Walton Award is a prize established by Nobel Laureate E.T.S. Walton and is given annually to the outstanding senior physics major. This award consists of a technical book and is announced at the Honors Convocation in April.
+	\desc{Awarded annually by the faculty, the E.\ T.\ S.\ Walton Award is a prize \extra{established by Nobel Laureate E.\ T.\ S.\ Walton and is} given to the outstanding senior physics major. \extra{This award consists of a technical book and is announced at the Honors Convocation in April.
 	\url{http://www.albion.edu/academics/departments/physics/scholarships-and-awards}
 	Awarded April 15, 2004
 	}
+	}
 	
 	\item 2003 Physics Alumni and Faculty Scholarship Award, Albion College
-	\desc{ This scholarship is given each year to current or incoming students who are on either a physics or pre-engineering track and who have demonstrated potential for mastery of classical and modern physics. Financial need will be considered in the review of scholarship applications. The scholarship winner is announced at the Honors Convocation in April.
+	\desc{Awarded annually by the faculty to physics or pre-engineering students who have demonstrated potential for mastery of classical and modern physics. \extra{ This scholarship is given each year to current or incoming students who are on either a physics or pre-engineering track and who have demonstrated potential for mastery of classical and modern physics. Financial need will be considered in the review of scholarship applications. The scholarship winner is announced at the Honors Convocation in April.
 	\url{http://www.albion.edu/academics/departments/physics/scholarships-and-awards}
 	Awarded April 24, 2003
 	}
+	}
 	
-	\item 2000--2004 E.~R.\ Sleight Mathematics Scholarship, Albion College
-	\desc{The award is given to a student who demonstrates an excellence in mathematics and service to the department.
-	Awarded December 7, 2000, March 21, 2002, April 2003
-	\$1,200 award
+	\item 2000--2004 E.\ R.\ Sleight Mathematics Scholarship, Albion College
+	\desc{Awarded annually by the faculty to a student who demonstrates an excellence in mathematics and service to the department.
+	\extra{Awarded December 7, 2000, March 21, 2002, April 2003
+	\$1,200 award}
 	}
 	
 	\extra{\item{200--2003 Dean's List, Albion College%
@@ -142,11 +179,19 @@
 	\extra{\item{Michigan Competitive Scholarship, Michigan Higher Education Assistance Authority, acknowledgment of outstanding academic achievement}}
 	
 \end{itemize}
+
+%%--------------------------------------------------------
 \section*{Professional Organizations}
+\addcontentsline{toc}{section}{Professional Organizations}
 \begin{itemize}
- 	\item American Physical Society
-	\item Sigma Xi
-	\desc{The Scientific Research Society, joined May 2004}
-	\item Alpha Lambda Delta
-	\desc{National Academic Honor Society for Freshmen, joined November 18, 2011} %Nov 18 2011
+ 	\item American Physical Society, joined July 2007 \extra{\photodate\formatdate{1}{07}{2007} joined June 19, 2007}
+	\item Sigma Xi,The Scientific Research Society, joined May 2004\extra{\photodate\formatdate{1}{5}{2004}}
+	%\desc{}
+	\item Alpha Lambda Delta, National Academic Honor Society for Freshmen, joined November 2001 \extra{\photodate\formatdate{18}{11}{2001} November 18, 2001} %Nov 18 2001
+	%\desc{}
 \end{itemize}
+%\begin{tabular}{lll}
+%~~~~\textbullet ~~American Physical Society & & joined Jul 2007 \extra{joined June 19, 2007}\\
+	%\textbullet ~~Sigma Xi & The Scientific Research Society& joined May 2004\\
+	%\textbullet ~~Alpha Lambda Delta & National Academic Honor Society for Freshmen& joined Nov 2001 \extra{Nov 18 2001}
+%\end{tabular}
