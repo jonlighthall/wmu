@@ -1,7 +1,10 @@
 \IfFileExists{multibib.bat}{}{\errmessage{Batch file for multibib not found}}
 %% All publications, other than journal articles, are listed below.
 %  Listed in order of talk given.  Entries that are commented-out were withdrawn.
-\nociteproc{Wuosmaa_2014}
+\nocitetalk{						Lighthall_2016}
+\nocitetalk{						Marley_2015}
+\nociteproc{						Tanaka_2014} %March 2014
+\nociteproc{						Wuosmaa_2014}
 \nocitetalk{						Bedoor_2013APS} %8:54 Saturday, October 26, 2013
 \nocitetalk{						Wuosmaa_2013APS} %8:42 Saturday, October 26, 2013
 \nociteinvi{            Lighthall_2012} %14:00 Thursday, December 06, 2012
@@ -19,13 +22,13 @@
 \nociteproc{						Kay_2012} %August 8-12, 2011
 \nociteproc{						Sharp_2012}%August 8-12, 2011
 \nociteproc{            Back_2011FUS}   %14:30 Friday, May 6th, 2011 (pub October 19, 2011)
-\nociteproc{         	Alcorta_2011FUS}%11:25 Friday, May 6th, 2011 (pub October 19, 2011)
+\nociteproc{         		Alcorta_2011FUS}%11:25 Friday, May 6th, 2011 (pub October 19, 2011)
 \nocitetalk{            Back_2011ARI} %10:15 June 3, 2011
 \nocitetalk{            Alcorta_2011ARI}		%
 \nocitetalk{\heliosonly{Wuosmaa_2011APS}}		%April 30th, 2011
 \nocitetalk{            Sharp_2011IOP}			%15:30 Tuesday, April 5, 2011
 \nociteproc{            Kay_2010IOP}		%14:55 Thursday, July 8, 2010
-\nociteproc{		Back_2010DAE}		%14:30 December 20, 2010
+\nociteproc{						Back_2010DAE}		%14:30 December 20, 2010
 \nocitetalk{            Kay_2010MAG}				% December 16, 2010
 \nocitetalk{            Wuosmaa_2010DNP}		%15:12 Friday, November 5, 2010	
 \nocitetalk{            Kay_2010}						%11:18 Thursday, November 4, 2010
@@ -36,9 +39,9 @@
 \nociteproc{\heliosonly{Clark_2010}}		% May, 2010
 \nociteinvi{            Lighthall_2010SLM}	% May 19, 2010
 \nocitetalk{            Kay_2010APS}				% April 2010
-\nociteproc{		Back_2009}			%10:50 Monday, October 5, 2009	
+\nociteproc{						Back_2009}			%10:50 Monday, October 5, 2009	
 \nociteproc{						Back_2009Big} 	%19:15 Wednesday, February 4, 2009
-\nociteinvi{Lighthall_2008SLM2} %November 19, 2008
+\nociteinvi{						Lighthall_2008SLM2} %November 19, 2008
 \nocitetalk{Lee_2008DNP}				%10:42 Sunday, October 26, 2008
 \nocitetalk{Marley_2008}				%10:30 Sunday, October 26, 2008
 \nocitetalk{Wuosmaa_2008DNP}		%8:30 Sunday, October 26, 2008
@@ -63,12 +66,18 @@
 \renewcommand{\refnameproc}{Conference Proceedings} 
 %Listed in order of publication
 \bibliographystyleproc{../src/elsarticle-aps} 
+\phantomsection
+\addcontentsline{toc}{section}{\refnameproc}
 \bibliographyproc{../src/bib_link}
 
-%\renewcommand{\refnameinvi}{Presentations} 
+\renewcommand{\refnameinvi}{Invited Talks} 
 \bibliographystyleinvi{../src/elsarticle-aps} 
+\phantomsection 
+\addcontentsline{toc}{section}{\refnameinvi}
 \bibliographyinvi{../src/bib_link}
 
-\renewcommand{\refnametalk}{Contributed Abstracts} 
+\renewcommand{\refnametalk}{Contributed Abstracts}
 \bibliographystyletalk{../src/elsarticle-aps} 
+\phantomsection 
+\addcontentsline{toc}{section}{\refnametalk}
 \bibliographytalk{../src/bib_link}
