@@ -1,26 +1,27 @@
 \clearpage
-%\setcounter{page}{1}
 \pagestyle{fancy}
-%\cfoot{\thepage{}  of 2}
 \lhead{\boldtext{\shortname}}
 \rhead{\desctext{Curriculum Vit\ae}}
-%\rhead{}
-%\input{../layout_table}
-%\thispagestyle{myheadings}
+
 \begin{changemargin}{\indent}
 \nameaddress{\workaddress}\\
 \end{changemargin}
+%% Turn added text on and off
 %\renewcommand{\desc}[1]{}
-%\renewcommand{\extra}[1]{}
-%\section*{Personal Information}
-%\begin{quote}
-  %\setlength{\itemsep}{0pt}
-  %\setlength{\parskip}{0pt}
-  %\setlength{\parsep}{0pt}
-	%Born October 7$^{\textrm{th}}$, 1981 in Ann Arbor, Michigan.  U.S. citizen.  Married to Holly Lighthall.
-%\end{quote}
-%%--------------------------------------------------------
-\extra{Not for publication. Superfluous items printed in gray.}
+\renewcommand{\extra}[1]{}
+
+%%-----------------------------------------------------------------------------------------------
+\extra{%
+\section*{Personal Information}
+\addcontentsline{toc}{section}{Personal Information}
+\begin{quote}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+	Born October 7$^{\textrm{th}}$, 1981 in Ann Arbor, Michigan.  U.S. citizen.  Married to Holly Lighthall.
+\end{quote}
+}
+%%-----------------------------------------------------------------------------------------------\extra{Not for publication. Superfluous items printed in gray.}
 \phantomsection
 \addcontentsline{toc}{chapter}{Curriculum Vit\ae}
 \section*{Education}
@@ -35,27 +36,27 @@
       \extra{\\Graduation ceremony on June 25; started August 2004 (7 years, 6.9 calendar years) Age 22--29}
 	  \desc{Dissertation: \href{http://gradworks.umi.com/34/71/3471048.html}{Commissioning of the Helical Orbit Spectrometer%: A new device for measuring nuclear reactions in inverse kinematics
 	}}
-	\item B.A. in Physics and Applied Mathematics, Albion College, May 2004 \extra{\\ Graduated May 8, started August 2000 (4 school years, 4+7=11 years total) Age 18--22}%
-	\item High School Diploma, Seaholm High School, June 2000 \extra{\\1996--2000, 9$^\textrm{th}$--12$^\textrm{th}$ grade, 4 school years (4+4+7=15 years total) Age 14--18}
-	\extra{\item Derby Middle School 1993--1996} \extra{\\6$^\textrm{th}$--8$^\textrm{th}$ grade, 3 school years (3+4+4+7=18) Age 11--14}
-	\extra{\item Harlan Elementary School 1987--1993} \extra{\\Kindergarden and 1$^\textrm{st}$--5$^\textrm{th}$ grade, 6 scool years (6+3+4+4+7=24) Age 4--11}
-	\extra{\item Pembroke Elementary School 1986--1987} \extra{\\developmental kindergarden (1+6+3+4+4+7=25) Age 4--5}
+	\item B.A. in Physics and Applied Mathematics, Albion College, May 2004 \extra{\\ Graduated May 8, started August 2000 (4 school years, 4+7=11 years total) Age 18--22\\3.21 GPA overall}%
+	\item High School Diploma, Seaholm High School, June 2000 \extra{\\1996--2000, 9$^\textrm{th}$--12$^\textrm{th}$ grade, (4 school years, 4+4+7=15 years total) Age 14--18}
+	\extra{\item Derby Middle School 1993--1996} \extra{\\6$^\textrm{th}$--8$^\textrm{th}$ grade (3 school years, 3+4+4+7=18) Age 11--14}
+	\extra{\item Harlan Elementary School 1987--1993} \extra{\\Kindergarden and 1$^\textrm{st}$--5$^\textrm{th}$ grade (6 scool years, 6+3+4+4+7=24) Age 4--11}
+	\extra{\item Pembroke Elementary School 1986--1987} \extra{\\Developmental kindergarden (1+6+3+4+4+7=25) Age 4--5}
 	\extra{\item St. James Preschool 1984--1986} \extra{\\(2+1+6+3+4+4+7=27) Age 2--4}
 \end{itemize}
-%%--------------------------------------------------------
+%%-----------------------------------------------------------------------------------------------
 \section*{Research Experience}
 \addcontentsline{toc}{section}{Research Experience}
 \begin{itemize}
 	\item Postdoctoral Research Fellow, Science Division, TRIUMF (B.~Davids), October 2012--Present \extra{\\Started October 27, 2012}
 		\desc{Commissioning of the EMMA spectrometer:
 		wrote experimental proposals for RIB commissioning;
-		wrote and developed code for the acquisition, calibration, simulation, and analysis of data from the EMMA PGAC detector (MIDAS, ROOT);
+		wrote and developed code for the acquisition, calibration, simulation, and analysis of data from the EMMA gas-filled detectors (MIDAS, ROOT);
 		wrote the safety report for the EMMA gas-handling system;
 		developed simulations (Geant4, ANSYS);
 		polished  and assembled electrostatic components;
 		%data analysis for $^{13}$C experiment.
 		installed radiation shielding; % September 2013--January 2014,
-		designed the detector readout electronics. %January 2013
+		designed the detector readout electronics (NIM, VME). %January 2013
 		Supervised student projects.
 		Operated and provided online data analysis for several IRIS experiments and one TUDA experiment.
 		}
@@ -68,13 +69,13 @@
 		wrote and developed the code for the acquisition, calibration, and analysis of HELIOS data (ROOT);
 		designed and built the HELIOS detector readout system (NIM, CAMAC);
 		wrote the HELIOS slow-control programs (LabVIEW);
-		designed and developed kinematics computation programs;
+		designed and developed kinematics computation programs (Excel, C++);
 		assembled and installed beam line components;
 		performed detailed measurement and analysis of the solenoid field.
 		Actively participated in experimental collaborations using HELIOS, the Enge split-pole spectrograph, and Gammasphere.
 		 }
-	\item Research Assistant, Physics Department, WMU (A.~Wuosmaa), August 2004--June 2011
-	\extra{\\\$10,573 for 2006 \$13798.40?}
+	\item Research Assistant, Physics Department, WMU (A.~Wuosmaa), August 2004--June 2007
+	\extra{\\Associated and supervised August 2004--June 2011 \$10,573 for 2006 \$13798.40?}
 		\desc{In addition to work at Argonne---collaborated on  experiments using the tandem Van de Graaff accelerator
 		%with the goal of improving the pair production branching ratio of the Holye State in $^{12}$C. 
 		 including NIM electronics setup, data acquisition and analysis (SpecTcl), and accelerator operation.
@@ -92,13 +93,21 @@
 		\desc{Assembeled and characterized a thin-film deposition chamber, including high-vacuum system.}
 \end{itemize}
 
-%%--------------------------------------------------------
-\pagebreak
+%%-----------------------------------------------------------------------------------------------
+\pagebreak[0]
 \section*{Teaching Experience}
 \addcontentsline{toc}{section}{Teaching Experience}
 \begin{itemize}
 \item Postdoctoral Research Fellow, TRIUMF, October 2012--Present
-\desc{Supervision and mentoring of high school students, undergraduate engineering Co-op students, and physics graduate students on various projects related to EMMA commissioning.}
+\desc{Supervision and mentoring of high school students, undergraduate engineering Co-op students, and physics graduate students on %various
+ projects related to EMMA commissioning.}
+	\item Laboratory Graduate and Postdoctoral Research Associate, Argonne, July 2007--October 2012%
+	\extra{(postdoc froom July 2011)worked with Lauren Perez summer 2012; worked with Jack Winkelbauer summer 2007, 2008; Adam Van Fall, Winter 2007, spring, summer 2008, summer 2009; Anna woodard Fall 2008, Shadi}%
+	  \desc{Supervision of Science Undergraduate Laboratory Internship (SULI) %physics undergraduate 
+	  students and physics graduate students on projects related to the commissioning and operation of HELIOS.}
+	\extra{\item Laboratory Graduate, Argonne, July 2007--June 2011 %
+	  \extra{ }
+	  \desc{}}
 	\item Course Instructor (Physics 107), WMU, January 2006--May 2006 \extra{1070}
 	\desc{Sole instructor of survey class for non-majors, class of 46 students. Received exceptional instructor evaluations and two teaching awards (see below).}
 	\item Laboratory Instructor (Physics 100, 108), \extra{1000, 1080}% Physics Department,
@@ -110,7 +119,7 @@
 	\desc{Laboratory assistant and paper-grader for Physics 167, 168 (calculus-based mechanics and E\&M).}
 \end{itemize}
 
-%%--------------------------------------------------------
+%%-----------------------------------------------------------------------------------------------
 \section*{Awards and Honors}
 \addcontentsline{toc}{section}{Awards and Honors}
 \begin{itemize}
@@ -181,7 +190,7 @@
 	
 \end{itemize}
 
-%%--------------------------------------------------------
+%%-----------------------------------------------------------------------------------------------
 \section*{Professional Organizations}
 \addcontentsline{toc}{section}{Professional Organizations}
 \begin{itemize}
