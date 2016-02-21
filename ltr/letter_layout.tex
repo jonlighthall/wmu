@@ -61,47 +61,6 @@ Canada}
 \newcommand{\recipaddress}{Address\\City\\Country}
 \newcommand{\comp}{Competition}
 
-\newcommand{\cvwrapper}[3] {%three arguments: pagestyle, right header, text
-\clearpage
-\pagestyle{#1}
-%\providecommand{\desctext}[1]{#1}%description text
-\rhead{\desctext{#2}}
-%\rhead{\textbf{#2}}
-\phantomsection
-\addcontentsline{toc}{chapter}{#2}
-\begin{changemargin}{\indent}
-\nameaddress{\workaddress}\\
-\\
-\displaydate{letterdate}
-\end{changemargin}
-
-\vspace*{2.0\baselineskip}%triple space
-\noindent \recip{} \comp{}\\
-\recipaddress{}
-\vspace*{1.0\baselineskip}%triple space
-
-\noindent
-To Whom It May Concern at \recip,\\
-%Dear \recip,\\
-
-#3\\
-\begin{changemargin}{\indent}
-Sincerely,
-
-\vspace*{-0.9\baselineskip}
-\begin{figure}[h!]
-\begin{changemargin}{\indent}
-		%\includegraphics[height=1cm,keepaspectratio]{../../_DS12247.eps}
-		%\includegraphics[height=2.22cm,keepaspectratio]{_DS14681}%full size
-		\includegraphics[height=1cm,keepaspectratio]{_DS14681}%fits in space
-		%\includegraphics[height=1cm,keepaspectratio]{Holly_signature}
-		\end{changemargin}
-\end{figure}
-\vspace*{-1.0\baselineskip}
-\printname
-\end{changemargin}
-}
-
 \newcommand{\ltrwrapper}[2] {%one argument, text
 \clearpage
 \pagestyle{empty}
