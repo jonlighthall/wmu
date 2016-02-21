@@ -6,7 +6,7 @@ Version=4
 MainFile=letter_main.tex
 UseBibTeX=0
 UseMakeIndex=0
-ActiveProfile=LaTeX ⇨ PDF + BibTeX
+ActiveProfile=LaTeX ⇨ PDF
 ProjectLanguage=en
 ProjectDialect=US
 
