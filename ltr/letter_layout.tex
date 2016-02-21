@@ -1,7 +1,16 @@
 %% Set indentation here
 %% The letter should either be indented (each paragraph, address, and signature) or not at all
+\newif\ifblock
+\blockfalse
+\ifblock
+%% Block format
+\def\indent{0in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{1\baselineskip}
+\else
+%% Indented
 \def\indent{3in}
-%\def\indent{0in}\setlength{\parindent}{0in}%need to add line skip between paragraphs.
+\fi
 
 \providecommand{\printname}{Jonathan C.\ Lighthall}
 \providecommand{\shortname}{J.\ C.\ Lighthall}
@@ -69,21 +78,42 @@ Canada}
 \clearpage
 \pagestyle{empty}
 \begin{changemargin}{\indent}
-\nameaddress{#1}\\
+\nameaddress{#1}%\\
+\ifblock
+
+\else
 \\
+\fi
 \displaydate{letterdate}
 \end{changemargin}
+\ifblock
 
+\else
 \vspace*{2.0\baselineskip}%triple space
+\fi
 \noindent \recip{} \comp{}\\
 \recipaddress{}
+\ifblock
+
+\else
 \vspace*{1.0\baselineskip}%triple space
+\fi
 
 \noindent
-To Whom It May Concern at \recip,\\
-%Dear \recip,\\
+To Whom It May Concern at \recip,%
+%Dear \recip,
+\ifblock
 
-#2\\
+\else
+\\
+\fi
+
+#2%
+\ifblock
+
+\else
+\\
+\fi
 \begin{changemargin}{\indent}
 Sincerely,
 
