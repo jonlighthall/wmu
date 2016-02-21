@@ -1,4 +1,9 @@
-\hypersetup{pdfauthor=\printname,						
+\providecommand{\printname}{Jonathan C.\ Lighthall}
+\providecommand{\shortname}{J.\ C.\ Lighthall}
+\providecommand{\doctitle}{From the desk of Dr.\ \shortname}
+
+\hypersetup{pdfauthor=\printname,
+            pdftitle=\doctitle,      
             urlcolor=black,
 }
 
@@ -9,13 +14,15 @@
 %816 S. Adams St. Apt. C305, Westmont, IL 60559-3606\\%
 %\href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu}\\%
 %(248) 797-3674\\%
-13--6395 Hawthorn Lane\\ Vancouver, BC\hspace{6pt}V6T~1Z4
+13--6395 Hawthorn Lane\\ Vancouver, BC\hspace{6pt}V6T~OC1
 %\\Canada
 }
 
 \newcommand{\addresssuffix}{\\
+office: (604) 222-1047 ext. 6859
+| cell: (778) 999-6006\\
 \href{mailto:lighthall@triumf.ca}{lighthall@triumf.ca}\\%
-(778) 999-6006}
+}
 
 \newcommand{\workaddress}{
 \begin{tabular}{r|p{135pt}}
@@ -26,6 +33,11 @@
 	\href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu}&(630) 252-4803\\
 \end{tabular}
 }
+
+\renewcommand{\workaddress}{TRIUMF\\
+4004 Wesbrook Mall, 
+Vancouver, BC\hspace{6pt}V6T~2A3,
+Canada}
 
 %% Set margin for sender address
 \renewenvironment{changemargin}[1]{%
@@ -52,9 +64,13 @@
 \newcommand{\cvwrapper}[3] {%three arguments: pagestyle, right header, text
 \clearpage
 \pagestyle{#1}
-\rhead{\textbf{#2}}
+%\providecommand{\desctext}[1]{#1}%description text
+\rhead{\desctext{#2}}
+%\rhead{\textbf{#2}}
+\phantomsection
+\addcontentsline{toc}{chapter}{#2}
 \begin{changemargin}{\indent}
-\nameaddress{\homeaddress}\\
+\nameaddress{\workaddress}\\
 \\
 \displaydate{letterdate}
 \end{changemargin}
@@ -86,3 +102,38 @@ Sincerely,
 \end{changemargin}
 }
 
+\newcommand{\ltrwrapper}[2] {%one argument, text
+\clearpage
+\pagestyle{empty}
+\begin{changemargin}{\indent}
+\nameaddress{#1}\\
+\\
+\displaydate{letterdate}
+\end{changemargin}
+
+\vspace*{2.0\baselineskip}%triple space
+\noindent \recip{} \comp{}\\
+\recipaddress{}
+\vspace*{1.0\baselineskip}%triple space
+
+\noindent
+To Whom It May Concern at \recip,\\
+%Dear \recip,\\
+
+#2\\
+\begin{changemargin}{\indent}
+Sincerely,
+
+\vspace*{-0.9\baselineskip}
+\begin{figure}[h!]
+\begin{changemargin}{\indent}
+		%\includegraphics[height=1cm,keepaspectratio]{../../_DS12247.eps}
+		%\includegraphics[height=2.22cm,keepaspectratio]{_DS14681}%full size
+		\includegraphics[height=1cm,keepaspectratio]{_DS14681}%fits in space
+		%\includegraphics[height=1cm,keepaspectratio]{Holly_signature}
+		\end{changemargin}
+\end{figure}
+\vspace*{-1.0\baselineskip}
+\printname
+\end{changemargin}
+}
