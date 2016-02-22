@@ -17,9 +17,14 @@
 \providecommand{\doctitle}{From the desk of Dr.\ \shortname}
 
 \hypersetup{pdfauthor=\printname,
-            pdftitle=\doctitle,      
-            urlcolor=black,
-}
+            pdftitle=\doctitle, 
+						}
+\newif\ifprint
+\ifprint
+\hypersetup{urlcolor=black}
+\else
+\hypersetup{urlcolor=blue}
+\fi
 
 \newcommand{\addressprefix}{}
 
