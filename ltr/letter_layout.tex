@@ -1,7 +1,7 @@
 %% Set indentation here
 %% The letter should either be indented (each paragraph, address, and signature) or not at all
 \newif\ifblock
-\blockfalse
+\blockfalse %<= set flag
 \ifblock
 %% Block format
 \def\indent{0in}
@@ -19,10 +19,15 @@
 \hypersetup{pdfauthor=\printname,
             pdftitle=\doctitle, 
 						}
+
+%% Set print options here
 \newif\ifprint
+\printtrue %<= set flag
 \ifprint
+%% Paper options
 \hypersetup{urlcolor=black}
 \else
+%% Web options
 \hypersetup{urlcolor=blue}
 \fi
 
@@ -32,14 +37,17 @@
 %816 S. Adams St. Apt. C305, Westmont, IL 60559-3606\\%
 %\href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu}\\%
 %(248) 797-3674\\%
-13--6395 Hawthorn Lane\\ Vancouver, BC\hspace{6pt}V6T~OC1
+%13--6395 Hawthorn Lane\\ Vancouver, BC\hspace{6pt}V6T~OC1
 %\\Canada
+1833 Halstead Blvd Apt 909\\
+Tallahassee, FL 32309-3474
 }
 
 \newcommand{\addresssuffix}{\\
 office: (604) 222-1047 ext. 6859
 | cell: (778) 999-6006\\
-\href{mailto:lighthall@triumf.ca}{lighthall@triumf.ca}\\%
+%\href{mailto:lighthall@triumf.ca}{lighthall@triumf.ca}\\%
+\href{mailto:lighthall@lsu.edu}{lighthall@lsu.edu}\\%
 }
 
 \newcommand{\workaddress}{
@@ -76,6 +84,7 @@ Canada}
 }
 
 \newcommand{\recip}{Recipient}
+\newcommand{\recipprefix}{Recipient}
 \newcommand{\recipaddress}{Address\\City\\Country}
 \newcommand{\comp}{Competition}
 
@@ -89,14 +98,15 @@ Canada}
 \else
 \\
 \fi
-\displaydate{letterdate}
+\longusdate
+\displaydate{letterdate} 
 \end{changemargin}
 \ifblock
 
 \else
 \vspace*{1.0\baselineskip}%triple space
 \fi
-\noindent \recip{} \comp{}\\
+\noindent \recipprefix{} \recip{} \comp{}\\
 \recipaddress{}
 \ifblock
 
