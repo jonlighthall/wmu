@@ -29,7 +29,24 @@
 		\addtocounter{j}{1}%
 %~(\the\value{i})% print iteration number after each sentence
 . % 
-		\ifthenelse{\value{j} = 10}{%iterations per par
+		\ifthenelse{\value{j} = 10} {%iterations per par
+			\setcounter{j}{0}%
+			\par%\marnote{This is a long, two-line margin note}
+			}{}%
+	 }
+}
+
+%% Pangram in all caps.
+\newcommand{\cappangram}[1] {%9 words
+	\setcounter{i}{0}%
+	\setcounter{j}{0}%
+	\whiledo{\value{i} < #1}{%
+		\MakeUppercase{The quick brown fox jumps over a lazy dog}%
+		\addtocounter{i}{1}%
+		\addtocounter{j}{1}%
+%~(\the\value{i})% print iteration number after each sentence
+. % 
+		\ifthenelse{\value{j} = 10} {%iterations per par
 			\setcounter{j}{0}%
 			\par%\marnote{This is a long, two-line margin note}
 			}{}%
@@ -42,6 +59,7 @@
 	\setcounter{k}{0}%iteration counter
 	\setcounter{l}{\value{n}}%level counter
 	\setcounter{m}{1}%chapter counter
+        \ifthenelse{#3 > #1}{\errmessage{autotext expansion level less than number of iterations}}{}
 	\whiledo{\value{k} < #1} {%
 		\addtocounter{k}{1}%
 	\addtocounter{l}{1}%
