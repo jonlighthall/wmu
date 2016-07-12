@@ -98,15 +98,14 @@
 %% Formatting packages-----------%-------------------------------
 \usepackage{fancyhdr} %required for non-standard (fancy) headers
 \usepackage{fancyvrb}%allows verbatim in footnotes
-% Linux-like command prompt "$" 
-\def \vsetlinux [#1]{\renewcommand{\FancyVerbFormatLine}[1]{{{\color{green} \$ }}#1}}
-% DOS-like command prompt
-\def \vsetdos [#1]{\renewcommand{\FancyVerbFormatLine}{{\color{blue}\texttt{C:\char`\\ >} }}}
-% ROOT-like command prompt
-\def \vsetroot [#1]{\renewcommand{\FancyVerbFormatLine}[1]{{\color{blue}root [\arabic{FancyVerbLine}] }#1}}
-%reset
-\def \vsetnone [#1]{\renewcommand{\FancyVerbFormatLine}[1]{#1}}
-
+%  Linux-like command prompt "$" 
+\newcommand{\vsetlinux}{\renewcommand{\FancyVerbFormatLine}[1]{{{\color{green} \$ }}##1}}
+%  DOS-like command prompt
+\newcommand{\vsetdos}{\renewcommand{\FancyVerbFormatLine}{{\color{blue}\texttt{C:\char`\\ >} }}}
+%  ROOT-like command prompt
+\newcommand{\vsetroot}{\renewcommand{\FancyVerbFormatLine}[1]{{\color{blue}root [\ifthenelse{\value{FancyVerbLine} = 0}{\emptyset}{\arabic{FancyVerbLine}}] }##1}}
+%  reset Verbatim
+\newcommand{\vsetnone}{\renewcommand{\FancyVerbFormatLine}[1]{##1}}
 \usepackage{indentfirst}%indents first paragraph of each section
 \usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
 
@@ -222,6 +221,12 @@ citecolor=black,               %makes citation links black (instead of green)
 }
 \def\timezone{\expandafter\grabtimezone\pdfcreationdate}% called with \timezone.
 \makeatother
+
+\newcommand{\curl}[1]{%
+\begin{center}
+	\url{#1}
+\end{center}
+}
 
 %% --------------------------------------------------------------
 %% Layout Options----------------%-------------------------------
