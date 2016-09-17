@@ -33,7 +33,7 @@
 %%    - 1.25" top margin on second page of abstract
 %%    - centered header on second pages of acknowledgments, TOC, LOT, LOF
 %%    - 1.25" header margin on second pages of acknowledgments, TOC, LOT, LOF
-v%    - page number only pagestyle (using fancyhdr) in main matter
+%%    - page number only pagestyle (using fancyhdr) in main matter
 %%    - [blank] document class for two-sided printing
 %% * One Appendix handling
 %%    - TOC entry is simply APPENDIX
