@@ -1,4 +1,4 @@
-%%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%
+%%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%%
 %% WMU-compliant Thesis Template
 %% Copyright 2011 Jon Lighthall, Ph.D.
 %
@@ -17,7 +17,7 @@
 %% This file is `wmu-thesis.cls', based on the `book.cls' standard class file.
 %%
 %% Modifications to book.cls:
-%% --------Version 1.0-------------(updated 10/04/11)------------
+%% --------Version 1.0-------------(submitted 10/03/11)----------
 %% * Automatic generation of front matter (based on document class options)
 %%    - Abstract
 %%    - Title Page
@@ -50,6 +50,12 @@
 %%    - improved handling of double-sided pages
 %%    - headings removed (page-number-only pagestyle) in main matter
 %%    - no tables or figures from appendix in LOT or LOF
+%% --------Version 1.2-------------(submitted 10/17/11)----------
+%% * Subtle alterations (corrections) to vertical spacing
+%%    - inclusion [orig] option to reproduce vertical spacing in JC_Lighthall_Thesis
+%%    - use of {margins} environment to change \textheight in \frontmatter
+%%    - \doublespacing is called by default
+%% * Robust margins support for 11pt and 12pt font options
 %%
 %% This is file `book.cls',
 %% generated with the docstrip utility.
@@ -104,8 +110,8 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{wmu-thesis}%edit
-              [2011/10/12 v1.1 
+\ProvidesClass{wmu-thesis}
+              [2011/10/17 v1.2
  Standard LaTeX document class]
 \newcommand\@ptsize{}
 \newif\if@restonecol
@@ -150,13 +156,22 @@
 %  The spacing on the Title Page is specified as 'about' ten lines.  However, for font sizes over
 %  10pt, the \stretch command is used because 30 blank lines will not fit.
 \newcommand{\titlespace}{10.0\baselineskip}
+\newlength{\fontskip}% adjust \headheight based on font size
 \if@compatibility
   \renewcommand\@ptsize{0}
 \else
 \DeclareOption{10pt}{\renewcommand\@ptsize{0}}
 \fi
-\DeclareOption{11pt}{\renewcommand\@ptsize{1}\renewcommand{\titlespace}{\stretch{1}}}
-\DeclareOption{12pt}{\renewcommand\@ptsize{2}\renewcommand{\titlespace}{\stretch{1}}}
+\DeclareOption{11pt}{
+  \renewcommand\@ptsize{1}
+  \renewcommand{\titlespace}{\stretch{1}}
+  \addtolength{\fontskip}{1.6pt}
+}
+\DeclareOption{12pt}{
+  \renewcommand\@ptsize{2}
+  \renewcommand{\titlespace}{\stretch{1}}
+  \addtolength{\fontskip}{2.5pt}
+}
 \if@compatibility\else
 \DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}
 \fi
@@ -208,11 +223,12 @@
 \newif\if@ackno
 \newif\if@listtab
 \newif\if@listfig
+\newif\if@orig %set minor formatting changes present in original dissertation
 \DeclareOption{abstract}{\@abstracttrue  \@mparswitchtrue}
 \DeclareOption{ackno}{\@acknotrue  \@mparswitchtrue}
 \DeclareOption{listtab}{\@listtabtrue  \@mparswitchtrue}
 \DeclareOption{listfig}{\@listfigtrue  \@mparswitchtrue}
-
+\DeclareOption{orig}{\@origtrue  \@mparswitchtrue}
 
 %% Degree names------------------%-------------------------------
 \newcommand{\engineer}{}%
@@ -494,6 +510,17 @@
 %  required to be 1.5 inches excatly, or at least 1.5 inches.  The margins on the remaining 
 %  sides must be at least 1.0 inch.  The following lines set the margins to maximum limits.
 
+%% The following commands set the margins to their default for 10pt font
+\setlength{\oddsidemargin}{62pt}
+\setlength{\evensidemargin}{62pt}
+\setlength{\topmargin}{22pt}
+\setlength{\headsep}{18.06749pt}
+\setlength{\textheight}{550pt}
+\setlength{\textwidth}{345pt}
+\setlength{\marginparwidth}{69pt}
+\setlength{\footskip}{25.29494pt}
+\setlength{\marginparpush}{7pt}
+
 %% For narrow margins (word processor style), set margins below.
 \addtolength{\textwidth}{1.5in}
 \addtolength{\hoffset}{-0.4375in}
@@ -517,13 +544,15 @@
 \fi
 \newlength{\titleskip} %places title 1.75" from top of page on Abstract and Title Page
 \newlength{\tocskip}   %places TOC headings 1.25" from top of page      
+\if@orig
 %  based on ruler (PDF)
 \setlength{\titleskip}{51pt}
 \setlength{\tocskip}{60pt}
+\else
 %  based on measurements (printed)
 \setlength{\titleskip}{35pt}
 \setlength{\tocskip}{42pt}
-
+\fi
 \newlength{\abstskip}  %places Abstract text on the second page 1.25" from the top of the page
 \setlength{\abstskip}{0pt}
 \newcommand{\absthead}{
@@ -533,9 +562,12 @@
 	}
 \newcommand{\addhead}[1]{%
 \addtolength{\voffset}{#1}%
-\addtolength{\textheight}{-#1}%
+%\addtolength{\textheight}{-#1}%
 \addtolength{\titleskip}{-#1}%
 }
+\newenvironment{margins}{\addtolength{\textheight}{-\tocskip}}{}
+\addtolength{\headheight}{\fontskip}
+\doublespacing %standard word processor doublespace
 \newcommand\frontmatter{%
     \cleardoublepage
   \@mainmatterfalse
@@ -628,12 +660,15 @@ Kalamazoo, Michaigan\\
 \titldate\displaydate{graddate}\\
 \end{center}
 \end{singlespace}
-
+\enlargethispage{- \tocskip}
+%\pangram{20}
 %\include{copyright}%Copyright page
+
 \clearpage
+
 %% Copyright page
 \setcounter{page}{0}  %this page is not included in the page numbering
-\enlargethispage{-\tocskip}
+\enlargethispage{-2\tocskip}
 \vspace*{\stretch{1}} %text will be centered vertically on page
 \begin{center}
 \copyright~\authname~\abstdate\displaydate{graddate}\\
@@ -650,6 +685,7 @@ Kalamazoo, Michaigan\\
 \rhead{}
 \renewcommand{\headrulewidth}{0.0pt}
 \cfoot{\thepage} %all front matter uses roman numerals, centered at the bottom of the page
+\begin{margins}
 \clearpage
 	\if@twoside
 		\if@openright
@@ -659,12 +695,20 @@ Kalamazoo, Michaigan\\
   \else
   	\setcounter{page}{2}%This is the first numbered page, and must be "page ii"	    
   \fi
+
 \if@ackno
+\enlargethispage{-\tocskip}
 %% Acknowledgments---------------%-------------------------------
 \newcommand{\aknoname}{Acknowledgments}
 \chead{\aknoname---Continued}
+\if@orig
+\begin{singlespace}
+\chapter[\texorpdfstring{\uppercase{\aknoname}}{\aknoname}]{\vspace{-\tocskip}\aknoname}
+\else
 \chapter[\texorpdfstring{\uppercase{\aknoname}}{\aknoname}]{\vspace{-\tocskip}\aknoname}
 \begin{singlespace}%This environment declaration is redundant unless doublespacing is used
+\fi
+%\enlargethispage{-\tocskip}
 \begin{spacing}{2}
 \InputIfFileExists{acknowledgments_body}{}{
 \begin{quote}
@@ -688,7 +732,8 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \noindent\hspace*{0.5\textwidth}\authname%Author name with left-hand side at center
 \end{singlespace}
 \fi%\include{acknowledgments}
-
+%\end{margins}
+%\begin{margins}
 %% Table of Contents-------------%-------------------------------
 %  The Table of Contents is not supposed to have an entry in the Table of Contents, but it is 
 %  useful in the final PDF output.
@@ -702,7 +747,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \let\contname\contentsname
 \renewcommand \contentsname{\vspace{-\tocskip}\contname}
 \tableofcontents
-
+%\begin{margins}
 \if@listtab
 %% List of Tables----------------%-------------------------------
 \cleardoublepage
@@ -713,7 +758,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \addcontentsline{toc}{chapter}{\texorpdfstring{\uppercase{\listtname}}{\listtname}}
 \listoftables
 \fi
-
+%\begin{margins}
 \if@listfig
 %% List of Figures---------------%-------------------------------
 \cleardoublepage
@@ -724,9 +769,14 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \addcontentsline{toc}{chapter}{\texorpdfstring{\uppercase{\listfname}}{\listfname}}
 \listoffigures
 \fi
+\end{margins}
 }
 \newcommand\mainmatter{%
     \cleardoublepage
+    \if@mainmatter
+    \else
+      \addhead{-\tocskip}
+    \fi
   \@mainmattertrue
   \pagenumbering{arabic}
 %% Headings----------------------%-------------------------------
@@ -736,15 +786,18 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 %  headings page style in one-sided printing while using the fancyhdr package, the following
 %  lines are needed.  However, the default behavior of the headings page style is unchanged by
 %  the fancyhdr package for two-sided printing.
-  \addhead{-\tocskip}
+
   \if@twoside
     \pagestyle{headings}
   \else
     \pagestyle{fancy}
     \addtolength{\voffset}{4pt}
     \addtolength{\headsep}{-4pt}
+    \renewcommand{\headrulewidth}{0.0pt}
     \fancyhf{}
-  % \lhead{\textsl{\leftmark}} %No headings!!!
+    \if@orig 
+      \lhead{\textsl{\leftmark}} %No headings!!! 
+    \fi
     \rhead{\thepage} %restore default single-sided behavior
   \fi
 }
@@ -981,11 +1034,11 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
   \gdef\@chapapp{\appendixname}%
   \gdef\thechapter{\@Alph\c@chapter}
 %% Appendix commands-------------%-------------------------------
-
+\if@orig \else
 \long\def\@caption##1[##2]##3{%remove tables and figures from TOC
   \par
   %\addcontentsline{\csname ext@##1\endcsname}{##1}%
-    %{\protect\numberline{\csname the##1\endcsname}{\ignorespaces ##2}}%
+   %{\protect\numberline{\csname the##1\endcsname}{\ignorespaces ##2}}%
   \begingroup
     \@parboxrestore
     \if@minipage
@@ -993,7 +1046,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
     \fi
     \normalsize
     \@makecaption{\csname fnum@##1\endcsname}{\ignorespaces ##3}\par
-  \endgroup}}
+  \endgroup}\fi}
 
 \newcommand\twoappendix{\appendix
 \cleardoublepage
