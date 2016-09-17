@@ -66,6 +66,10 @@
 %% * Settings for the [twoside] option are repaired
 %%    - Corrected values of \evensidemargin, \marginparwidth, and \marginparsep 
 %%    - \raggedbottom included to make vertical spacing identical
+%% --------Version 1.4-------------(updated 09/17/16)------------
+%% * [abslist] option added
+%%    - replaces orig behavior in abstract
+%%    - added handling for supertabular environments 
 %%
 %% This is file `book.cls',
 %% generated with the docstrip utility.
@@ -120,9 +124,9 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{wmu-thesis}
-              [2012/06/19 v1.3
- Custom LaTeX document class]
+\ProvidesClass{wmu/wmu-thesis}
+              [2016/09/17 v1.4
+                Custom LaTeX document class]
 \newcommand\@ptsize{}
 \newif\if@restonecol
 \newif\if@titlepage
@@ -216,6 +220,7 @@
 \newif\if@ackno
 \newif\if@listtab
 \newif\if@listfig
+\newif\if@abslist
 \newif\if@orig %set minor formatting changes present in original dissertation
 
 %% Name commands-------------------%-----------------------------
@@ -251,7 +256,11 @@
 \DeclareOption{ackno}{\@acknotrue  \@mparswitchtrue}
 \DeclareOption{listtab}{\@listtabtrue  \@mparswitchtrue}
 \DeclareOption{listfig}{\@listfigtrue  \@mparswitchtrue}
-\DeclareOption{orig}{\@origtrue  \@mparswitchtrue}
+\DeclareOption{abslist}{\@abslisttrue  \@mparswitchtrue}
+\DeclareOption{orig}{%
+  \@origtrue  \@mparswitchtrue
+  \@abslisttrue  \@mparswitchtrue
+}
 
 \DeclareOption{ma}{%
 \renewcommand{\degree}{M.A.}%
@@ -1063,7 +1072,8 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
   \gdef\@chapapp{\appendixname}%
   \gdef\thechapter{\@Alph\c@chapter}
 %% Appendix commands-------------%-------------------------------
-\if@orig \else
+% Turn captions on or off in the TOC for figures, tables, supertabulars
+\if@abslist \else
 \long\def\@caption##1[##2]##3{%remove tables and figures from TOC
   \par
   %\addcontentsline{\csname ext@##1\endcsname}{##1}%
@@ -1075,7 +1085,19 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
     \fi
     \normalsize
     \@makecaption{\csname fnum@##1\endcsname}{\ignorespaces ##3}\par
-  \endgroup}\fi}
+    \endgroup}
+\long\def\ST@caption##1[##2]##3{\par%remove subertabulars from TOC
+%  \addcontentsline{\csname ext@#1\endcsname}{#1}%
+%                  {\protect\numberline{%
+%                      \csname the#1\endcsname}{\ignorespaces #2}}
+  \begingroup
+    \@parboxrestore
+    \normalsize
+    \if@topcaption \vskip -10\p@ \fi
+    \@makecaption{\csname fnum@##1\endcsname}{\ignorespaces ##3}\par
+    \if@topcaption \vskip 10\p@ \fi
+    \endgroup}
+\fi}
 
 \newcommand\twoappendix{\appendix
 \cleardoublepage
