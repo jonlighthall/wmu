@@ -33,7 +33,6 @@
 %%    - 1.25" top margin on second page of abstract
 %%    - centered header on second pages of acknowledgments, TOC, LOT, LOF
 %%    - 1.25" header margin on second pages of acknowledgments, TOC, LOT, LOF
-%%    - page number only pagestyle (using fancyhdr) in main matter
 %%    - [blank] document class for two-sided printing
 %% * One Appendix handling
 %%    - TOC entry is simply APPENDIX
@@ -43,14 +42,14 @@
 %%    - APPENDICES heading in TOC
 %%    - Appendices page divider
 %% --------Version 1.1-------------(submitted 10/13/11)----------
-%% * Layout formatting
-%%    - improved handling of double-sided pages
-%%    - headings removed
-%%    - no tables or figures from appendix in LOT or LOF
 %% * Packages
 %%    - Modern font support (utf8 input encoding, T1 encoding, textcomp)
 %%    - include amsmath, indentfirst
 %%    - support for hyperref
+%% * Layout formatting
+%%    - improved handling of double-sided pages
+%%    - headings removed (page-number-only pagestyle) in main matter
+%%    - no tables or figures from appendix in LOT or LOF
 %%
 %% This is file `book.cls',
 %% generated with the docstrip utility.
