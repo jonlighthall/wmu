@@ -17,7 +17,7 @@
 %% This file is `wmu-thesis.cls', based on the `book.cls' standard class file.
 %%
 %% Modifications to book.cls:
-%% --------Version 1.0-------------------------------------------
+%% --------Version 1.0-------------(updated 10/04/11)------------
 %% * Automatic generation of front matter (based on document class options)
 %%    - Abstract
 %%    - Title Page
@@ -33,13 +33,8 @@
 %%    - 1.25" top margin on second page of abstract
 %%    - centered header on second pages of acknowledgments, TOC, LOT, LOF
 %%    - 1.25" header margin on second pages of acknowledgments, TOC, LOT, LOF
-%%    - page number only pagestyle (using fancyhdr) in main matter
+v%    - page number only pagestyle (using fancyhdr) in main matter
 %%    - [blank] document class for two-sided printing
-%%    - no tables or figures from appendix in LOT or LOF
-%% * Packages
-%%    - Modern font support (utf8 input encoding, T1 encoding, textcomp)
-%%    - include amsmath, indentfirst
-%%    - support for hyperref
 %% * One Appendix handling
 %%    - TOC entry is simply APPENDIX
 %%    - chapter number removed in chapter heading
@@ -47,6 +42,15 @@
 %% * Multiple Appendix handling
 %%    - APPENDICES heading in TOC
 %%    - Appendices page divider
+%% --------Version 1.01------------(submitted 10/13/11)----------
+%% * Layout formatting
+%%    - improved handling of double-sided pages
+%%    - headings removed
+%%    - no tables or figures from appendix in LOT or LOF
+%% * Packages
+%%    - Modern font support (utf8 input encoding, T1 encoding, textcomp)
+%%    - include amsmath, indentfirst
+%%    - support for hyperref
 %%
 %% This is file `book.cls',
 %% generated with the docstrip utility.
@@ -102,7 +106,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{wmu-thesis}%edit
-              [2011/10/12 v1.0
+              [2011/10/13 v1.01
  Standard LaTeX document class]
 \newcommand\@ptsize{}
 \newif\if@restonecol
