@@ -55,8 +55,12 @@
 %%    - inclusion [orig] option to reproduce vertical spacing in JC_Lighthall_Thesis
 %%    - use of {margins} environment to change \textheight in \frontmatter
 %%    - \doublespacing is called by default
-%% --------Version 1.21------------(submitted 10/19/11)----------
+%% --------Version 1.21------------(updated 10/19/11)------------
 %% * The command \projecttype is used on the title page.
+%% --------Version 1.22------------(updated 10/19/11)------------
+%% * Updated [orig] option
+%%    - tocspace defined for TOC (not used)
+%%    - Appendices are in a new part
 %%
 %% This is file `book.cls',
 %% generated with the docstrip utility.
@@ -552,6 +556,7 @@
 \fi
 \newlength{\titleskip} %places title 1.75" from top of page on Abstract and Title Page
 \newlength{\tocskip}   %places TOC headings 1.25" from top of page      
+\newcommand{\tocspace}{}
 \if@orig
 %  based on ruler (PDF)
 \setlength{\titleskip}{51pt}
@@ -750,8 +755,13 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \chead{\contentsname---Continued}
 \let\contname\contentsname
 \renewcommand \contentsname{\vspace{-\tocskip}\contname}
+\if@orig
+%\begin{spacing}{\tocspace}
+\fi
 \tableofcontents
-
+\if@orig
+%\end{spacing}
+\fi
 \if@listtab
 %% List of Tables----------------%-------------------------------
 \cleardoublepage
@@ -1056,7 +1066,11 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \newcommand\twoappendix{\appendix
 \cleardoublepage
 \phantomsection
+\if@orig
+\addcontentsline{toc}{part}{Appendices}
+\else
 \addcontentsline{toc}{chapter}{\texorpdfstring{APPENDICES}{Appendices}}
+\fi
 \part*{Appendices}
 }
 
