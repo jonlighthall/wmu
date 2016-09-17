@@ -55,7 +55,8 @@
 %%    - inclusion [orig] option to reproduce vertical spacing in JC_Lighthall_Thesis
 %%    - use of {margins} environment to change \textheight in \frontmatter
 %%    - \doublespacing is called by default
-%% * Robust margins support for 11pt and 12pt font options
+%% --------Version 1.21------------(submitted 10/19/11)----------
+%% * The command \projecttype is used on the title page.
 %%
 %% This is file `book.cls',
 %% generated with the docstrip utility.
@@ -111,8 +112,8 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{wmu-thesis}
-              [2011/10/17 v1.2
- Standard LaTeX document class]
+              [2011/10/19 v1.21
+ Custom LaTeX document class]
 \newcommand\@ptsize{}
 \newif\if@restonecol
 \newif\if@titlepage
@@ -143,34 +144,29 @@
     \setlength\paperheight {\paperwidth}%
     \setlength\paperwidth  {\@tempdima}}
 \fi
-%% Name commands-------------------%-----------------------------
-
-\newcommand{\authname}{Author Name}
-\newcommand{\thesistitle}{Thesis Title}
-\newcommand{\gradyear}{2011}
-\newcommand{\gradmonth}{6} 
-\newcommand{\departmentname}{Department Name}
-\newcommand{\adviname}{Advisor Name, Ph.D.}
-
-%% Vertical spacing on the Title Page----------------------------
-%  The spacing on the Title Page is specified as 'about' ten lines.  However, for font sizes over
-%  10pt, the \stretch command is used because 30 blank lines will not fit.
-\newcommand{\titlespace}{10.0\baselineskip}
-\newlength{\fontskip}% adjust \headheight based on font size
 \if@compatibility
   \renewcommand\@ptsize{0}
 \else
 \DeclareOption{10pt}{\renewcommand\@ptsize{0}}
 \fi
+%% Vertical spacing on the Title Page----------------------------
+%  The spacing on the Title Page is specified as 'about' ten lines.  However, for font sizes over
+%  10pt, the \stretch command is used because 30 blank lines will not fit.
+\newcommand{\titlespace}{10.0\baselineskip}
+\newlength{\fontskip}% adjust \headheight based on font size
+\newlength{\newtocskip}% 
+\setlength{\newtocskip}{30pt}
 \DeclareOption{11pt}{
   \renewcommand\@ptsize{1}
   \renewcommand{\titlespace}{\stretch{1}}
   \addtolength{\fontskip}{1.6pt}
+  \setlength{newtocskip}{27.5pt}
 }
 \DeclareOption{12pt}{
   \renewcommand\@ptsize{2}
   \renewcommand{\titlespace}{\stretch{1}}
   \addtolength{\fontskip}{2.5pt}
+  \setlength{newtocskip}{25pt}
 }
 \if@compatibility\else
 \DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}
@@ -206,35 +202,47 @@
       }%
    \renewcommand\newblock{\par}}%
 }
-\DeclareOption{blank}{
-\if@twoside
-\if@openright
-\def\cleardoublepage{
-  \clearpage
-  \if@twoside 
-  \ifodd\c@page\else
-    \hbox{}
-    \thispagestyle{empty}%remove headers and footers from blank pages
-    \newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
-\fi
-\fi
-}
+%% Switches------------------------%-----------------------------
 \newif\if@abstract
 \newif\if@ackno
 \newif\if@listtab
 \newif\if@listfig
 \newif\if@orig %set minor formatting changes present in original dissertation
-\DeclareOption{abstract}{\@abstracttrue  \@mparswitchtrue}
-\DeclareOption{ackno}{\@acknotrue  \@mparswitchtrue}
-\DeclareOption{listtab}{\@listtabtrue  \@mparswitchtrue}
-\DeclareOption{listfig}{\@listfigtrue  \@mparswitchtrue}
-\DeclareOption{orig}{\@origtrue  \@mparswitchtrue}
+
+%% Name commands-------------------%-----------------------------
+\newcommand{\authname}{Author Name}
+\newcommand{\thesistitle}{Thesis Title}
+\newcommand{\gradyear}{2011}
+\newcommand{\gradmonth}{6} 
+\newcommand{\departmentname}{Department Name}
+\newcommand{\adviname}{Advisor Name, Ph.D.}
 
 %% Degree names------------------%-------------------------------
 \newcommand{\engineer}{}%
 \newcommand{\degree}{}%
 \newcommand{\degreename}{}%
 \newcommand{\projecttype}{}%
+
+%% Package options-----------------%-----------------------------
+\DeclareOption{blank}{
+\if@twoside
+  \if@openright
+    \def\cleardoublepage{
+      \clearpage
+      \if@twoside 
+      \ifodd\c@page\else
+       \hbox{}
+       \thispagestyle{empty}%remove headers and footers from blank pages
+       \newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+  \fi
+\fi
+}
+
+\DeclareOption{abstract}{\@abstracttrue  \@mparswitchtrue}
+\DeclareOption{ackno}{\@acknotrue  \@mparswitchtrue}
+\DeclareOption{listtab}{\@listtabtrue  \@mparswitchtrue}
+\DeclareOption{listfig}{\@listfigtrue  \@mparswitchtrue}
+\DeclareOption{orig}{\@origtrue  \@mparswitchtrue}
 
 \DeclareOption{ma}{%
 \renewcommand{\degree}{M.A.}%
@@ -567,7 +575,7 @@
 }
 \newenvironment{margins}{\addtolength{\textheight}{-\tocskip}}{}
 \addtolength{\headheight}{\fontskip}
-\doublespacing %standard word processor doublespace
+%\doublespacing %standard word processor doublespace
 \newcommand\frontmatter{%
     \cleardoublepage
   \@mainmatterfalse
@@ -620,11 +628,11 @@ shortened by ProQuest/UMI editors.}
 %\input{abstract_body}
 \end{spacing}
 \end{singlespace}
-
+%% Margins will break down if abstract is over two pages.
 \makeatletter
-  \ifodd\c@page
+  \ifodd\c@page %adjust page margin on second page (only) of abstract.  
   \else
- \absthead 
+    \absthead 
   \fi
 \makeatother
 \addtolength{\voffset}{-\abstskip}
@@ -646,7 +654,7 @@ by\\
 \vspace{1.0\baselineskip}
 \authname\\
 \vspace{\titlespace}
-A Dissertation\\
+A \projecttype\\
 Submitted to the\\
 Faculty of The Graduate College\\
 in partial fulfillment of the\\
@@ -656,16 +664,14 @@ Degree of \degreename\engineer\\
 Advisor: \adviname\\
 \vspace{\titlespace}
 Western Michigan University\\
-Kalamazoo, Michaigan\\
+Kalamazoo, Michigan\\
 \titldate\displaydate{graddate}\\
 \end{center}
 \end{singlespace}
 \enlargethispage{- \tocskip}
-%\pangram{20}
+
 %\include{copyright}%Copyright page
-
 \clearpage
-
 %% Copyright page
 \setcounter{page}{0}  %this page is not included in the page numbering
 \enlargethispage{-2\tocskip}
@@ -675,17 +681,19 @@ Kalamazoo, Michaigan\\
 \end{center}
 \vspace*{\stretch{1}}
 
-%%% Headings----------------------%-------------------------------
-%%  In the front matter, starting with the Acknowledgments, any section longer than one page in 
-%%  length requires a centered heading with upper- and lower-case titles.  The fancyhdr package
-%%  is required for this.
+%% Headings----------------------%-------------------------------
+%  In the front matter, starting with the Acknowledgments, any section longer than one page in 
+%  length requires a centered heading with upper- and lower-case titles.  The fancyhdr package
+%  is required for this.
 
 \pagestyle{fancy} %needed for non-standard centered headings in front matter
 \lhead{}
 \rhead{}
 \renewcommand{\headrulewidth}{0.0pt}
 \cfoot{\thepage} %all front matter uses roman numerals, centered at the bottom of the page
-\begin{margins}
+%% The following environment is necessary to reduce the textheight by tocskip within the front
+%  matter without interfering with main matter vertical spacing.
+\begin{margins} 
 \clearpage
 	\if@twoside
 		\if@openright
@@ -708,7 +716,6 @@ Kalamazoo, Michaigan\\
 \chapter[\texorpdfstring{\uppercase{\aknoname}}{\aknoname}]{\vspace{-\tocskip}\aknoname}
 \begin{singlespace}%This environment declaration is redundant unless doublespacing is used
 \fi
-%\enlargethispage{-\tocskip}
 \begin{spacing}{2}
 \InputIfFileExists{acknowledgments_body}{}{
 \begin{quote}
@@ -724,7 +731,6 @@ The text on this page will automatically be replaced with the contents of the fi
 whom the author is indebted for guidance, assistance, or special aid, including faculty mentors,
 colleagues, friends, and family members. The acknowledgments should be expressed simply and
 tactfully. It is best practice to secure permission of those to be cited in acknowledgments.
-%\pangram{30}
 }
 %\input{acknowledgments_body}
 \end{spacing}
@@ -732,13 +738,11 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \noindent\hspace*{0.5\textwidth}\authname%Author name with left-hand side at center
 \end{singlespace}
 \fi%\include{acknowledgments}
-%\end{margins}
-%\begin{margins}
+
 %% Table of Contents-------------%-------------------------------
 %  The Table of Contents is not supposed to have an entry in the Table of Contents, but it is 
 %  useful in the final PDF output.
 \setcounter{tocdepth}{2}%Sets table of contents "depth" to include "Level 3 Headings"
-%\renewcommand \contentsname{\vspace{-\tocskip}Table of Contents}
 \renewcommand \contentsname{Table of Contents}
 \clearpage
 \phantomsection
@@ -747,7 +751,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \let\contname\contentsname
 \renewcommand \contentsname{\vspace{-\tocskip}\contname}
 \tableofcontents
-%\begin{margins}
+
 \if@listtab
 %% List of Tables----------------%-------------------------------
 \cleardoublepage
@@ -758,7 +762,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \addcontentsline{toc}{chapter}{\texorpdfstring{\uppercase{\listtname}}{\listtname}}
 \listoftables
 \fi
-%\begin{margins}
+
 \if@listfig
 %% List of Figures---------------%-------------------------------
 \cleardoublepage
@@ -779,6 +783,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
     \fi
   \@mainmattertrue
   \pagenumbering{arabic}
+  
 %% Headings----------------------%-------------------------------
 %  The LaTeX-default 'headings' page style for one-sided printing displays the chapter title 
 %  on each page.  The fancyhdr package redefines the default behavior to display the section 
@@ -1092,7 +1097,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
     \vskip 40\p@
   }}
 
-\def\chaptermark##1{%Removes the chapter letter from page headings
+\def\chaptermark##1{%Removes the chapter letter from page headers
       \markboth {\MakeUppercase{%
         \ifnum \c@secnumdepth >\m@ne
           \if@mainmatter
