@@ -1,6 +1,6 @@
 %%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%%
 %% WMU-compliant Thesis Template
-%% Copyright 2011 2012 Jon Lighthall, Ph.D.
+%% Copyright 2011 2012 2016 Jon Lighthall, Ph.D.
 %
 %  This work may be distributed and/or modified under the 
 %  conditions of the LaTeX Project Public License, either version 1.3c
@@ -12,7 +12,7 @@
 %
 %  This work has the LPPL maintenance status `maintained'.
 % 
-%  The Current Maintainer of this work is Jon Lighthall, j4lighth@wmich.edu
+%  The Current Maintainer of this work is Jon Lighthall, lighthall@lsu.edu
 %
 %% This file is `wmu-thesis.cls', based on the `book.cls' standard class file.
 %%
