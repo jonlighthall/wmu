@@ -42,7 +42,7 @@
 %% * Multiple Appendix handling
 %%    - APPENDICES heading in TOC
 %%    - Appendices page divider
-%% --------Version 1.01------------(submitted 10/13/11)----------
+%% --------Version 1.1-------------(submitted 10/13/11)----------
 %% * Layout formatting
 %%    - improved handling of double-sided pages
 %%    - headings removed
@@ -106,7 +106,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{wmu-thesis}%edit
-              [2011/10/13 v1.01
+              [2011/10/12 v1.1 
  Standard LaTeX document class]
 \newcommand\@ptsize{}
 \newif\if@restonecol
