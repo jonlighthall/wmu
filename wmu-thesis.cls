@@ -1,8 +1,45 @@
 %%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%
-%% This file is `thesis.cls', based on the book.cls standard class file.
-%% WMU-compliant thesis template by Jon Lighthall
-%% Modifications include:
+%% WMU-compliant Thesis Template
+%% Copyright 2011 Jon Lighthall, Ph.D.
+%
+%  This work may be distributed and/or modified under the 
+%  conditions of the LaTeX Project Public License, either version 1.3c
+%  of this license or (at your option) any later version.
+%  The latest version of this license is in
+%     http://www.latex-project.org/lppl.txt
+%  and version 1.3 or later is part of all distributions of LaTeX
+%  version 2005/12/01 or later.
+%
+%  This work has the LPPL maintenance status `maintained'.
+% 
+%  The Current Maintainer of this work is Jon Lighthall, j4lighth@wmich.edu
+%
+%% This file is `wmu-thesis.cls', based on the `book.cls' standard class file.
+%%
+%% Modifications to book.cls:
 %% --------Version 1.0-------------------------------------------
+%% * Automatic generation of front matter (based on document class options)
+%%    - Abstract
+%%    - Title Page
+%%    - Copyright Page
+%%    - Acknowledgments
+%%    - Table of Contents
+%%       + Leader dots after chapter headings
+%%    - List of Tables
+%%    - List of Figures
+%% * Layout formatting
+%%    - 1.25" left margin, 1.00" other margins (default)
+%%    - 1.75" top margin on abstract, title page
+%%    - 1.25" top margin on second page of abstract
+%%    - centered header on second pages of acknowledgments, TOC, LOT, LOF
+%%    - 1.25" header margin on second pages of acknowledgments, TOC, LOT, LOF
+%%    - page number only pagestyle (using fancyhdr) in main matter
+%%    - [blank] document class for two-sided printing
+%%    - no tables or figures from appendix in LOT or LOF
+%% * Packages
+%%    - Modern font support (utf8 input encoding, T1 encoding, textcomp)
+%%    - include amsmath, indentfirst
+%%    - support for hyperref
 %% * One Appendix handling
 %%    - TOC entry is simply APPENDIX
 %%    - chapter number removed in chapter heading
@@ -64,8 +101,8 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{thesis}%edit
-              [2011/10/04 v1.0
+\ProvidesClass{wmu-thesis}%edit
+              [2011/10/12 v1.0
  Standard LaTeX document class]
 \newcommand\@ptsize{}
 \newif\if@restonecol
@@ -97,6 +134,15 @@
     \setlength\paperheight {\paperwidth}%
     \setlength\paperwidth  {\@tempdima}}
 \fi
+%% Name commands-------------------%-----------------------------
+
+\newcommand{\authname}{Author Name}
+\newcommand{\thesistitle}{Thesis Title}
+\newcommand{\gradyear}{2011}
+\newcommand{\gradmonth}{6} 
+\newcommand{\departmentname}{Department Name}
+\newcommand{\adviname}{Advisor Name, Ph.D.}
+
 %% Vertical spacing on the Title Page----------------------------
 %  The spacing on the Title Page is specified as 'about' ten lines.  However, for font sizes over
 %  10pt, the \stretch command is used because 30 blank lines will not fit.
@@ -164,64 +210,90 @@
 \DeclareOption{listtab}{\@listtabtrue  \@mparswitchtrue}
 \DeclareOption{listfig}{\@listfigtrue  \@mparswitchtrue}
 
+
 %% Degree names------------------%-------------------------------
-\newcommand{\engineer}{}
+\newcommand{\engineer}{}%
 \newcommand{\degree}{}%
 \newcommand{\degreename}{}%
+\newcommand{\projecttype}{}%
 
 \DeclareOption{ma}{%
 \renewcommand{\degree}{M.A.}%
 \renewcommand{\degreename}{Master of Arts}%
+\renewcommand{\projecttype}{Thesis}%
+\renewcommand{\thesistitle}{THESIS TITLE}
 }
 \DeclareOption{mfa}{%
 \renewcommand{\degree}{M.F.A.}%
 \renewcommand{\degreename}{Master of Fine Arts}%
+\renewcommand{\projecttype}{Thesis}%
+\renewcommand{\thesistitle}{THESIS TITLE}
 }
 \DeclareOption{mm}{%
 \renewcommand{\degree}{M.M.}%
 \renewcommand{\degreename}{Master of Music}%
+\renewcommand{\projecttype}{Thesis}%
+\renewcommand{\thesistitle}{THESIS TITLE}
 }
 \DeclareOption{ms}{%
 \renewcommand{\degree}{M.S.}%
 \renewcommand{\degreename}{Master of Music}%
+\renewcommand{\projecttype}{Thesis}%
+\renewcommand{\thesistitle}{THESIS TITLE}
 }
 \DeclareOption{mse}{%
 \renewcommand{\degree}{M.S.E.}%
 \renewcommand{\degreename}{Master of Science in Engineering}%
+\renewcommand{\projecttype}{Thesis}%
+\renewcommand{\thesistitle}{THESIS TITLE}
 }
 \DeclareOption{msec}{%
 \renewcommand{\degree}{M.S.E.}%
 \renewcommand{\degreename}{Master of Science in Engineering}%
 \renewcommand{\engineer}{~(Computer)}
+\renewcommand{\projecttype}{Thesis}%
+\renewcommand{\thesistitle}{THESIS TITLE}
 }
 \DeclareOption{msee}{%
 \renewcommand{\degree}{M.S.E.}%
 \renewcommand{\degreename}{Master of Science in Engineering}%
 \renewcommand{\engineer}{~(Electrical)}
+\renewcommand{\projecttype}{Thesis}%
+\renewcommand{\thesistitle}{THESIS TITLE}
 }
 \DeclareOption{msei}{%
 \renewcommand{\degree}{M.S.E.}%
 \renewcommand{\degreename}{Master of Science in Engineering}%
 \renewcommand{\engineer}{~(Industrial)}
+\renewcommand{\projecttype}{Thesis}%
+\renewcommand{\thesistitle}{THESIS TITLE}
 }
 \DeclareOption{msem}{%
 \renewcommand{\degree}{M.S.E.}%
 \renewcommand{\degreename}{Master of Science in Engineering}%
 \renewcommand{\engineer}{~(Mechanical)}
+\renewcommand{\projecttype}{Thesis}%
+\renewcommand{\thesistitle}{THESIS TITLE}
 }
 \DeclareOption{eds}{%
 \renewcommand{\degree}{Ed.S.}%
 \renewcommand{\degreename}{Specialist in Education}%
+\renewcommand{\projecttype}{Project}%
+\renewcommand{\thesistitle}{PROJECT TITLE}
 }
 \DeclareOption{edd}{%
 \renewcommand{\degree}{Ed.D.}%
 \renewcommand{\degreename}{Doctor of Education}%
+\renewcommand{\projecttype}{Dissertation}%
+\renewcommand{\thesistitle}{DISSERTATION TITLE}
 }
 \DeclareOption{phd}{%
 \renewcommand{\degree}{Ph.D.}%
 \renewcommand{\degreename}{Doctor of Philosophy}%
+\renewcommand{\projecttype}{Dissertation}%
+\renewcommand{\thesistitle}{DISSERTATION TITLE}
 }
-\ExecuteOptions{letterpaper,10pt,oneside,onecolumn,final,openany,phd}
+\ExecuteOptions{letterpaper,10pt,oneside,onecolumn,final,openany}
 \ProcessOptions
 %% Required packages-------------%-------------------------------
 %  The following packages are required in order for this template to work
@@ -229,6 +301,11 @@
 \RequirePackage{fmtcount,datetime} %provides commands for displaying times and dates
 \RequirePackage{setspace} %required for double spacing and used to control vertical spacing 
 \RequirePackage{fancyhdr} %required for non-standard (fancy) headers
+\RequirePackage{indentfirst} %indents first paragraph of each section
+%% Text packages-----------------%-------------------------------
+\usepackage{textcomp,lmodern}%for special symbols 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}%modern font encoding
 \providecommand{\draftno}{}
 \input{bk1\@ptsize.clo}
 \setlength\lineskip{1\p@}
@@ -393,6 +470,22 @@
 \renewcommand\theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
 \renewcommand\thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
 \newcommand\@chapapp{\chaptername}
+\AtEndOfPackage{
+ \RequirePackage{hyperref}
+}
+
+\AtBeginDocument{
+  \hypersetup{%
+	bookmarksopen=true,            %Displays Bookmarks in the Navigation Panel
+	bookmarksopenlevel=0,          %\maxdimen all levels, 0 chapters, 1 sections
+	bookmarksnumbered=true,        %Numbers bookmarks with section numbers
+	colorlinks=true,               %colors the links instead of using boxes
+	urlcolor=blue,                 %makes URL hyperlinks blue (instead of pink)
+	linkcolor=black,               %makes internal links black (instead of red)
+	citecolor=black,               %makes citation links black (instead of green)
+  }
+}
+
 %% Margins-----------------------%-------------------------------
 %% The WMU guidlines are contradictory when it comes to margins.  The left-hand margin is either
 %  required to be 1.5 inches excatly, or at least 1.5 inches.  The margins on the remaining 
@@ -419,8 +512,8 @@
  \addtolength{\evensidemargin}{-1in}
  \addtolength{\marginparwidth}{-56pt}
 \fi
-\newlength{\titleskip}
-\newlength{\tocskip}      
+\newlength{\titleskip} %places title 1.75" from top of page on Abstract and Title Page
+\newlength{\tocskip}   %places TOC headings 1.25" from top of page      
 %  based on ruler (PDF)
 \setlength{\titleskip}{51pt}
 \setlength{\tocskip}{60pt}
@@ -428,7 +521,7 @@
 \setlength{\titleskip}{35pt}
 \setlength{\tocskip}{42pt}
 
-\newlength{\abstskip}     
+\newlength{\abstskip}  %places Abstract text on the second page 1.25" from the top of the page
 \setlength{\abstskip}{0pt}
 \newcommand{\absthead}{
 	\addtolength{\abstskip}{\headheight}%add
@@ -468,13 +561,15 @@ Western Michigan University, \abstdate\displaydate{graddate}%triple space
 \begin{spacing}{2}
 %  Enter the text of the abstract below.
 \InputIfFileExists{abstract_body}{}{
+\begin{quote}
 \begin{center}
 \rule[0 pt]{1\linewidth}{0.5pt}
-\noindent Warning---no abstract file found.  Place the body of the abstract in a file named\\
-\texttt{abstract\_body.tex}\\
-This text will disappear when a file named \texttt{abstract\_body.tex} is included in the current directory.
+\noindent Warning---document class option \texttt{[abstract]} is called, but no abstract is file found.  Place the body of the abstract in a file named
+\texttt{abstract\_body.tex}.
+The text on this page will automatically be replaced with the contents of the file \texttt{abstract\_body.tex} when said file is saved in the present working directory.\\
 \rule[0 pt]{1\linewidth}{0.5pt}
 \end{center}
+\end{quote}
 \par The abstract is a succinct statement of the problem, methodology, findings, and conclusions of
 the study. The author should prepare the content of the abstract with care; doctoral abstracts
 are published and distributed nationally and internationally exactly as submitted. Abstracts are
@@ -485,21 +580,24 @@ text of abstracts as needed to ensure quality of scholarly writing.
 The abstract of a doctoral dissertation must not exceed 350 words and must be complete on
 two pages. \textbf{If your dissertation abstract exceeds the 350-word limit, it will be 
 shortened by ProQuest/UMI editors.}
+%\pangram{30}
 }
 %\input{abstract_body}
 \end{spacing}
 \end{singlespace}
+
 \makeatletter
-	\ifodd\c@page
-	\else
-    \absthead
+  \ifodd\c@page
+  \else
+ \absthead 
   \fi
 \makeatother
 \addtolength{\voffset}{-\abstskip}
 %% end abstract file
 \fi
-\addtolength{\voffset}{\abstskip}
+ 
 \cleardoublepage
+\addtolength{\voffset}{\abstskip}
 %\include{title_page}%Title page
 \setcounter{page}{1}
 \newdateformat{titldate}{\monthname[\THEMONTH]~\THEYEAR}
@@ -553,37 +651,33 @@ Kalamazoo, Michaigan\\
 	\if@twoside
 		\if@openright
 			\setcounter{page}{3}%preserve odd-on-right page numbering    
+                %\else \setcounter{page}{2}%This is the first numbered page, and must be "page ii"	    
   	\fi
   \else
   	\setcounter{page}{2}%This is the first numbered page, and must be "page ii"	    
   \fi
 \if@ackno
-%\clearpage
 %% Acknowledgments---------------%-------------------------------
 \newcommand{\aknoname}{Acknowledgments}
 \chead{\aknoname---Continued}
-%	\if@twoside
-%		\if@openright
-%			\setcounter{page}{3}%preserve odd-on-right page numbering    
- % 	\fi
-  %\else
-  %	\setcounter{page}{2}%This is the first numbered page, and must be "page ii"	    
- % \fi
 \chapter[\texorpdfstring{\uppercase{\aknoname}}{\aknoname}]{\vspace{-\tocskip}\aknoname}
 \begin{singlespace}%This environment declaration is redundant unless doublespacing is used
 \begin{spacing}{2}
 \InputIfFileExists{acknowledgments_body}{}{
+\begin{quote}
 \begin{center}
 \rule[0 pt]{1\linewidth}{0.5pt}
-\noindent Warning---no acknowledgments file found.  Place the body of the abstract in a file named\\
-\texttt{acknowledgments\_body.tex}\\
-This text will disappear when a file named \texttt{acknowledgments\_body.tex} is included in the current directory.
+\noindent Warning---document class option \texttt{[ackno]} is called, but no acknowledgments is file found.  Place the body of the acknowledgments in a file named
+\texttt{acknowledgments\_body.tex}.
+The text on this page will automatically be replaced with the contents of the file \texttt{acknowledgments\_body.tex} when said file is saved in the present working directory.\\
 \rule[0 pt]{1\linewidth}{0.5pt}
 \end{center}
-Although acknowledgments are optional, they are a courteous way of recognizing people to
+\end{quote}
+\par Although acknowledgments are optional, they are a courteous way of recognizing people to
 whom the author is indebted for guidance, assistance, or special aid, including faculty mentors,
 colleagues, friends, and family members. The acknowledgments should be expressed simply and
 tactfully. It is best practice to secure permission of those to be cited in acknowledgments.
+%\pangram{30}
 }
 %\input{acknowledgments_body}
 \end{spacing}
@@ -591,6 +685,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \noindent\hspace*{0.5\textwidth}\authname%Author name with left-hand side at center
 \end{singlespace}
 \fi%\include{acknowledgments}
+
 %% Table of Contents-------------%-------------------------------
 %  The Table of Contents is not supposed to have an entry in the Table of Contents, but it is 
 %  useful in the final PDF output.
@@ -607,24 +702,24 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 
 \if@listtab
 %% List of Tables----------------%-------------------------------
-\clearpage
+\cleardoublepage
 \phantomsection
 \chead{\listtablename---Continued}
 \let\listtname\listtablename
 \renewcommand \listtablename{\vspace{-\tocskip}\listtname}
-\listoftables
 \addcontentsline{toc}{chapter}{\texorpdfstring{\uppercase{\listtname}}{\listtname}}
+\listoftables
 \fi
 
 \if@listfig
 %% List of Figures---------------%-------------------------------
-\clearpage
+\cleardoublepage
 \phantomsection
 \chead{\listfigurename---Continued}
 \let\listfname\listfigurename
 \renewcommand \listfigurename{\vspace{-\tocskip}\listfname}
-\listoffigures
 \addcontentsline{toc}{chapter}{\texorpdfstring{\uppercase{\listfname}}{\listfname}}
+\listoffigures
 \fi
 }
 \newcommand\mainmatter{%
@@ -645,7 +740,9 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
     \pagestyle{fancy}
     \addtolength{\voffset}{4pt}
     \addtolength{\headsep}{-4pt}
-    \fancyhf{} \lhead{\textsl{\leftmark}} \rhead{\thepage} %restore default single-sided behavior
+    \fancyhf{}
+  % \lhead{\textsl{\leftmark}} %No headings!!!
+    \rhead{\thepage} %restore default single-sided behavior
   \fi
 }
 \newcommand\backmatter{%
@@ -879,9 +976,22 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
   \setcounter{chapter}{0}%
   \setcounter{section}{0}%
   \gdef\@chapapp{\appendixname}%
-  \gdef\thechapter{\@Alph\c@chapter}}
+  \gdef\thechapter{\@Alph\c@chapter}
 %% Appendix commands-------------%-------------------------------
-%  For
+
+\long\def\@caption##1[##2]##3{%remove tables and figures from TOC
+  \par
+  %\addcontentsline{\csname ext@##1\endcsname}{##1}%
+    %{\protect\numberline{\csname the##1\endcsname}{\ignorespaces ##2}}%
+  \begingroup
+    \@parboxrestore
+    \if@minipage
+      \@setminipage
+    \fi
+    \normalsize
+    \@makecaption{\csname fnum@##1\endcsname}{\ignorespaces ##3}\par
+  \endgroup}}
+
 \newcommand\twoappendix{\appendix
 \cleardoublepage
 \phantomsection
@@ -890,7 +1000,6 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 }
 
 \newcommand\oneappendix{\appendix
-
 \def\@chapter[##1]##2{\ifnum \c@secnumdepth >\m@ne
                        \if@mainmatter
                          \refstepcounter{chapter}%
