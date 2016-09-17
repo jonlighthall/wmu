@@ -1,6 +1,6 @@
 %%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%%
 %% WMU-compliant Thesis Template
-%% Copyright 2011 Jon Lighthall, Ph.D.
+%% Copyright 2011 2012 Jon Lighthall, Ph.D.
 %
 %  This work may be distributed and/or modified under the 
 %  conditions of the LaTeX Project Public License, either version 1.3c
@@ -62,6 +62,10 @@
 %% * Updated [orig] option
 %%    - tocspace defined for TOC (not used)
 %%    - Appendices are in a new part
+%% --------Version 1.3-------------(updated 06/19/12)------------
+%% * Settings for the [twoside] option are repaired
+%%    - Corrected values of \evensidemargin, \marginparwidth, and \marginparsep 
+%%    - \raggedbottom included to make vertical spacing identical
 %%
 %% This is file `book.cls',
 %% generated with the docstrip utility.
@@ -117,7 +121,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{wmu-thesis}
-              [2011/10/19 v1.22
+              [2012/06/19 v1.3
  Custom LaTeX document class]
 \newcommand\@ptsize{}
 \newif\if@restonecol
@@ -125,7 +129,7 @@
 \@titlepagetrue
 \newif\if@openright
 \newif\if@mainmatter \@mainmattertrue
-\if@compatibility\elsec
+\if@compatibility\else
 \DeclareOption{a4paper}
    {\setlength\paperheight {297mm}%
     \setlength\paperwidth  {210mm}}
@@ -334,6 +338,7 @@
 \RequirePackage{setspace} %required for double spacing and used to control vertical spacing 
 \RequirePackage{fancyhdr} %required for non-standard (fancy) headers
 \RequirePackage{indentfirst} %indents first paragraph of each section
+
 %% Text packages-----------------%-------------------------------
 \usepackage{textcomp,lmodern}%for special symbols 
 \usepackage[utf8]{inputenc}
@@ -502,6 +507,8 @@
 \renewcommand\theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
 \renewcommand\thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
 \newcommand\@chapapp{\chaptername}
+
+%% Hyperlinks--------------------%-------------------------------
 \AtEndOfPackage{
  \RequirePackage{hyperref}
 }
@@ -523,7 +530,7 @@
 %  required to be 1.5 inches excatly, or at least 1.5 inches.  The margins on the remaining 
 %  sides must be at least 1.0 inch.  The following lines set the margins to maximum limits.
 
-%% The following commands set the margins to their default for 10pt font
+%% The following commands set the margins to their default for 10pt font for a one-sided book.
 \setlength{\oddsidemargin}{62pt}
 \setlength{\evensidemargin}{62pt}
 \setlength{\topmargin}{22pt}
@@ -532,16 +539,18 @@
 \setlength{\textwidth}{345pt}
 \setlength{\marginparwidth}{69pt}
 \setlength{\footskip}{25.29494pt}
-\setlength{\marginparpush}{7pt}
+\setlength{\marginparpush}{5pt} %was 7pt in v1.21, why!?
 
 %% For narrow margins (word processor style), set margins below.
-\addtolength{\textwidth}{1.5in}
-\addtolength{\hoffset}{-0.4375in}
-\addtolength{\textheight}{1.75in}
-\addtolength{\voffset}{-0.875in}
+\addtolength{\textwidth}{1.5in}   %increase text width to 6in
+\addtolength{\textheight}{1.75in} %increase text width to 9in
+\addtolength{\hoffset}{-0.4375in} %decrease left margin to 1.5in
+\addtolength{\voffset}{-0.875in}  %decrease top margin to 1.0in
 \reversemarginpar %Moves margin notes to the wider margin
+
 %% Double-sided------------------%-------------------------------
-%  Double-sided printing is prohibited by the WMU guidelines, however...
+%  Formatting for double-sided printing is prohibited by the WMU guidelines, however it produces
+%  much better results when printing double-sided (i.e. in bound, printed book form).
 
 %  For double-sided documents, include the document class option [twoside].
 %  To allow chapters to open on even pages (to preserve pagination), include the document class 
@@ -551,12 +560,14 @@
 %  leave the odd-page margins unchanged while increasing the even-page left-hand margins by 
 %  0.5 inches so that the margins are the same on both sides of the page.
 \if@twoside
- \setlength{\oddsidemargin}{62pt}
- \addtolength{\evensidemargin}{-1in}
- \addtolength{\marginparwidth}{-56pt}
+ \setlength{\oddsidemargin}{62pt}     %keep 1.5in left margin on odd pages
+ \setlength{\evensidemargin}{89pt}    %restore default even-side margin for twoside
+ \addtolength{\evensidemargin}{-1in}  %decrease left margin to 1.5in on even pages
+ \setlength{\marginparwidth}{125pt}   %restore default margin paragraph width for twoside
+ \addtolength{\marginparwidth}{-56pt} %keep 69pt margin paragraph width
 \fi
 \newlength{\titleskip} %places title 1.75" from top of page on Abstract and Title Page
-\newlength{\tocskip}   %places TOC headings 1.25" from top of page      
+\newlength{\tocskip}   %places TOC header 1.25" from top of page      
 \newcommand{\tocspace}{}
 \if@orig
 %  based on ruler (PDF)
@@ -700,15 +711,15 @@ Kalamazoo, Michigan\\
 %% The following environment is necessary to reduce the textheight by tocskip within the front
 %  matter without interfering with main matter vertical spacing.
 \begin{margins} 
-\clearpage
-	\if@twoside
-		\if@openright
-			\setcounter{page}{3}%preserve odd-on-right page numbering    
-                %\else \setcounter{page}{2}%This is the first numbered page, and must be "page ii"	    
-  	\fi
-  \else
-  	\setcounter{page}{2}%This is the first numbered page, and must be "page ii"	    
-  \fi
+  \clearpage
+  \if@twoside
+   \if@openright
+    \setcounter{page}{3}%preserve odd-on-right page numbering    
+   \else \setcounter{page}{2}%This is the first numbered page, and must be "page ii"	    
+   \fi
+   \else
+    \setcounter{page}{2}%This is the first numbered page, and must be "page ii"	    
+   \fi
 
 \if@ackno
 \enlargethispage{-\tocskip}
@@ -716,7 +727,7 @@ Kalamazoo, Michigan\\
 \newcommand{\aknoname}{Acknowledgments}
 \chead{\aknoname---Continued}
 \if@orig
-\begin{singlespace}
+\begin{singlespace}%include chapter command within singlespace to keep ackno. to one page
 \chapter[\texorpdfstring{\uppercase{\aknoname}}{\aknoname}]{\vspace{-\tocskip}\aknoname}
 \else
 \chapter[\texorpdfstring{\uppercase{\aknoname}}{\aknoname}]{\vspace{-\tocskip}\aknoname}
@@ -757,7 +768,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \let\contname\contentsname
 \renewcommand \contentsname{\vspace{-\tocskip}\contname}
 \if@orig
-%\begin{spacing}{\tocspace}
+%\begin{spacing}{\tocspace} %set single spacing in TOC
 \fi
 \tableofcontents
 \if@orig
@@ -790,7 +801,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
     \cleardoublepage
     \if@mainmatter
     \else
-      \addhead{-\tocskip}
+      \addhead{-\tocskip}%added
     \fi
   \@mainmattertrue
   \pagenumbering{arabic}
@@ -813,6 +824,8 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
     \fancyhf{}
     \if@orig 
       \lhead{\textsl{\leftmark}} %No headings!!! 
+    \else  
+   %   \lhead{\textsl{\leftmark}} %No headings!!! 
     \fi
     \rhead{\thepage} %restore default single-sided behavior
   \fi
@@ -1333,6 +1346,7 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \pagestyle{headings}
 \pagenumbering{arabic}
 \if@twoside
+  \raggedbottom %added to make vertical spacing identical.
 \else
   \raggedbottom
 \fi
