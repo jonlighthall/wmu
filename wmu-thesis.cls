@@ -51,6 +51,7 @@
 %%    - headings removed (page-number-only pagestyle) in main matter
 %%    - no tables or figures from appendix in LOT or LOF
 %% --------Version 1.2-------------(submitted 10/17/11)----------
+%% * Robust margins support for 11pt and 12pt font options
 %% * Subtle alterations (corrections) to vertical spacing
 %%    - inclusion [orig] option to reproduce vertical spacing in JC_Lighthall_Thesis
 %%    - use of {margins} environment to change \textheight in \frontmatter
@@ -116,7 +117,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{wmu-thesis}
-              [2011/10/19 v1.21
+              [2011/10/19 v1.22
  Custom LaTeX document class]
 \newcommand\@ptsize{}
 \newif\if@restonecol
@@ -124,7 +125,7 @@
 \@titlepagetrue
 \newif\if@openright
 \newif\if@mainmatter \@mainmattertrue
-\if@compatibility\else
+\if@compatibility\elsec
 \DeclareOption{a4paper}
    {\setlength\paperheight {297mm}%
     \setlength\paperwidth  {210mm}}
