@@ -4,7 +4,7 @@
 \makeatother
 \begin{document}
 \singlespace
-\chapter*{Notes for use of the \texorpdfstring{\LaTeX{}\\}{LaTeX} Formatting Template}
+\chapter*{Notes for use of the \\Western Michigan University\\ Graduate College\\ \texorpdfstring{\LaTeX{}}{LaTeX} Formatting Template}
 \begin{center}
 	%\section*{Notes for use of the \LaTeX{}\\formatting template}
 \begin{tabular}{|p{0.97\linewidth}|}
@@ -20,7 +20,8 @@ The Graduate College is pleased to be able to make this formatting template avai
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
-The template is divided into two files: a \LaTeX{} document class file \texttt{wmu-thesis.cls}\footnote{This class file is maintained by Jon Lighthall, \href{mailto:j4lighth@wmich.edu}{j4lighth@wmich.edu}} and a minimum working example of a \LaTeX{} input file \texttt{wmu-template.tex}.  The class file should not be edited and should be included in the same working directory as the input file.  All special formatting, including that of the abstract, title page, copyright page, and acknowledgments is handled by code in the document class file.  The content of the document is entered via the input file---you fill in the pertinent information in the indicated spaces, discussed below.  In this document, example input code is set in \texttt{typewriter text}.  
+The template\footnote{This template is maintained by Jon Lighthall, Ph.D. WMU 2011, \href{mailto:lighthall@lsu.edu}{lighthall@lsu.edu}. Updated for version 1.4.}
+is divided into two files: a \LaTeX{} document class file \texttt{wmu-thesis.cls} and a minimum working example of a \LaTeX{} input file \texttt{wmu-template.tex}.  The class file should not be edited and should be included in the same working directory as the input file.  All special formatting, including that of the abstract, title page, copyright page, and acknowledgments is handled by code in the document class file.  The content of the document is entered via the input file---you fill in the pertinent information in the indicated spaces, discussed below.  In this document, example input code is set in \texttt{typewriter text}.  
 
 The introductory pages also include the Table of Contents, List of Tables, and List of Figures; these pages are populated and formatted automatically.  All headers, page numbers, and margins are automatically placed in the proper positions and in the selected font.  You should not have to do anything at all with headers, page numbers, or margins.
 
@@ -49,6 +50,7 @@ The content of the front matter is specified with the additional options listed 
 \texttt{[ackno]}    &Include Acknowledgments page(s)\\
 \texttt{[listtab]}  &Include List of Figures (required if figures are used)\\
 \texttt{[listfig]}  &Include List of Tables (required if figures are used)\\
+\texttt{[abslist]}  &Include figures and tables from the appendix in the table of contents\\
 \end{tabular}\\
 \end{center}
 
@@ -166,26 +168,9 @@ If there is only one appendix, use the command \verb|\oneappendix|.  This comman
  an un-numbered appendix and place the heading APPENDIX in the Table of Contents.  This command is used in the minimum working example.  If there two or more appendices, use the command \verb|\twoappendix| instead to insert an Appendices page in your document and to start alphabetic chapter enumeration.  
  
  Tables and figures included in the appendices do not need to be included in the List of Tables or List of Figures, respectively.  The default default behavior of the template is to exclude these entries from the List of Tables and List of Figures.  To restore their inclusion %of figures and tables in the appendix %from appearing 
- %in the List of Tables and List of Figures, respectively, 
- include the following block of code in the appendix.
-\begin{quote}
-\begin{verbatim}
- \makeatletter
-  \long\def\@caption#1[#2]#3{%
-    \par
-    \addcontentsline{\csname ext@#1\endcsname}{#1}%
-    {\protect\numberline{\csname the#1\endcsname}{\ignorespaces #2}}%
-    \begingroup
-    \@parboxrestore
-    \if@minipage
-    \@setminipage
-    \fi
-    \normalsize
-    \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
-    \endgroup}
-  \makeatother
-\end{verbatim}
-\end{quote}
+ in the Tables of Contents, 
+ use the following class option \texttt{[abslist]}.
+
  
 \pdfbookmark[1]{Dependencies}{dep}
 \section*{Dependencies}
