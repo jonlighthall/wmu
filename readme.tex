@@ -1,0 +1,196 @@
+\documentclass{wmu-thesis}
+\makeatletter
+\def\@xobeysp{ }
+\makeatother
+\begin{document}
+\chapter*{Notes for use of the \texorpdfstring{\LaTeX{}\\}{LaTeX} Formatting Template}
+\begin{center}
+	%\section*{Notes for use of the \LaTeX{}\\formatting template}
+\begin{tabular}{|p{0.97\linewidth}|}
+\hline
+All template files %included with this disk \copyright~2011 by Western Michigan University.  A
+available free of charge under the \LaTeX{} Project Public License from The Graduate College, Western Michigan University, Kalamazoo, MI  49008.  All rights reserved.  %The copyright holders and/or other parties
+ This template provided ``as is'' without warranty of any kind, either expressed or implied.\\
+\hline
+\end{tabular}
+\end{center}
+
+The Graduate College is pleased to be able to make this formatting template available to you.  Please note, however, that this template should not be used as a substitute for the University's official formatting guidelines as found in \textit{Guidelines for the Preparation of Theses, Projects, and Dissertations}.  Nor is the template intended to compensate for inadequate \LaTeX{} proficiency.  This template automates many of the formatting functions you will need to prepare your manuscript, but there is still much information in \textit{Guidelines} which you need to know.  Please double-check your final document against the sample pages found in \textit{Guidelines}.
+
+The template is divided into two files: a \LaTeX{} document class file \texttt{wmu-thesis.cls} and a minimum working example of a \LaTeX{} input file \texttt{wmu-template.tex}.  The class file should not be edited and should be included in the same working directory as the input file.  All special formatting, including that of the abstract, title page, copyright page, and acknowledgments is handled by code in the document class file.  The content of the document is entered via the input file---you fill in the pertinent information in the indicated spaces, discussed below.  In this document, example input code is set in \texttt{typewriter text}.  
+
+The introductory pages also include the Table of Contents, List of Tables, and List of Figures; these pages are populated and formatted automatically.  All headers, page numbers, and margins are automatically placed in the proper positions and in the selected font.  You should not have to do anything at all with headers, page numbers, or margins.
+
+\pdfbookmark[1]{Class Options}{opt}
+\section*{Class Options}
+The degree type is entered as an option for the document class.  The following options are recognized.  These options format the degree abbreviation appearing on the abstract, and the degree name and document type that will appear on the title page.\\
+\begin{center}
+\begin{tabular}{rl}
+\texttt{[ma]}   &Master of Arts\\
+\texttt{[mm]}   &Master of Music\\
+\texttt{[ms]}   &Master of Science\\
+\texttt{[msec]} &Master of Science in Engineering (Computer)\\
+\texttt{[msee]} &Master of Science in Engineering (Electrical)\\
+\texttt{[msei]} &Master of Science in Engineering (Industrial)\\
+\texttt{[msem]} &Master of Science in Engineering (Mechanical)\\
+\texttt{[eds]}  &Specialist in Education\\
+\texttt{[edd]}  &Doctor of Education\\
+\texttt{[phd]}  &Doctor of Philosophy\\
+\end{tabular}\\
+\end{center}
+
+The content of the front matter is specified with the additional options listed below.  Some of these ``options'' may be required.\\
+\begin{center}
+\begin{tabular}{rl}
+\texttt{[abstract]} &Include Abstract page(s)\\
+\texttt{[ackno]}    &Include Acknowledgments page(s)\\
+\texttt{[listtab]}  &Include List of Figures (required if figures are used)\\
+\texttt{[listfig]}  &Include List of Tables (required if figures are used)\\
+\end{tabular}\\
+\end{center}
+
+For example, the following command will provide the appropriate formatting for a typical doctoral dissertation.
+\begin{quote}
+\begin{verbatim}
+\documentclass[phd,abstract,ackno,listtab,listfig]{wmu-thesis}
+\end{verbatim}
+\end{quote}
+
+\pdfbookmark[1]{Front Matter}{front}
+\section*{Front Matter}
+To enter the personal information appearing in the front matter of your document, include the following commands in your document before calling the  \verb|\frontmatter| command.  These commands have been included in the minimum working example file \texttt{wmu-template.tex}.%
+%Renewing the \texttt{\char`\\ thesistitle} command will replace the text on this page.\\
+
+\begin{itemize}
+	\item Enter your full name in the argument of the following command.  This is the name that will appear on the abstract, title page, copyright page, and acknowledgments.
+	\vspace*{-5pt}%
+\begin{quote}
+\verb|\renewcommand{\authname}{Author Name}|
+\end{quote}
+\item Enter your thesis title (including line breaks) in the argument of the following command.  If the title takes up more than one line, it is supposed to be formatted in an "inverted pyramid" shape.  Titles should not be more than 20 words in length.  
+	\vspace*{-5pt}%
+\begin{quote}
+\verb|\renewcommand{\thesistitle}{Thesis Title}|
+\end{quote}
+\item Enter the year and month of graduation in the arguments of the following commands.  The graduation month is entered as a number.  The graduation month must be either April(4),  June(6),  August(8),  or December(12).  This is date that will appear (formatted accordingly) on the abstract, title page, and copyright page.
+	\vspace*{-5pt}%
+\begin{quote}
+\begin{verbatim}
+\renewcommand{\gradyear}{2011}
+\renewcommand{\gradmonth}{6}
+\end{verbatim}
+\end{quote}
+\item Enter the department name and, if necessary, the academic unit in the argument of the following command.  This is the name that will appear on the title page.
+	\vspace*{-5pt}%
+\begin{quote}
+\verb|\renewcommand{\departmentname}{Department Name}|
+\end{quote}
+\item Enter your advisor's name, including degree abbreviation, in the argument of the following command.  This is the name that will appear on the title page.
+	\vspace*{-5pt}%
+\begin{quote}
+\verb|\renewcommand{\adviname}{Advisor Name, Ph.D.}|
+\end{quote}
+\end{itemize}
+
+Inclusion of the abstract in the printed output can be toggled with the \texttt{[abstract]} document class option.  If the \texttt{[abstract]} option is used, the document class automatically looks for a file named \verb|abstract_body.text| within the working directory of the input file to fill the body of the abstract.  If this file is not present and the \texttt{[abstract]} document class option is used, the instructions for the abstract will be printed.  Since the document class automatically includes the abstract file, the abstract file must have the name \verb|abstract_body.text| and should not be manually included in the input file.
+
+The body of the acknowledgments is input in the same manner as the abstract; the class option \texttt{[ackno]} is used to toggle the acknowledgments and, if used, the document class automatically looks for a file named \verb|acknowledgments_body.text|.  If your document will not need a List of Tables or List of Figures, remove these class options from the \verb|\documentclass| command.
+
+\pdfbookmark[1]{Fonts}{fonts}
+\section*{Fonts}
+The default font size is 10\,pt.  The document class options \verb|[11pt]| and \verb|[12pt]| may be used to select 11\,pt and 12\,pt font size, respectively.  The default font family of the class is Latin Modern.  Following are a number of fonts with extensive math and symbol support and comply with the \textit{Guidelines}.  To use a particular font, copy the following commands to the preamble of your document.
+
+\begin{itemize}
+%\setlength{\itemsep}{-2pt}
+\item URW Palladio (A Palatino/Book Antiqua clone)
+\vspace*{-5pt}%
+\begin{quote}
+\texttt{\char`\\ usepackage\{amssymb,mathrsfs\}}\\
+\texttt{\char`\\ usepackage\{mathpazo\}}
+\end{quote}
+\item URW Nimbus Roman (A Times clone)
+\vspace*{-5pt}%
+\begin{quote}
+\texttt{\char`\\ usepackage\{amssymb,mathrsfs\}}\\
+\texttt{\char`\\ usepackage\{mathptmx\}}
+\end{quote}
+\item URW Nimbus Sans (A Helvetica clone)%
+\vspace*{-5pt}%
+\begin{quote}%
+\texttt{\char`\\ usepackage\{amssymb,mathrsfs\}}\\%
+\texttt{\char`\\ usepackage[scaled]\{helvet\}}\\%
+\texttt{\char`\\ renewcommand\char`\* \char`\\familydefault\{\char`\\ sfdefault\}}%
+\end{quote}
+%\item URW Garamond
+%\vspace*{-5pt}%
+%\begin{quote}
+%\texttt{\char`\\ usepackage[urw-garamond]\{mathdesign\}}
+%\end{quote}
+\item Adobe Utopia
+\vspace*{-5pt}%
+\begin{quote}
+\texttt{\char`\\ usepackage[adobe-utopia]\{mathdesign\}}
+\end{quote}
+\item Bitstream Charter
+\vspace*{-5pt}%
+\begin{quote}
+\texttt{\char`\\ usepackage[bitstream-charter]\{mathdesign\}}
+\end{quote}
+\end{itemize}
+
+\pdfbookmark[1]{Main Text}{main}
+\section*{Main Text}
+The main text of the document should be included after the \verb|\mainmatter| command in the input file.  The minimum working example %included in this template 
+includes some sample text in this position.  The entire contents of the document may be entered at this position in the example file, however the contents may also be kept in separate files and included using the command
+\begin{quote}
+\verb|\include{|\textit{filename}\verb|}|.
+\end{quote}
+
+The command \verb|\Chapter{}| is introduced in the example file which redefines the behavior of the \verb|\chapter{}| command.  This redefinition produces a chapter heading and PDF bookmark in the same case as the argument of the command, but produces an all-uppercase entry entry in the Table of Contents.  Complex formatting in chapter names, such as mathematics, will need to be entered manually.
+
+The default behavior of the template is to have page headings which only include the page number.  To include the chapter name in the running page heading, include the following command after the \verb|\mainmatter| command.
+\begin{quote}
+\verb|\lhead{\textsl{\leftmark}}|
+\end{quote}
+
+
+\pdfbookmark[1]{Bibliography}{bib}
+\section*{Bibliography}
+The minimum working example includes a simple bibliographic entry.  The style manual chosen by the student's department should be consulted to determine the style used and for correct content of individual entries.  For documents with many citations, the program Bib\TeX{} should be considered.
+
+\pdfbookmark[1]{Appendices}{append}
+\section*{Appendices}
+If there is only one appendix, use the command \verb|\oneappendix|.  This command will make the next chapter %after the command
+ an un-numbered appendix and place the heading APPENDIX in the Table of Contents.  This command is used in the minimum working example.  If there two or more appendices, use the command \verb|\twoappendix| instead to insert an Appendices page in your document and to start alphabetic chapter enumeration.  
+ 
+ Tables and figures included in the appendices do not need to be included in the List of Tables or List of Figures, respectively.  The default default behavior of the template is to exclude these entries from the List of Tables and List of Figures.  To restore their inclusion %of figures and tables in the appendix %from appearing 
+ %in the List of Tables and List of Figures, respectively, 
+ include the following block of code in the appendix.
+\begin{quote}
+\begin{verbatim}
+ \makeatletter
+  \long\def\@caption#1[#2]#3{%
+    \par
+    \addcontentsline{\csname ext@#1\endcsname}{#1}%
+    {\protect\numberline{\csname the#1\endcsname}{\ignorespaces #2}}%
+    \begingroup
+    \@parboxrestore
+    \if@minipage
+    \@setminipage
+    \fi
+    \normalsize
+    \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
+    \endgroup}
+  \makeatother
+\end{verbatim}
+\end{quote}
+ 
+ 
+%The default behavior of this template is to exclude these entries.  To restore the inclusion of figures and tables in the List of Tables and List of Figures, respectively, include the following commands in the appendix.
+%\begin{quote}
+%\begin{verbatim}
+%\captionsetup[figure]{list=yes}
+%\captionsetup[table]{list=yes}
+%\end{verbatim}
+%\end{quote}
+\end{document}
