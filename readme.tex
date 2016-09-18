@@ -3,6 +3,7 @@
 \def\@xobeysp{ }
 \makeatother
 \begin{document}
+\singlespace
 \chapter*{Notes for use of the \texorpdfstring{\LaTeX{}\\}{LaTeX} Formatting Template}
 \begin{center}
 	%\section*{Notes for use of the \LaTeX{}\\formatting template}
@@ -17,7 +18,9 @@ available free of charge under the \LaTeX{} Project Public License from The Grad
 
 The Graduate College is pleased to be able to make this formatting template available to you.  Please note, however, that this template should not be used as a substitute for the University's official formatting guidelines as found in \textit{Guidelines for the Preparation of Theses, Projects, and Dissertations}.  Nor is the template intended to compensate for inadequate \LaTeX{} proficiency.  This template automates many of the formatting functions you will need to prepare your manuscript, but there is still much information in \textit{Guidelines} which you need to know.  Please double-check your final document against the sample pages found in \textit{Guidelines}.
 
-The template is divided into two files: a \LaTeX{} document class file \texttt{wmu-thesis.cls} and a minimum working example of a \LaTeX{} input file \texttt{wmu-template.tex}.  The class file should not be edited and should be included in the same working directory as the input file.  All special formatting, including that of the abstract, title page, copyright page, and acknowledgments is handled by code in the document class file.  The content of the document is entered via the input file---you fill in the pertinent information in the indicated spaces, discussed below.  In this document, example input code is set in \texttt{typewriter text}.  
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+The template is divided into two files: a \LaTeX{} document class file \texttt{wmu-thesis.cls}\footnote{This class file is maintained by Jon Lighthall, \href{mailto:j4lighth@wmich.edu}{j4lighth@wmich.edu}} and a minimum working example of a \LaTeX{} input file \texttt{wmu-template.tex}.  The class file should not be edited and should be included in the same working directory as the input file.  All special formatting, including that of the abstract, title page, copyright page, and acknowledgments is handled by code in the document class file.  The content of the document is entered via the input file---you fill in the pertinent information in the indicated spaces, discussed below.  In this document, example input code is set in \texttt{typewriter text}.  
 
 The introductory pages also include the Table of Contents, List of Tables, and List of Figures; these pages are populated and formatted automatically.  All headers, page numbers, and margins are automatically placed in the proper positions and in the selected font.  You should not have to do anything at all with headers, page numbers, or margins.
 
@@ -153,7 +156,6 @@ The default behavior of the template is to have page headings which only include
 \verb|\lhead{\textsl{\leftmark}}|
 \end{quote}
 
-
 \pdfbookmark[1]{Bibliography}{bib}
 \section*{Bibliography}
 The minimum working example includes a simple bibliographic entry.  The style manual chosen by the student's department should be consulted to determine the style used and for correct content of individual entries.  For documents with many citations, the program Bib\TeX{} should be considered.
@@ -185,12 +187,13 @@ If there is only one appendix, use the command \verb|\oneappendix|.  This comman
 \end{verbatim}
 \end{quote}
  
- 
-%The default behavior of this template is to exclude these entries.  To restore the inclusion of figures and tables in the List of Tables and List of Figures, respectively, include the following commands in the appendix.
-%\begin{quote}
-%\begin{verbatim}
-%\captionsetup[figure]{list=yes}
-%\captionsetup[table]{list=yes}
-%\end{verbatim}
-%\end{quote}
+\pdfbookmark[1]{Dependencies}{dep}
+\section*{Dependencies}
+The template uses the following packages which may not be included in a standard \TeX{} distribution.  They can be downloaded manually from the indicated websites.\\
+\begin{center}
+\begin{tabular}{lr}
+\texttt{fmtcount}& \url{http://www.ctan.org/tex-archive/macros/latex/contrib/fmtcount}\\
+\texttt{datetime}& \url{http://www.ctan.org/tex-archive/macros/latex/contrib/datetime}
+\end{tabular}
+\end{center}
 \end{document}
