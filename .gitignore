@@ -1,10 +1,17 @@
-## Core latex/pdflatex auxiliary files:
+## LaTeX
+## Auxiliary files:
 *.aux
 *.lof
 *.log
 *.lot
 *.out
 *.toc
+
+## Project files:
+*.tcp
+*.tps
+*.texnicle
+*.texnicle.backup
 
 ## Intermediate documents:
 *.dvi
@@ -19,7 +26,12 @@
 *.synctex(busy)
 *.synctex.gz
 *.synctex.gz(busy)
-*.pdfsync
 
 # elsarticle (documentclass of Elsevier journals)
 *.spl
+
+## Emacs
+*~
+\#*#
+
+*.~*~
