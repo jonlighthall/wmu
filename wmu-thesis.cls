@@ -1,4 +1,4 @@
-%%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%%
+%%-------------------Emacs PostScript "pretty-print" page width (97 columns)-------------------%%
 %% WMU-compliant Thesis Template
 %% Copyright 2011 2012 2016 Jon Lighthall, Ph.D.
 %
@@ -66,7 +66,7 @@
 %% * Settings for the [twoside] option are repaired
 %%    - Corrected values of \evensidemargin, \marginparwidth, and \marginparsep 
 %%    - \raggedbottom included to make vertical spacing identical
-%% --------Version 1.4-------------(updated 09/17/16)------------
+%% --------Version 1.4-------------(updated 09/17/16)------------SVN-937
 %% * [abslist] option added
 %%    - replaces orig behavior in abstract
 %%    - added handling for supertabular environments 
