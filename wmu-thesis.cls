@@ -124,7 +124,7 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{wmu/wmu-thesis}
+\ProvidesClass{wmu-thesis}
               [2016/09/17 v1.4
                 Custom LaTeX document class]
 \newcommand\@ptsize{}
