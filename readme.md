@@ -1,9 +1,8 @@
 # WMU Thesis Template
-This repository contains the following files
+This repository contains the following LaTeX files
 
-|    | file                                   | description | purpose                           | 
+|    | file                                   | type | purpose                           | 
 | -- | -------------------------------------- | ---- | ------------------------------------  | 
-|  1 | [`readme.md`](readme.md)               | Markdown | List of files |
-|  2 | [`readme.tex`](readme.tex)             | LaTeX document | Instructions for using the template |
-|  3 | [`wmu-template.tex`](wmu-template.tex) | LaTeX document  | Minimum working example |
-|  4 | [`wmu-thesis.cls`](wmu-thesis.cls)     | LaTeX document class | WMU formatting template | 
+|  1 | [`readme.tex`](readme.tex)             | document | Instructions for using the template |
+|  2 | [`wmu-template.tex`](wmu-template.tex) | document  | Minimum working example |
+|  3 | [`wmu-thesis.cls`](wmu-thesis.cls)     | document class | WMU formatting template | 
